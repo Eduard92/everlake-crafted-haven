@@ -112,7 +112,7 @@ const BagIcon = () => (
   </svg>
 );
 
-function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, onAddToCart }) {
+function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
