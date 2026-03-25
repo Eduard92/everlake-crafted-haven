@@ -91,7 +91,7 @@ const HeroSection = () => {
               e.preventDefault();
               document.getElementById("vip-shop")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-8 py-4 bg-everlake-forest text-everlake-ivory rounded-sm hover:bg-everlake-sage transition-colors duration-300"
+            className="inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-8 py-4 bg-everlake-gold text-everlake-deep rounded-sm hover:brightness-110 transition-all duration-300 shadow-lg shadow-everlake-gold/30"
           >
             {t("hero.cta")}
           </a>
