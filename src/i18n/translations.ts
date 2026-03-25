@@ -40,7 +40,7 @@ const translations = {
   "hideaways.titleItalic": { en: "stillness", es: "quietud" },
   "hideaways.imgLabel1": { en: "Exterior · Forest Setting", es: "Exterior · Entorno Boscoso" },
   "hideaways.imgLabel2": { en: "Interior · Bedroom Suite", es: "Interior · Suite Dormitorio" },
-  "hideaways.tourBadge": { en: "Take a Tour", es: "Haz un Recorrido" },
+  "hideaways.tourBadge": { en: "Take a Cabin Tour", es: "Haz un Recorrido por la Cabaña" },
   "hideaways.feat1Title": { en: "Private Space", es: "Espacio Privado" },
   "hideaways.feat1Desc": {
     en: "Each hideaway is entirely yours. Slow mornings and quiet nights beneath the stars.",
