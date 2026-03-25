@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-lake.jpg";
+import everlakeLogo from "@/assets/everlake-logo.png";
 
 const HeroSection = () => {
   return (
