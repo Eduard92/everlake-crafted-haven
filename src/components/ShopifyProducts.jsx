@@ -298,7 +298,15 @@ export default function ShopifyProducts({
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       if (data.errors) throw new Error(data.errors[0]?.message || "GraphQL error");
-      setProducts((data?.data?.products?.edges || []).map(e => e.node));
+      const allProducts = (data?.data?.products?.edges || []).map(e => e.node);
+      const filtered = allProducts.filter(p => {
+        const isCoupon = (p.productType || "").toLowerCase().includes("coupon") ||
+                         (p.productType || "").toLowerCase().includes("gift") ||
+                         (p.productType || "").toLowerCase().includes("perk");
+        if (isCoupon) return true;
+        return p.variants.edges.some(e => e.node.availableForSale);
+      });
+      setProducts(filtered);
     } catch (err) { setError(`Error al cargar productos: ${err.message}`); }
     finally { setLoading(false); }
   }, [storeUrl, storefrontToken, apiVersion]);
