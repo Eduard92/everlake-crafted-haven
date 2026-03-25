@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-lake.jpg";
+import everlakeLogo from "@/assets/everlake-logo.png";
 
 const HeroSection = () => {
   return (
@@ -35,9 +36,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-editorial text-everlake-ivory text-2xl md:text-3xl tracking-[0.15em] uppercase">
-            Everlake
-          </h1>
+          <img src={everlakeLogo} alt="Everlake" className="h-8 md:h-10 w-auto" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}

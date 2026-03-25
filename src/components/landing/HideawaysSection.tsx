@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import cabinInterior from "@/assets/cabin-interior.jpg";
-import cabinExterior from "@/assets/cabin-exterior.jpg";
+import cabinInterior from "@/assets/cabin-interior.webp";
+import cabinExterior from "@/assets/cabin-exterior.webp";
 
 const HideawaysSection = () => {
   return (
