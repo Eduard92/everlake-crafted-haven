@@ -68,7 +68,7 @@ const HeroSection = () => {
             With You
           </h2>
           <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8">
-            Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. These packages exist only for you, only now.
+            Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. Your 2-Week Exclusive Window Is Now Open.
           </p>
           <a
             href="#vip-shop"
