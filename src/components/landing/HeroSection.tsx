@@ -104,7 +104,14 @@ const HeroSection = () => {
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <a href="#intro" className="flex flex-col items-center gap-2 text-everlake-ivory/50 hover:text-everlake-gold transition-colors">
+          <a
+            href="#intro"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("intro")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="flex flex-col items-center gap-2 text-everlake-ivory/50 hover:text-everlake-gold transition-colors"
+          >
             <span className="font-body text-[10px] tracking-[0.2em] uppercase">{t("hero.scroll")}</span>
             <motion.div
               animate={{ y: [0, 6, 0] }}
