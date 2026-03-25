@@ -68,8 +68,7 @@ const HeroSection = () => {
             With You
           </h2>
           <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed">
-            110 acres of Georgia woodland. Private cabins on the lake. 
-            Opening Spring 2026.
+            Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. These packages exist only for you, only now.
           </p>
         </motion.div>
 
