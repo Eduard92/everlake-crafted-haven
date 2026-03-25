@@ -209,7 +209,6 @@ function ProductCard({ product, onClick }) {
 export default function ShopifyProducts({
   storeUrl,
   storefrontToken,
-  multicart = true,
   apiVersion = "2025-01",
   title = "Unlock Your Stay Before Everyone Else",
   subtitle = "Get your VIP coupons now and lock in priority access before dates are released.",
