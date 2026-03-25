@@ -1,14 +1,26 @@
 import { motion } from "framer-motion";
+import cabinExterior from "@/assets/gallery-cabin-exterior.webp";
+import hotCocoa from "@/assets/gallery-hot-cocoa.webp";
+import jacuzziNight from "@/assets/gallery-jacuzzi-night.webp";
+import coupleDeck from "@/assets/gallery-couple-deck.webp";
+import loftMorning from "@/assets/gallery-loft-morning.webp";
+import firesideCoffee from "@/assets/gallery-fireside-coffee.webp";
+import kitchen from "@/assets/gallery-kitchen.webp";
+import cabinJacuzzi from "@/assets/gallery-cabin-jacuzzi.webp";
+import lakeSunset from "@/assets/gallery-lake-sunset.webp";
+import aerial from "@/assets/gallery-aerial.webp";
 
 const galleryImages = [
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF2947.webp", alt: "Everlake property" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF2950.webp", alt: "Everlake lake view" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF2963.webp", alt: "Everlake forest" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF3156.webp", alt: "Everlake cabin" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF3270.webp", alt: "Everlake scenery" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF3293.webp", alt: "Everlake sunset" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF3332.webp", alt: "Everlake nature" },
-  { src: "https://everlakega.com/wp-content/uploads/2025/10/DSCF3335.webp", alt: "Everlake grounds" },
+  { src: cabinExterior, alt: "A-frame cabin nestled in the forest" },
+  { src: hotCocoa, alt: "Hot cocoa by the fire" },
+  { src: jacuzziNight, alt: "Private jacuzzi under string lights at night" },
+  { src: coupleDeck, alt: "Couple relaxing on the cabin deck" },
+  { src: loftMorning, alt: "Morning coffee in the loft with forest views" },
+  { src: firesideCoffee, alt: "Quiet moment by the campfire" },
+  { src: kitchen, alt: "Fully equipped cabin kitchen" },
+  { src: cabinJacuzzi, alt: "Cabin with private hot tub in the woods" },
+  { src: lakeSunset, alt: "Golden sunset over the lake" },
+  { src: aerial, alt: "Aerial view of the Everlake property and lakes" },
 ];
 
 const GallerySection = () => {
