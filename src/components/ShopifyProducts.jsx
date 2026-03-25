@@ -186,40 +186,6 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
   );
 }
 
-function CartBar({ cart, storeUrl, onRemove, onClear }) {
-  if (!cart.length) return null;
-  const total = cart.reduce((acc, i) => acc + i.price * i.qty, 0);
-  function goToCheckout() {
-    if (!storeUrl) { alert("Store not configured."); return; }
-    const parts = cart.map(i => `${i.variantId}:${i.qty}`).join(",");
-    window.open(`https://${storeUrl}/checkout?items=${parts}`, "_blank");
-  }
-  return (
-    <div className="spv-cart-bar">
-      <div className="spv-cart-header">
-        <div className="spv-cart-title">Carrito</div>
-        <div className="spv-cart-actions">
-          <button className="spv-btn-sec" onClick={onClear}>Limpiar</button>
-          <button className="spv-btn-green spv-btn-sm" onClick={goToCheckout}>Checkout →</button>
-        </div>
-      </div>
-      {cart.map(item => (
-        <div key={item.key} className="spv-cart-item">
-          <div className="spv-cart-item-name">
-            <div>{item.title}</div>
-            <div className="spv-cart-item-sub">{item.variantTitle} · x{item.qty}</div>
-          </div>
-          <div className="spv-cart-item-price">{fmt(item.price * item.qty)}</div>
-          <button className="spv-btn-danger" onClick={() => onRemove(item.key)}>✕</button>
-        </div>
-      ))}
-      <div className="spv-cart-total">
-        <span>Total estimado</span>
-        <span>{fmt(total)}</span>
-      </div>
-    </div>
-  );
-}
 
 function ProductCard({ product, onClick }) {
   return (
