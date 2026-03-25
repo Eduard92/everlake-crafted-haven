@@ -81,6 +81,7 @@ const HideawaysSection = () => {
             <iframe
               src="https://player.vimeo.com/video/1143138281?title=0&byline=0&portrait=0"
               allow="autoplay; fullscreen; picture-in-picture"
+              loading="lazy"
               title="Everlake Cabin Tour"
             />
           </div>
