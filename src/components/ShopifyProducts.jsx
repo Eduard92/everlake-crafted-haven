@@ -62,15 +62,12 @@ const css = `
 .spv-qty-stepper button:hover { background: #e2e8f0; }
 .spv-qty-stepper input { width: 40px; border: none; background: none; text-align: center; font-size: 14px; font-weight: 500; color: #1a1a1a; outline: none; -moz-appearance: textfield; }
 .spv-qty-stepper input::-webkit-outer-spin-button, .spv-qty-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; }
-@media(max-width: 600px) {
+@media(max-width: 768px) {
   .spv-modal-layout { flex-direction: column; }
   .spv-modal-img { width: 100%; min-height: 200px; border-right: none; border-bottom: 1px solid #e2e8f0; }
   .spv-modal-img img { min-height: 200px; }
   .spv-modal-content { padding: 1rem; }
   .spv-modal-card { max-width: 100%; }
-  .spv-card { flex: 0 0 calc(50% - 10px) !important; max-width: calc(50% - 10px) !important; }
-}
-@media(max-width: 400px) {
   .spv-card { flex: 0 0 100% !important; max-width: 100% !important; }
 }
 `;
