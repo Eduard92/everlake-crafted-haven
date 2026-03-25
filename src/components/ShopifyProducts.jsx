@@ -258,7 +258,6 @@ export default function ShopifyProducts({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalProduct, setModalProduct] = useState(null);
-  const [cart, setCart] = useState([]);
 
   const fetchProducts = useCallback(async () => {
     if (!storeUrl || !storefrontToken) { setError("Configura storeUrl y storefrontToken en las props."); setLoading(false); return; }
