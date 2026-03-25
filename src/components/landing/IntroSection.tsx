@@ -18,7 +18,10 @@ const IntroSection = () => {
             A sanctuary where <span className="text-editorial-italic">personalized rest</span> is embedded in every element of our design.
           </h2>
           <p className="font-body text-everlake-charcoal/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            In a world that never stops, we're building a place where you can. Find yourself completely immersed in nature without sacrificing a single comfort. As a VIP member, you get first access to our booking calendar and exclusive rates.
+            In a world that never stops, we're building a place where you can. Find yourself completely immersed in nature without sacrificing a single comfort.
+          </p>
+          <p className="font-body text-everlake-charcoal/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
+            You believed in Everlake before anyone else did. Your Founders Reward is now waiting. Your 2-Week Exclusive Window Is Now Open.
           </p>
         </motion.div>
       </div>
