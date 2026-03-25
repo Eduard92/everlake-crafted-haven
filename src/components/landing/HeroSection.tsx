@@ -67,9 +67,15 @@ const HeroSection = () => {
             <span className="text-editorial-italic">That Stays</span><br />
             With You
           </h2>
-          <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed">
+          <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8">
             Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. These packages exist only for you, only now.
           </p>
+          <a
+            href="#vip-shop"
+            className="inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-8 py-4 bg-everlake-forest text-everlake-ivory rounded-sm hover:bg-everlake-sage transition-colors duration-300"
+          >
+            See My VIP Packages
+          </a>
         </motion.div>
 
         {/* Scroll indicator */}
