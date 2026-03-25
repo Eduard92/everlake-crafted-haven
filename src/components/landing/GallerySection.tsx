@@ -9,6 +9,12 @@ import kitchen from "@/assets/gallery-kitchen.webp";
 import cabinJacuzzi from "@/assets/gallery-cabin-jacuzzi.webp";
 import lakeSunset from "@/assets/gallery-lake-sunset.webp";
 import aerial from "@/assets/gallery-aerial.webp";
+import outdoorDining from "@/assets/gallery-outdoor-dining.webp";
+import familyHike from "@/assets/gallery-family-hike.webp";
+import firepitLake from "@/assets/gallery-firepit-lake.webp";
+import bathroom from "@/assets/gallery-bathroom.webp";
+import loftBed from "@/assets/gallery-loft-bed.webp";
+import cabinDeck from "@/assets/gallery-cabin-deck.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const galleryImages = [
@@ -22,6 +28,12 @@ const galleryImages = [
   { src: cabinJacuzzi, alt: "Cabin with private hot tub in the woods" },
   { src: lakeSunset, alt: "Golden sunset over the lake" },
   { src: aerial, alt: "Aerial view of the Everlake property and lakes" },
+  { src: outdoorDining, alt: "Outdoor dining with wine in the forest" },
+  { src: familyHike, alt: "Family hiking through autumn trails" },
+  { src: firepitLake, alt: "Fire pit by the lake with Adirondack chairs" },
+  { src: bathroom, alt: "Modern cabin bathroom with rain shower" },
+  { src: loftBed, alt: "Cozy loft bedroom with A-frame window" },
+  { src: cabinDeck, alt: "Cabin with deck and hammock in the woods" },
 ];
 
 const GallerySection = () => {
