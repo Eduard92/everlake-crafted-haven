@@ -13,8 +13,8 @@ const translations = {
   "hero.title2": { en: "That Stays", es: "Que Se Queda" },
   "hero.title3": { en: "With You", es: "Contigo" },
   "hero.subtitle1": {
-    en: "Before Everlake opens its gates to the world, you — our Founders — have first access to the lake.",
-    es: "Antes de que Everlake abra sus puertas al mundo, ustedes — nuestros Fundadores — tienen acceso prioritario al lago.",
+    en: "Before Everlake opens its gates to the world, you, our Founders, have first access to the lake.",
+    es: "Antes de que Everlake abra sus puertas al mundo, ustedes, nuestros Fundadores, tienen acceso prioritario al lago.",
   },
   "hero.subtitle2": {
     en: "Your 2-Week Exclusive Window Is Now Open.",
