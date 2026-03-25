@@ -123,8 +123,7 @@ const VipShopSection = () => {
             <span className="text-editorial-italic">Before Everyone Else</span>
           </h2>
           <p className="font-body text-sm text-everlake-ivory/50 max-w-lg mx-auto leading-relaxed">
-            Get your VIP coupons now and lock in priority access before dates are released. 
-            Thank you for believing in Everlake early — these rates are our way of saying thank you.
+            Each package below is a discounted rate voucher — not a booking. Purchase yours now at Founders pricing, then use it to book your actual stay once our calendar opens after April 27th.
           </p>
           <CountdownTimer />
         </motion.div>
