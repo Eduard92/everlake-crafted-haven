@@ -139,13 +139,8 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
   async function handleAction() {
     if (!selectedVariant) return;
     const vid = varId(selectedVariant.id);
-    if (multicart) {
-      onAddToCart(product, vid, selectedVariant.title, selectedVariant.price.amount, qty);
-      onClose();
-      return;
-    }
     if (!storeUrl) { alert("Store not configured."); return; }
-    window.open(`https://${storeUrl}/cart/${vid}:${qty}`, "_blank");
+    window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
   }
 
   return (
@@ -201,7 +196,7 @@ function CartBar({ cart, storeUrl, onRemove, onClear }) {
   function goToCheckout() {
     if (!storeUrl) { alert("Store not configured."); return; }
     const parts = cart.map(i => `${i.variantId}:${i.qty}`).join(",");
-    window.open(`https://${storeUrl}/cart/${parts}`, "_blank");
+    window.open(`https://${storeUrl}/checkout?items=${parts}`, "_blank");
   }
   return (
     <div className="spv-cart-bar">
@@ -243,7 +238,7 @@ function ProductCard({ product, multicart, inCart, cartQty, onClick }) {
         <div className="spv-card-title">{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
         <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); onClick(); }}>
-          <BagIcon /> Shop now
+          <BagIcon /> Checkout
         </button>
       </div>
     </div>
