@@ -126,7 +126,16 @@ const translations = {
   // Property Map
   "map.badge": { en: "The Property", es: "La Propiedad" },
   "map.title1": { en: "110 Acres. Two Lakes.", es: "110 Acres. Dos Lagos." },
-  "map.title2": { en: "30+ Private Hideaways.", es: "30+ Refugios Privados." },
+  "map.title2": { en: "10 Lakeside Hideaways.", es: "10 Refugios Junto al Lago." },
+  "map.phase1": {
+    en: "Everlake is designed to grow in intentional phases — perfecting every detail while honoring the natural landscape. Phase 1 introduces our flagship 10 lakeside cabins, each crafted to deliver the full Everlake experience from day one.",
+    es: "Everlake está diseñado para crecer en fases intencionales — perfeccionando cada detalle mientras honramos el paisaje natural. La Fase 1 presenta nuestras 10 cabañas insignia junto al lago, cada una diseñada para ofrecer la experiencia completa de Everlake desde el primer día.",
+  },
+  "map.phase2Badge": { en: "Coming in Phase 2", es: "Próximamente en Fase 2" },
+  "map.phase2": {
+    en: "Lodge · Spa · Event Space · Wedding Venue",
+    es: "Lodge · Spa · Espacio para Eventos · Salón de Bodas",
+  },
 
   // Location
   "loc.badge": { en: "Closer Than You Think", es: "Más Cerca de lo Que Crees" },

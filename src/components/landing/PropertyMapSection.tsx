@@ -15,10 +15,17 @@ const PropertyMapSection = () => {
           className="text-center max-w-3xl mx-auto"
         >
           <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">{t("map.badge")}</p>
-          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-6">
+          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-4">
             {t("map.title1")}<br />
             <span className="text-editorial-italic">{t("map.title2")}</span>
           </h2>
+          <p className="font-body text-everlake-ivory/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6">
+            {t("map.phase1")}
+          </p>
+          <div className="inline-flex flex-col items-center gap-1 border border-everlake-gold/30 rounded-sm px-6 py-3">
+            <span className="font-body text-[10px] tracking-[0.25em] uppercase text-everlake-gold">{t("map.phase2Badge")}</span>
+            <span className="font-body text-sm md:text-base text-everlake-ivory/90 tracking-wide">{t("map.phase2")}</span>
+          </div>
         </motion.div>
       </div>
 
