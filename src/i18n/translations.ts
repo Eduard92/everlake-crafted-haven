@@ -12,9 +12,13 @@ const translations = {
   "hero.title1": { en: "The Getaway", es: "La Escapada" },
   "hero.title2": { en: "That Stays", es: "Que Se Queda" },
   "hero.title3": { en: "With You", es: "Contigo" },
-  "hero.subtitle": {
-    en: "Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. Your 2-Week Exclusive Window Is Now Open.",
-    es: "Antes de que Everlake abra sus puertas al mundo, ustedes — nuestros Fundadores — tienen acceso prioritario al lago. Su Ventana Exclusiva de 2 Semanas Está Abierta.",
+  "hero.subtitle1": {
+    en: "Before Everlake opens its gates to the world, you — our Founders — have first access to the lake.",
+    es: "Antes de que Everlake abra sus puertas al mundo, ustedes — nuestros Fundadores — tienen acceso prioritario al lago.",
+  },
+  "hero.subtitle2": {
+    en: "Your 2-Week Exclusive Window Is Now Open.",
+    es: "Su Ventana Exclusiva de 2 Semanas Está Abierta.",
   },
   "hero.cta": { en: "See My VIP Packages", es: "Ver Mis Paquetes VIP" },
   "hero.scroll": { en: "Scroll", es: "Desplazar" },
