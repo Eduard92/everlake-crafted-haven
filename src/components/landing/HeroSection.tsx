@@ -36,9 +36,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-editorial text-everlake-ivory text-2xl md:text-3xl tracking-[0.15em] uppercase">
-            Everlake
-          </h1>
+          <img src={everlakeLogo} alt="Everlake" className="h-8 md:h-10 w-auto" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
