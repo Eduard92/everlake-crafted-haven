@@ -7,7 +7,7 @@ const VipShopSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="vip-shop" className="section-dark py-24 md:py-36 px-8 md:px-16">
+    <section id="vip-shop" className="section-dark pt-8 md:pt-12 pb-24 md:pb-36 px-8 md:px-16">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
