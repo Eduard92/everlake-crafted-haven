@@ -82,7 +82,7 @@ const PRODUCTS_QUERY = `{
         id handle title vendor description productType
         featuredImage { url }
         priceRange { minVariantPrice { amount currencyCode } }
-        variants(first: 30) { edges { node { id title price { amount currencyCode } } } }
+        variants(first: 30) { edges { node { id title price { amount currencyCode } availableForSale } } }
       }
     }
   }
