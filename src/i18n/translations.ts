@@ -76,6 +76,7 @@ const translations = {
   "countdown.days": { en: "Days", es: "Días" },
   "countdown.hours": { en: "Hours", es: "Horas" },
   "countdown.minutes": { en: "Minutes", es: "Minutos" },
+  "countdown.seconds": { en: "Seconds", es: "Segundos" },
 
   // Experiences
   "exp.badge": { en: "On-Property", es: "En la Propiedad" },
