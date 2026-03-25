@@ -79,8 +79,11 @@ const HeroSection = () => {
             <span className="text-editorial-italic">{t("hero.title2")}</span><br />
             {t("hero.title3")}
           </h1>
-          <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8">
-            {t("hero.subtitle")}
+          <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-2">
+            {t("hero.subtitle1")}
+          </p>
+          <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8 font-medium">
+            {t("hero.subtitle2")}
           </p>
           <a
             href="#vip-shop"
