@@ -145,29 +145,7 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
       return;
     }
     if (!storeUrl) { alert("Store not configured."); return; }
-    if (isCoupon && storefrontToken) {
-      setLoading(true);
-      try {
-        const mutation = `mutation cartCreate($input: CartInput!) {
-          cartCreate(input: $input) {
-            cart { checkoutUrl }
-            userErrors { field message }
-          }
-        }`;
-        const res = await fetch(`https://${storeUrl}/api/2025-01/graphql.json`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Shopify-Storefront-Access-Token": storefrontToken },
-          body: JSON.stringify({ query: mutation, variables: { input: { lines: [{ quantity: qty, merchandiseId: selectedVariant.id }] } } }),
-        });
-        const data = await res.json();
-        const cart = data?.data?.cartCreate?.cart;
-        if (cart?.checkoutUrl) { window.location.href = cart.checkoutUrl; }
-        else { alert("Error al crear el carrito. Intenta de nuevo."); }
-      } catch { alert("Error de conexión."); }
-      finally { setLoading(false); }
-    } else {
-      window.location.href = `https://${storeUrl}/cart/${vid}:${qty}`;
-    }
+    window.open(`https://${storeUrl}/cart/${vid}:${qty}`, "_blank");
   }
 
   return (
