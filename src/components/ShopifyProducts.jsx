@@ -196,7 +196,7 @@ function CartBar({ cart, storeUrl, onRemove, onClear }) {
   function goToCheckout() {
     if (!storeUrl) { alert("Store not configured."); return; }
     const parts = cart.map(i => `${i.variantId}:${i.qty}`).join(",");
-    window.open(`https://${storeUrl}/cart/${parts}`, "_blank");
+    window.open(`https://${storeUrl}/checkout?items=${parts}`, "_blank");
   }
   return (
     <div className="spv-cart-bar">
