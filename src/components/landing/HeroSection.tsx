@@ -87,6 +87,10 @@ const HeroSection = () => {
           </p>
           <a
             href="#vip-shop"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("vip-shop")?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-8 py-4 bg-everlake-forest text-everlake-ivory rounded-sm hover:bg-everlake-sage transition-colors duration-300"
           >
             {t("hero.cta")}
