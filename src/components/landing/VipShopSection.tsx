@@ -35,7 +35,6 @@ const VipShopSection = () => {
           <ShopifyProducts
             storeUrl="0vis13-xd.myshopify.com"
             storefrontToken="10408f0a1519159f72acd7ed028aaac0"
-            multicart={true}
             subtitle=""
           />
         </motion.div>

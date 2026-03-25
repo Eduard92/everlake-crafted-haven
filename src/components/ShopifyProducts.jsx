@@ -105,11 +105,6 @@ function isCouponProduct(p) {
   return t.includes("coupon") || t.includes("gift") || t.includes("perk");
 }
 
-const CartIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-  </svg>
-);
 
 const BagIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -117,7 +112,7 @@ const BagIcon = () => (
   </svg>
 );
 
-function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, onAddToCart }) {
+function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -141,6 +136,7 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
     const vid = varId(selectedVariant.id);
     if (!storeUrl) { alert("Store not configured."); return; }
     window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
+    onClose();
   }
 
   return (
@@ -180,9 +176,9 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
               </div>
             </div>
             <button className="spv-btn-green" onClick={handleAction} disabled={loading}>
-              {loading ? "Procesando..." : multicart ? <><CartIcon /> Agregar al carrito</> : <><BagIcon /> Ir al checkout</>}
+              {loading ? "Procesando..." : <><BagIcon /> Ir al checkout</>}
             </button>
-            <p className="spv-note">{multicart ? "Se agregará al carrito. Sigue explorando." : "Se abrirá el checkout de Shopify."}</p>
+            <p className="spv-note">Se abrirá el checkout de Shopify.</p>
           </div>
         </div>
       </div>
@@ -190,49 +186,14 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
   );
 }
 
-function CartBar({ cart, storeUrl, onRemove, onClear }) {
-  if (!cart.length) return null;
-  const total = cart.reduce((acc, i) => acc + i.price * i.qty, 0);
-  function goToCheckout() {
-    if (!storeUrl) { alert("Store not configured."); return; }
-    const parts = cart.map(i => `${i.variantId}:${i.qty}`).join(",");
-    window.open(`https://${storeUrl}/checkout?items=${parts}`, "_blank");
-  }
-  return (
-    <div className="spv-cart-bar">
-      <div className="spv-cart-header">
-        <div className="spv-cart-title">Carrito</div>
-        <div className="spv-cart-actions">
-          <button className="spv-btn-sec" onClick={onClear}>Limpiar</button>
-          <button className="spv-btn-green spv-btn-sm" onClick={goToCheckout}>Checkout →</button>
-        </div>
-      </div>
-      {cart.map(item => (
-        <div key={item.key} className="spv-cart-item">
-          <div className="spv-cart-item-name">
-            <div>{item.title}</div>
-            <div className="spv-cart-item-sub">{item.variantTitle} · x{item.qty}</div>
-          </div>
-          <div className="spv-cart-item-price">{fmt(item.price * item.qty)}</div>
-          <button className="spv-btn-danger" onClick={() => onRemove(item.key)}>✕</button>
-        </div>
-      ))}
-      <div className="spv-cart-total">
-        <span>Total estimado</span>
-        <span>{fmt(total)}</span>
-      </div>
-    </div>
-  );
-}
 
-function ProductCard({ product, multicart, inCart, cartQty, onClick }) {
+function ProductCard({ product, onClick }) {
   return (
-    <div className={`spv-card ${inCart && multicart ? "spv-in-cart" : ""}`} tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
+    <div className="spv-card" tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
       <div className="spv-card-img">
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
           : <span>Sin imagen</span>}
-        {inCart && multicart && <span className="spv-cart-indicator">En carrito · {cartQty}</span>}
       </div>
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
@@ -248,7 +209,6 @@ function ProductCard({ product, multicart, inCart, cartQty, onClick }) {
 export default function ShopifyProducts({
   storeUrl,
   storefrontToken,
-  multicart = true,
   apiVersion = "2025-01",
   title = "Unlock Your Stay Before Everyone Else",
   subtitle = "Get your VIP coupons now and lock in priority access before dates are released.",
@@ -257,7 +217,6 @@ export default function ShopifyProducts({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalProduct, setModalProduct] = useState(null);
-  const [cart, setCart] = useState([]);
 
   const fetchProducts = useCallback(async () => {
     if (!storeUrl || !storefrontToken) { setError("Configura storeUrl y storefrontToken en las props."); setLoading(false); return; }
@@ -286,19 +245,6 @@ export default function ShopifyProducts({
 
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
-  function addToCart(product, variantId, variantTitle, price, qty) {
-    const key = `${product.id}__${variantId}`;
-    setCart(prev => {
-      const ex = prev.find(i => i.key === key);
-      if (ex) return prev.map(i => i.key === key ? { ...i, qty: i.qty + qty } : i);
-      return [...prev, { key, productId: product.id, title: product.title, variantId, variantTitle, price: parseFloat(price), qty }];
-    });
-  }
-
-  function removeFromCart(key) { setCart(prev => prev.filter(i => i.key !== key)); }
-  function inCart(p) { return cart.some(i => i.productId === p.id); }
-  function getCartQty(p) { return cart.filter(i => i.productId === p.id).reduce((a, i) => a + i.qty, 0); }
-
   return (
     <>
       <style>{css}</style>
@@ -307,7 +253,6 @@ export default function ShopifyProducts({
           <h2 className="spv-header-title">{title}</h2>
           <p className="spv-header-subtitle">{subtitle}</p>
         </div>
-        {multicart && <CartBar cart={cart} storeUrl={storeUrl} onRemove={removeFromCart} onClear={() => setCart([])} />}
         {error && <div className="spv-alert spv-alert-error">{error}</div>}
         <div className="spv-grid">
           {loading ? (
@@ -316,12 +261,12 @@ export default function ShopifyProducts({
             <div className="spv-empty">No se encontraron productos.</div>
           ) : (
             products.map(p => (
-              <ProductCard key={p.id} product={p} multicart={multicart} inCart={inCart(p)} cartQty={getCartQty(p)} onClick={() => setModalProduct(p)} />
+              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} />
             ))
           )}
         </div>
         {modalProduct && (
-          <ProductModal product={modalProduct} multicart={multicart} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} onAddToCart={addToCart} />
+          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} />
         )}
       </div>
     </>
