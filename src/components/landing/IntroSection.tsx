@@ -21,7 +21,7 @@ const IntroSection = () => {
             In a world that never stops, we're building a place where you can. Find yourself completely immersed in nature without sacrificing a single comfort.
           </p>
           <p className="font-body text-everlake-charcoal/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
-            You believed in Everlake before anyone else did. Your Founders Reward is now waiting. Your 2-Week Exclusive Window Is Now Open.
+            You believed in Everlake before anyone else did. Your Founders Reward is now waiting.
           </p>
         </motion.div>
       </div>
