@@ -119,8 +119,8 @@ const VipShopSection = () => {
             Exclusive VIP Access
           </p>
           <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-6">
-            Unlock Your Stay<br />
-            <span className="text-editorial-italic">Before Everyone Else</span>
+            Lock in your rate.<br />
+            <span className="text-editorial-italic">Unlock Your Stay<br />Before Everyone Else</span>
           </h2>
           <p className="font-body text-sm text-everlake-ivory/50 max-w-lg mx-auto leading-relaxed">
             Each package below is a discounted rate voucher — not a booking. Purchase yours now at Founders pricing, then use it to book your actual stay once our calendar opens after April 27th.
