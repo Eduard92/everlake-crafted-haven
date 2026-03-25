@@ -226,14 +226,13 @@ function CartBar({ cart, storeUrl, onRemove, onClear }) {
   );
 }
 
-function ProductCard({ product, multicart, inCart, cartQty, onClick }) {
+function ProductCard({ product, onClick }) {
   return (
-    <div className={`spv-card ${inCart && multicart ? "spv-in-cart" : ""}`} tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
+    <div className="spv-card" tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
       <div className="spv-card-img">
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
           : <span>Sin imagen</span>}
-        {inCart && multicart && <span className="spv-cart-indicator">En carrito · {cartQty}</span>}
       </div>
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
