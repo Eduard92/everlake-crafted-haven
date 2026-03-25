@@ -7,6 +7,7 @@ import VipShopSection from "@/components/landing/VipShopSection";
 import LocationSection from "@/components/landing/LocationSection";
 import FaqSection from "@/components/landing/FaqSection";
 import GallerySection from "@/components/landing/GallerySection";
+import PropertyMapSection from "@/components/landing/PropertyMapSection";
 import FooterSection from "@/components/landing/FooterSection";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <HideawaysSection />
       <HowItWorksSection />
       <ExperiencesSection />
+      <PropertyMapSection />
       <VipShopSection />
       <LocationSection />
       <FaqSection />
