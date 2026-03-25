@@ -19,7 +19,7 @@ const HeroSection = () => {
       {/* Brand Video (Vimeo) — plays behind content */}
       <div className="absolute inset-0 z-[1]">
         <iframe
-          src="https://player.vimeo.com/video/1068230685?background=1&autoplay=1&loop=1&muted=1&quality=1080p"
+          src="https://player.vimeo.com/video/1143427204?background=1&autoplay=1&muted=1&loop=1&autopause=0"
           className="h-full w-full object-cover pointer-events-none"
           style={{ position: 'absolute', top: '50%', left: '50%', width: '177.78vh', height: '100vh', minWidth: '100%', minHeight: '100%', transform: 'translate(-50%, -50%)' }}
           allow="autoplay; fullscreen"
