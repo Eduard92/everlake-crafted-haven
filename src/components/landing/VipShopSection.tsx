@@ -1,19 +1,19 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import CountdownTimer from "./CountdownTimer";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const VipShopSection = () => {
+  const { t } = useLanguage();
+
   useEffect(() => {
-    // Load Shopify Buy Button script
     const existingScript = document.getElementById("shopify-buy-button-script");
     if (!existingScript) {
       const script = document.createElement("script");
       script.id = "shopify-buy-button-script";
       script.src = "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
       script.async = true;
-      script.onload = () => {
-        initShopifyBuyButton();
-      };
+      script.onload = () => initShopifyBuyButton();
       document.head.appendChild(script);
     } else {
       initShopifyBuyButton();
@@ -21,15 +21,13 @@ const VipShopSection = () => {
   }, []);
 
   const initShopifyBuyButton = () => {
-    // @ts-ignore - Shopify global
+    // @ts-ignore
     if (typeof ShopifyBuy === "undefined") return;
-
     // @ts-ignore
     const client = ShopifyBuy.buildClient({
       domain: "everlake-ga.myshopify.com",
       storefrontAccessToken: "4a2a39c0a67d9e67de13c575520cb0d9",
     });
-
     // @ts-ignore
     ShopifyBuy.UI.onReady(client).then((ui: any) => {
       const container = document.getElementById("shopify-collection-component");
@@ -41,63 +39,15 @@ const VipShopSection = () => {
           options: {
             product: {
               styles: {
-                product: {
-                  "@media (min-width: 601px)": {
-                    "max-width": "calc(33.33% - 30px)",
-                    "margin-left": "30px",
-                    "margin-bottom": "50px",
-                  },
-                },
-                title: {
-                  "font-family": "'DM Sans', sans-serif",
-                  "font-size": "14px",
-                  "letter-spacing": "0.05em",
-                  color: "hsl(40, 33%, 96%)",
-                },
-                price: {
-                  "font-family": "'DM Sans', sans-serif",
-                  "font-size": "14px",
-                  color: "hsl(38, 55%, 52%)",
-                },
-                button: {
-                  "font-family": "'DM Sans', sans-serif",
-                  "font-size": "12px",
-                  "letter-spacing": "0.15em",
-                  "padding-top": "14px",
-                  "padding-bottom": "14px",
-                  "background-color": "hsl(160, 30%, 18%)",
-                  ":hover": {
-                    "background-color": "hsl(145, 20%, 35%)",
-                  },
-                  "border-radius": "2px",
-                },
+                product: { "@media (min-width: 601px)": { "max-width": "calc(33.33% - 30px)", "margin-left": "30px", "margin-bottom": "50px" } },
+                title: { "font-family": "'DM Sans', sans-serif", "font-size": "14px", "letter-spacing": "0.05em", color: "hsl(40, 33%, 96%)" },
+                price: { "font-family": "'DM Sans', sans-serif", "font-size": "14px", color: "hsl(38, 55%, 52%)" },
+                button: { "font-family": "'DM Sans', sans-serif", "font-size": "12px", "letter-spacing": "0.15em", "padding-top": "14px", "padding-bottom": "14px", "background-color": "hsl(160, 30%, 18%)", ":hover": { "background-color": "hsl(145, 20%, 35%)" }, "border-radius": "2px" },
               },
-              text: {
-                button: "Add to Cart",
-              },
+              text: { button: "Add to Cart" },
             },
-            cart: {
-              styles: {
-                button: {
-                  "font-family": "'DM Sans', sans-serif",
-                  "background-color": "hsl(160, 30%, 18%)",
-                  ":hover": {
-                    "background-color": "hsl(145, 20%, 35%)",
-                  },
-                  "border-radius": "2px",
-                },
-              },
-            },
-            toggle: {
-              styles: {
-                toggle: {
-                  "background-color": "hsl(160, 30%, 18%)",
-                  ":hover": {
-                    "background-color": "hsl(145, 20%, 35%)",
-                  },
-                },
-              },
-            },
+            cart: { styles: { button: { "font-family": "'DM Sans', sans-serif", "background-color": "hsl(160, 30%, 18%)", ":hover": { "background-color": "hsl(145, 20%, 35%)" }, "border-radius": "2px" } } },
+            toggle: { styles: { toggle: { "background-color": "hsl(160, 30%, 18%)", ":hover": { "background-color": "hsl(145, 20%, 35%)" } } } },
           },
         });
       }
@@ -107,7 +57,6 @@ const VipShopSection = () => {
   return (
     <section id="vip-shop" className="section-dark py-24 md:py-36 px-8 md:px-16">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -115,20 +64,15 @@ const VipShopSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-6"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">
-            Exclusive VIP Access
-          </p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">{t("vip.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-6">
-            Lock in your rate.<br />
-            <span className="text-editorial-italic">Unlock Your Stay<br />Before Everyone Else</span>
+            {t("vip.title1")}<br />
+            <span className="text-editorial-italic">{t("vip.title2")}<br />{t("vip.title3")}</span>
           </h2>
-          <p className="font-body text-sm text-everlake-ivory/50 max-w-lg mx-auto leading-relaxed">
-            Each package below is a discounted rate voucher — not a booking. Purchase yours now at Founders pricing, then use it to book your actual stay once our calendar opens after April 27th.
-          </p>
+          <p className="font-body text-sm text-everlake-ivory/50 max-w-lg mx-auto leading-relaxed">{t("vip.subtitle")}</p>
           <CountdownTimer />
         </motion.div>
 
-        {/* Shopify embed container */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

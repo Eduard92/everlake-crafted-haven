@@ -1,10 +1,18 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const LocationSection = () => {
+  const { t } = useLanguage();
+
+  const routes = [
+    { time: "50 minutes", from: "Atlanta, GA" },
+    { time: "3.5 hours", from: "Savannah, GA" },
+    { time: "3 hours", from: "Chattanooga, TN" },
+  ];
+
   return (
     <section className="bg-background py-24 md:py-36 px-8 md:px-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-        {/* Map / visual */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -23,33 +31,23 @@ const LocationSection = () => {
           </div>
         </motion.div>
 
-        {/* Text */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4">
-            Closer Than You Think
-          </p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4">{t("loc.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-4xl text-foreground leading-[1.1] mb-6">
-            Covington, <span className="text-editorial-italic">Georgia</span>
+            {t("loc.title")} <span className="text-editorial-italic">{t("loc.titleItalic")}</span>
           </h2>
-          <p className="font-body text-muted-foreground text-base leading-relaxed mb-8">
-            Tucked into the woods on 110 acres just <strong className="text-foreground">1 hour</strong> from Atlanta's Hartsfield-Jackson Airport. 
-            Everlake is your invitation to unplug with ease and stay present with joy.
-          </p>
+          <p className="font-body text-muted-foreground text-base leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t("loc.subtitle") }} />
 
           <div className="space-y-4">
-            {[
-              { time: "50 minutes", from: "Atlanta, GA" },
-              { time: "3.5 hours", from: "Savannah, GA" },
-              { time: "3 hours", from: "Chattanooga, TN" },
-            ].map((route) => (
+            {routes.map((route) => (
               <div key={route.from} className="flex items-center gap-4">
                 <span className="text-editorial text-everlake-gold text-lg w-28 shrink-0">{route.time}</span>
-                <span className="font-body text-sm text-muted-foreground">from {route.from}</span>
+                <span className="font-body text-sm text-muted-foreground">{t("loc.from")} {route.from}</span>
               </div>
             ))}
           </div>

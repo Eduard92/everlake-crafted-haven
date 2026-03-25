@@ -1,27 +1,17 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-const faqs = [
-  {
-    question: "When will Everlake open?",
-    answer: "Everlake is currently in the late stages of construction. We will begin hosting in Spring 2026.",
-  },
-  {
-    question: "Where is Everlake located?",
-    answer: "Everlake is built on 110 acres in Covington, Georgia. Nestled in the woods beside two different bodies of water.",
-  },
-  {
-    question: "What does VIP membership include?",
-    answer: "VIP members get early access to the booking calendar and discounted rates on stays, packages, and add-ons before public availability.",
-  },
-  {
-    question: "Who can I contact if I have questions?",
-    answer: "Please don't hesitate to reach out to our wonderful Resort Manager, Montana at montana@everlakega.com",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const FaqSection = () => {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    { question: t("faq.q1"), answer: t("faq.a1") },
+    { question: t("faq.q2"), answer: t("faq.a2") },
+    { question: t("faq.q3"), answer: t("faq.a3") },
+    { question: t("faq.q4"), answer: t("faq.a4") },
+  ];
 
   return (
     <section id="faq" className="section-cream py-24 md:py-36 px-8 md:px-16">
@@ -33,11 +23,9 @@ const FaqSection = () => {
           transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4">
-            Questions
-          </p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4">{t("faq.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-4xl text-everlake-charcoal">
-            Frequently <span className="text-editorial-italic">Asked</span>
+            {t("faq.title")} <span className="text-editorial-italic">{t("faq.titleItalic")}</span>
           </h2>
         </motion.div>
 

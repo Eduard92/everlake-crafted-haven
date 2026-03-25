@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-lake.jpg";
 import everlakeLogo from "@/assets/everlake-logo.png";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const HeroSection = () => {
+  const { lang, setLang, t } = useLanguage();
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background image as fallback / poster — the brand video replaces this */}
+      {/* Background image as fallback / poster */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
@@ -17,7 +20,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-everlake-warm-black/40" />
       </div>
 
-      {/* Brand Video (Vimeo) — plays behind content */}
+      {/* Brand Video (Vimeo) */}
       <div className="absolute inset-0 z-[1]">
         <iframe
           src="https://player.vimeo.com/video/1143427204?background=1&autoplay=1&muted=1&loop=1&autopause=0"
@@ -42,12 +45,21 @@ const HeroSection = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="hidden md:flex items-center gap-8 font-body text-sm tracking-[0.1em] text-everlake-ivory/80 uppercase"
+          className="flex items-center gap-4 md:gap-8"
         >
-          <a href="#hideaways" className="hover:text-everlake-gold transition-colors duration-300">Hideaways</a>
-          <a href="#experiences" className="hover:text-everlake-gold transition-colors duration-300">Experiences</a>
-          <a href="#vip-shop" className="hover:text-everlake-gold transition-colors duration-300">VIP Shop</a>
-          <a href="#faq" className="hover:text-everlake-gold transition-colors duration-300">FAQ</a>
+          {/* Language toggle */}
+          <button
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            className="font-body text-xs tracking-[0.1em] uppercase text-everlake-ivory/80 hover:text-everlake-gold transition-colors duration-300 border border-everlake-ivory/30 hover:border-everlake-gold rounded-sm px-3 py-1.5"
+          >
+            {lang === "en" ? "ES" : "EN"}
+          </button>
+          <div className="hidden md:flex items-center gap-8 font-body text-sm tracking-[0.1em] text-everlake-ivory/80 uppercase">
+            <a href="#hideaways" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.hideaways")}</a>
+            <a href="#experiences" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.experiences")}</a>
+            <a href="#vip-shop" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.vipShop")}</a>
+            <a href="#faq" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.faq")}</a>
+          </div>
         </motion.div>
       </nav>
 
@@ -60,21 +72,21 @@ const HeroSection = () => {
           className="max-w-2xl"
         >
           <p className="font-body text-xs md:text-sm tracking-[0.2em] uppercase text-everlake-gold mb-4">
-            VIP Early Access · Covington, Georgia
+            {t("hero.badge")}
           </p>
           <h1 className="text-editorial text-everlake-ivory text-4xl md:text-6xl lg:text-7xl leading-[0.95] mb-6">
-            The Getaway<br />
-            <span className="text-editorial-italic">That Stays</span><br />
-            With You
+            {t("hero.title1")}<br />
+            <span className="text-editorial-italic">{t("hero.title2")}</span><br />
+            {t("hero.title3")}
           </h1>
           <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8">
-            Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. Your 2-Week Exclusive Window Is Now Open.
+            {t("hero.subtitle")}
           </p>
           <a
             href="#vip-shop"
             className="inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-8 py-4 bg-everlake-forest text-everlake-ivory rounded-sm hover:bg-everlake-sage transition-colors duration-300"
           >
-            See My VIP Packages
+            {t("hero.cta")}
           </a>
         </motion.div>
 
@@ -86,7 +98,7 @@ const HeroSection = () => {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <a href="#intro" className="flex flex-col items-center gap-2 text-everlake-ivory/50 hover:text-everlake-gold transition-colors">
-            <span className="font-body text-[10px] tracking-[0.2em] uppercase">Scroll</span>
+            <span className="font-body text-[10px] tracking-[0.2em] uppercase">{t("hero.scroll")}</span>
             <motion.div
               animate={{ y: [0, 6, 0] }}
               transition={{ repeat: Infinity, duration: 1.8 }}
