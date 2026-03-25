@@ -286,19 +286,6 @@ export default function ShopifyProducts({
 
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
-  function addToCart(product, variantId, variantTitle, price, qty) {
-    const key = `${product.id}__${variantId}`;
-    setCart(prev => {
-      const ex = prev.find(i => i.key === key);
-      if (ex) return prev.map(i => i.key === key ? { ...i, qty: i.qty + qty } : i);
-      return [...prev, { key, productId: product.id, title: product.title, variantId, variantTitle, price: parseFloat(price), qty }];
-    });
-  }
-
-  function removeFromCart(key) { setCart(prev => prev.filter(i => i.key !== key)); }
-  function inCart(p) { return cart.some(i => i.productId === p.id); }
-  function getCartQty(p) { return cart.filter(i => i.productId === p.id).reduce((a, i) => a + i.qty, 0); }
-
   return (
     <>
       <style>{css}</style>
@@ -307,7 +294,6 @@ export default function ShopifyProducts({
           <h2 className="spv-header-title">{title}</h2>
           <p className="spv-header-subtitle">{subtitle}</p>
         </div>
-        {multicart && <CartBar cart={cart} storeUrl={storeUrl} onRemove={removeFromCart} onClear={() => setCart([])} />}
         {error && <div className="spv-alert spv-alert-error">{error}</div>}
         <div className="spv-grid">
           {loading ? (
@@ -316,12 +302,12 @@ export default function ShopifyProducts({
             <div className="spv-empty">No se encontraron productos.</div>
           ) : (
             products.map(p => (
-              <ProductCard key={p.id} product={p} multicart={multicart} inCart={inCart(p)} cartQty={getCartQty(p)} onClick={() => setModalProduct(p)} />
+              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} />
             ))
           )}
         </div>
         {modalProduct && (
-          <ProductModal product={modalProduct} multicart={multicart} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} onAddToCart={addToCart} />
+          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} />
         )}
       </div>
     </>
