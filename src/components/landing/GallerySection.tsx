@@ -9,6 +9,7 @@ import kitchen from "@/assets/gallery-kitchen.webp";
 import cabinJacuzzi from "@/assets/gallery-cabin-jacuzzi.webp";
 import lakeSunset from "@/assets/gallery-lake-sunset.webp";
 import aerial from "@/assets/gallery-aerial.webp";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const galleryImages = [
   { src: cabinExterior, alt: "A-frame cabin nestled in the forest" },
@@ -24,6 +25,8 @@ const galleryImages = [
 ];
 
 const GallerySection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="section-dark py-24 md:py-36 overflow-hidden">
       <div className="px-8 md:px-16 mb-12 md:mb-16">
@@ -34,16 +37,13 @@ const GallerySection = () => {
           transition={{ duration: 0.7 }}
           className="text-center"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">
-            A Glimpse Into The Quiet
-          </p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">{t("gallery.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-4xl text-everlake-ivory">
-            Every detail is crafted for <span className="text-editorial-italic">your perfect getaway</span>
+            {t("gallery.title")} <span className="text-editorial-italic">{t("gallery.titleItalic")}</span>
           </h2>
         </motion.div>
       </div>
 
-      {/* Masonry-style gallery */}
       <div className="px-4 md:px-8">
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
           {galleryImages.map((img, i) => (
@@ -56,12 +56,7 @@ const GallerySection = () => {
               className="mb-3 md:mb-4 break-inside-avoid group"
             >
               <div className="overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+                <img src={img.src} alt={img.alt} className="w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               </div>
             </motion.div>
           ))}

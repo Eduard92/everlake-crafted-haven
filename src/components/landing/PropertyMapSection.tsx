@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const PropertyMapSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="section-dark py-24 md:py-36 overflow-hidden">
       <div className="px-8 md:px-16 mb-12 md:mb-16">
@@ -11,12 +14,10 @@ const PropertyMapSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">
-            The Property
-          </p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">{t("map.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-6">
-            110 Acres. Two Lakes.<br />
-            <span className="text-editorial-italic">30+ Private Hideaways.</span>
+            {t("map.title1")}<br />
+            <span className="text-editorial-italic">{t("map.title2")}</span>
           </h2>
         </motion.div>
       </div>
@@ -29,12 +30,7 @@ const PropertyMapSection = () => {
         className="px-4 md:px-16 max-w-6xl mx-auto"
       >
         <div className="vimeo-wrapper">
-          <iframe
-            src="https://player.vimeo.com/video/1130962377?background=1&autoplay=1&muted=1&loop=1&autopause=0"
-            allow="autoplay; fullscreen"
-            loading="lazy"
-            title="Everlake Property Map"
-          />
+          <iframe src="https://player.vimeo.com/video/1130962377?background=1&autoplay=1&muted=1&loop=1&autopause=0" allow="autoplay; fullscreen" loading="lazy" title="Everlake Property Map" />
         </div>
       </motion.div>
     </section>

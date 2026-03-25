@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const TARGET_DATE = new Date("2026-04-27T00:00:00").getTime();
 
 const CountdownTimer = () => {
+  const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
   function getTimeLeft() {
@@ -23,15 +25,15 @@ const CountdownTimer = () => {
   if (timeLeft.expired) {
     return (
       <p className="font-body text-sm tracking-[0.15em] uppercase text-everlake-gold mt-8">
-        Offer Expired
+        {t("countdown.expired")}
       </p>
     );
   }
 
   const units = [
-    { value: timeLeft.days, label: "Days" },
-    { value: timeLeft.hours, label: "Hours" },
-    { value: timeLeft.minutes, label: "Minutes" },
+    { value: timeLeft.days, label: t("countdown.days") },
+    { value: timeLeft.hours, label: t("countdown.hours") },
+    { value: timeLeft.minutes, label: t("countdown.minutes") },
   ];
 
   return (
