@@ -62,11 +62,11 @@ const HeroSection = () => {
           <p className="font-body text-xs md:text-sm tracking-[0.2em] uppercase text-everlake-gold mb-4">
             VIP Early Access · Covington, Georgia
           </p>
-          <h2 className="text-editorial text-everlake-ivory text-4xl md:text-6xl lg:text-7xl leading-[0.95] mb-6">
+          <h1 className="text-editorial text-everlake-ivory text-4xl md:text-6xl lg:text-7xl leading-[0.95] mb-6">
             The Getaway<br />
             <span className="text-editorial-italic">That Stays</span><br />
             With You
-          </h2>
+          </h1>
           <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8">
             Before Everlake opens its gates to the world, you — our Founders — have first access to the lake. Your 2-Week Exclusive Window Is Now Open.
           </p>
