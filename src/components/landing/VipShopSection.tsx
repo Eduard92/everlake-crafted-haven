@@ -126,6 +126,7 @@ const VipShopSection = () => {
             Get your VIP coupons now and lock in priority access before dates are released. 
             Thank you for believing in Everlake early — these rates are our way of saying thank you.
           </p>
+          <CountdownTimer />
         </motion.div>
 
         {/* Shopify embed container */}
