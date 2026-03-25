@@ -91,7 +91,7 @@ const HeroSection = () => {
               e.preventDefault();
               document.getElementById("vip-shop")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-8 py-4 bg-everlake-gold text-everlake-ivory rounded-sm hover:brightness-110 transition-all duration-300 shadow-lg shadow-everlake-gold/30 font-semibold"
+            className="group relative inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-10 py-4 rounded-sm font-semibold text-everlake-deep bg-gradient-to-r from-everlake-gold via-amber-400 to-everlake-gold bg-[length:200%_100%] animate-shimmer shadow-xl shadow-everlake-gold/40 hover:shadow-everlake-gold/60 hover:scale-105 transition-all duration-300"
           >
             {t("hero.cta")}
           </a>
