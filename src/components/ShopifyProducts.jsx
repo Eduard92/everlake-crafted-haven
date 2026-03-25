@@ -139,13 +139,8 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
   async function handleAction() {
     if (!selectedVariant) return;
     const vid = varId(selectedVariant.id);
-    if (multicart) {
-      onAddToCart(product, vid, selectedVariant.title, selectedVariant.price.amount, qty);
-      onClose();
-      return;
-    }
     if (!storeUrl) { alert("Store not configured."); return; }
-    window.open(`https://${storeUrl}/cart/${vid}:${qty}`, "_blank");
+    window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
   }
 
   return (
