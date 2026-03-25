@@ -181,9 +181,9 @@ function ProductModal({ product, multicart, storeUrl, storefrontToken, onClose, 
               </div>
             </div>
             <button className="spv-btn-green" onClick={handleAction} disabled={loading}>
-              {loading ? "Procesando..." : multicart ? <><CartIcon /> Agregar al carrito</> : <><BagIcon /> Ir al checkout</>}
+              {loading ? "Procesando..." : <><BagIcon /> Ir al checkout</>}
             </button>
-            <p className="spv-note">{multicart ? "Se agregará al carrito. Sigue explorando." : "Se abrirá el checkout de Shopify."}</p>
+            <p className="spv-note">Se abrirá el checkout de Shopify.</p>
           </div>
         </div>
       </div>
