@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import CountdownTimer from "./CountdownTimer";
 
 const VipShopSection = () => {
   useEffect(() => {
