@@ -35,6 +35,7 @@ const CountdownTimer = () => {
     { value: timeLeft.days, label: t("countdown.days") },
     { value: timeLeft.hours, label: t("countdown.hours") },
     { value: timeLeft.minutes, label: t("countdown.minutes") },
+    { value: timeLeft.seconds, label: t("countdown.seconds") },
   ];
 
   return (
