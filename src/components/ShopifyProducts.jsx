@@ -303,12 +303,12 @@ export default function ShopifyProducts({
         {error && <div className="spv-alert spv-alert-error">{error}</div>}
         <div className="spv-grid">
           {loading ? (
-            <div className="spv-loading">Cargando productos...</div>
+            <div className="spv-loading">{t.loading}</div>
           ) : products.length === 0 ? (
-            <div className="spv-empty">No se encontraron productos.</div>
+            <div className="spv-empty">{t.noProducts}</div>
           ) : (
             products.map(p => (
-              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} />
+              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} t={t} />
             ))
           )}
         </div>
