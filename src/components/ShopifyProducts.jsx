@@ -211,7 +211,7 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
               </div>
             )}
             <div className="spv-qty-row">
-              <label>Cantidad</label>
+              <label>{t.quantity}</label>
               <div className="spv-qty-stepper">
                 <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
                 <input type="number" value={qty} onChange={(e) => setQty(Math.min(99, Math.max(1, parseInt(e.target.value) || 1)))} />
