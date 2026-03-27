@@ -252,11 +252,11 @@ export default function ShopifyProducts({
   storeUrl,
   storefrontToken,
   apiVersion = "2025-01",
+  lang = "es",
   title,
   subtitle,
 }) {
-  const { lang } = useLanguage();
-  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.es;
   const displayTitle = title || t.headerTitle;
   const displaySubtitle = subtitle || t.headerSubtitle;
   const [products, setProducts] = useState([]);
