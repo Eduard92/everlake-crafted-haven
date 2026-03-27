@@ -64,7 +64,7 @@ const HeroSection = () => {
       </nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] pb-20 md:pb-28 px-8 md:px-16">
+      <div className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] pb-20 md:pb-28 px-8 md:px-16" style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
