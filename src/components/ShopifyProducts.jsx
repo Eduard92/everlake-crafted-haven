@@ -155,7 +155,7 @@ const BagIcon = () => (
   </svg>
 );
 
-function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
+function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
