@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from "react";
-import { useLanguage } from "../i18n/LanguageContext";
+import { useState, useEffect, useCallback } from "react";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
@@ -253,11 +252,11 @@ export default function ShopifyProducts({
   storeUrl,
   storefrontToken,
   apiVersion = "2025-01",
+  lang = "es",
   title,
   subtitle,
 }) {
-  const { lang } = useLanguage();
-  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.es;
   const displayTitle = title || t.headerTitle;
   const displaySubtitle = subtitle || t.headerSubtitle;
   const [products, setProducts] = useState([]);
