@@ -134,7 +134,7 @@ const HeroSection = () => {
               e.preventDefault();
               document.getElementById("vip-shop")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="group relative inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-10 py-4 rounded-sm font-semibold text-white bg-gradient-to-r from-orange-700 via-orange-500 to-amber-600 bg-[length:200%_100%] animate-shimmer shadow-xl shadow-orange-600/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
+            className="group relative inline-block font-body text-xs md:text-sm tracking-[0.15em] uppercase px-10 py-4 rounded-sm font-semibold text-white bg-gradient-to-r from-orange-700 via-orange-500 to-amber-600 shadow-xl shadow-orange-600/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
           >
             {t("hero.cta")}
           </a>
