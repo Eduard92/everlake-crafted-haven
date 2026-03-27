@@ -219,9 +219,9 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
               </div>
             </div>
             <button className="spv-btn-green" onClick={handleAction} disabled={loading}>
-              {loading ? "Procesando..." : <><BagIcon /> Ir al checkout</>}
+              {loading ? t.processing : <><BagIcon /> {t.goToCheckout}</>}
             </button>
-            <p className="spv-note">Se abrirá el checkout de Shopify.</p>
+            <p className="spv-note">{t.checkoutNote}</p>
           </div>
         </div>
       </div>
