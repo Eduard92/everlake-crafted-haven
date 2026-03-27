@@ -104,6 +104,51 @@ function isCouponProduct(p) {
 }
 
 
+const TRANSLATIONS = {
+  es: {
+    headerTitle: "Unlock Your Stay Before Everyone Else",
+    headerSubtitle: "Get your VIP coupons now and lock in priority access before dates are released.",
+    cart: "Carrito",
+    clear: "Limpiar",
+    checkout: "Checkout",
+    estimatedTotal: "Total estimado",
+    quantity: "Cantidad",
+    option: "Opción",
+    addToCart: "Agregar al carrito",
+    goToCheckout: "Ir al checkout",
+    processing: "Procesando...",
+    cartNote: "Se agregará al carrito. Sigue explorando.",
+    checkoutNote: "Se abrirá el checkout de Shopify.",
+    loading: "Cargando productos...",
+    noProducts: "No se encontraron productos.",
+    noImage: "Sin imagen",
+    shopNow: "Checkout",
+    inCart: "En carrito",
+    configError: "Configura storeUrl y storefrontToken en las props.",
+  },
+  en: {
+    headerTitle: "Unlock Your Stay Before Everyone Else",
+    headerSubtitle: "Get your VIP coupons now and lock in priority access before dates are released.",
+    cart: "Cart",
+    clear: "Clear",
+    checkout: "Checkout",
+    estimatedTotal: "Estimated total",
+    quantity: "Quantity",
+    option: "Option",
+    addToCart: "Add to cart",
+    goToCheckout: "Go to checkout",
+    processing: "Processing...",
+    cartNote: "Added to cart. Keep browsing.",
+    checkoutNote: "Shopify checkout will open.",
+    loading: "Loading products...",
+    noProducts: "No products found.",
+    noImage: "No image",
+    shopNow: "Checkout",
+    inCart: "In cart",
+    configError: "Please configure storeUrl and storefrontToken props.",
+  },
+};
+
 const BagIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
