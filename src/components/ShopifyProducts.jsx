@@ -242,7 +242,7 @@ function ProductCard({ product, onClick, t }) {
         <div className="spv-card-title">{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
         <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); onClick(); }}>
-          <BagIcon /> Checkout
+          <BagIcon /> {t.shopNow}
         </button>
       </div>
     </div>
