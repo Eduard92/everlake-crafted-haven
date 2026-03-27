@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
@@ -103,13 +104,58 @@ function isCouponProduct(p) {
 }
 
 
+const TRANSLATIONS = {
+  es: {
+    headerTitle: "Unlock Your Stay Before Everyone Else",
+    headerSubtitle: "Get your VIP coupons now and lock in priority access before dates are released.",
+    cart: "Carrito",
+    clear: "Limpiar",
+    checkout: "Checkout",
+    estimatedTotal: "Total estimado",
+    quantity: "Cantidad",
+    option: "Opción",
+    addToCart: "Agregar al carrito",
+    goToCheckout: "Ir al checkout",
+    processing: "Procesando...",
+    cartNote: "Se agregará al carrito. Sigue explorando.",
+    checkoutNote: "Se abrirá el checkout de Shopify.",
+    loading: "Cargando productos...",
+    noProducts: "No se encontraron productos.",
+    noImage: "Sin imagen",
+    shopNow: "Checkout",
+    inCart: "En carrito",
+    configError: "Configura storeUrl y storefrontToken en las props.",
+  },
+  en: {
+    headerTitle: "Unlock Your Stay Before Everyone Else",
+    headerSubtitle: "Get your VIP coupons now and lock in priority access before dates are released.",
+    cart: "Cart",
+    clear: "Clear",
+    checkout: "Checkout",
+    estimatedTotal: "Estimated total",
+    quantity: "Quantity",
+    option: "Option",
+    addToCart: "Add to cart",
+    goToCheckout: "Go to checkout",
+    processing: "Processing...",
+    cartNote: "Added to cart. Keep browsing.",
+    checkoutNote: "Shopify checkout will open.",
+    loading: "Loading products...",
+    noProducts: "No products found.",
+    noImage: "No image",
+    shopNow: "Checkout",
+    inCart: "In cart",
+    configError: "Please configure storeUrl and storefrontToken props.",
+  },
+};
+
 const BagIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
   </svg>
 );
 
-function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
+function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -147,14 +193,14 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
           <div className="spv-modal-img">
             {product.featuredImage
               ? <img src={product.featuredImage.url} alt={product.title} />
-              : <span>Sin imagen</span>}
+              : <span>{t.noImage}</span>}
           </div>
           <div className="spv-modal-content">
             <div className="spv-modal-price">{fmtRange(product.priceRange, product.variants)}</div>
             {product.description && <div className="spv-modal-desc">{product.description}</div>}
             {variants.length > 0 && (
               <div>
-                <label style={{ fontSize: 13, color: "#64748b", marginBottom: 6, display: "block" }}>Opción</label>
+                <label style={{ fontSize: 13, color: "#64748b", marginBottom: 6, display: "block" }}>{t.option}</label>
                 <div className="spv-var-group">
                   {variants.map((e, i) => (
                     <button key={e.node.id} className={`spv-var-pill ${i === selectedVariantIdx ? "selected" : ""}`} onClick={() => setSelectedVariantIdx(i)}>
@@ -165,7 +211,7 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
               </div>
             )}
             <div className="spv-qty-row">
-              <label>Cantidad</label>
+              <label>{t.quantity}</label>
               <div className="spv-qty-stepper">
                 <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
                 <input type="number" value={qty} onChange={(e) => setQty(Math.min(99, Math.max(1, parseInt(e.target.value) || 1)))} />
@@ -173,9 +219,9 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
               </div>
             </div>
             <button className="spv-btn-green" onClick={handleAction} disabled={loading}>
-              {loading ? "Procesando..." : <><BagIcon /> Ir al checkout</>}
+              {loading ? t.processing : <><BagIcon /> {t.goToCheckout}</>}
             </button>
-            <p className="spv-note">Se abrirá el checkout de Shopify.</p>
+            <p className="spv-note">{t.checkoutNote}</p>
           </div>
         </div>
       </div>
@@ -184,19 +230,19 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose }) {
 }
 
 
-function ProductCard({ product, onClick }) {
+function ProductCard({ product, onClick, t }) {
   return (
     <div className="spv-card" tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
       <div className="spv-card-img">
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
-          : <span>Sin imagen</span>}
+          : <span>{t.noImage}</span>}
       </div>
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
         <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); onClick(); }}>
-          <BagIcon /> Checkout
+          <BagIcon /> {t.shopNow}
         </button>
       </div>
     </div>
@@ -207,16 +253,20 @@ export default function ShopifyProducts({
   storeUrl,
   storefrontToken,
   apiVersion = "2025-01",
-  title = "Unlock Your Stay Before Everyone Else",
-  subtitle = "Get your VIP coupons now and lock in priority access before dates are released.",
+  title,
+  subtitle,
 }) {
+  const { lang } = useLanguage();
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const displayTitle = title || t.headerTitle;
+  const displaySubtitle = subtitle || t.headerSubtitle;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalProduct, setModalProduct] = useState(null);
 
   const fetchProducts = useCallback(async () => {
-    if (!storeUrl || !storefrontToken) { setError("Configura storeUrl y storefrontToken en las props."); setLoading(false); return; }
+    if (!storeUrl || !storefrontToken) { setError(t.configError); setLoading(false); return; }
     setLoading(true); setError(null);
     try {
       const res = await fetch(`https://${storeUrl}/api/${apiVersion}/graphql.json`, {
@@ -236,7 +286,7 @@ export default function ShopifyProducts({
         return p.variants.edges.some(e => e.node.availableForSale);
       });
       setProducts(filtered);
-    } catch (err) { setError(`Error al cargar productos: ${err.message}`); }
+    } catch (err) { setError(`${t.loading} ${err.message}`); }
     finally { setLoading(false); }
   }, [storeUrl, storefrontToken, apiVersion]);
 
@@ -247,23 +297,23 @@ export default function ShopifyProducts({
       <style>{css}</style>
       <div className="spv-wrap">
         <div className="spv-header">
-          <h2 className="spv-header-title">{title}</h2>
-          <p className="spv-header-subtitle">{subtitle}</p>
+          <h2 className="spv-header-title">{displayTitle}</h2>
+          <p className="spv-header-subtitle">{displaySubtitle}</p>
         </div>
         {error && <div className="spv-alert spv-alert-error">{error}</div>}
         <div className="spv-grid">
           {loading ? (
-            <div className="spv-loading">Cargando productos...</div>
+            <div className="spv-loading">{t.loading}</div>
           ) : products.length === 0 ? (
-            <div className="spv-empty">No se encontraron productos.</div>
+            <div className="spv-empty">{t.noProducts}</div>
           ) : (
             products.map(p => (
-              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} />
+              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} t={t} />
             ))
           )}
         </div>
         {modalProduct && (
-          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} />
+          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} t={t} />
         )}
       </div>
     </>
