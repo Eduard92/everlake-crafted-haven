@@ -64,15 +64,49 @@ const HeroSection = () => {
             {lang === "en" ? "ES" : "EN"}
           </button>
           <div className="hidden md:flex items-center gap-8 font-body text-sm tracking-[0.1em] text-everlake-ivory/80 uppercase">
-            <a href="#hideaways" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.hideaways")}</a>
-            <a href="#experiences" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.experiences")}</a>
-            <a href="#vip-shop" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.vipShop")}</a>
-            <a href="#faq" className="hover:text-everlake-gold transition-colors duration-300">{t("nav.faq")}</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-everlake-gold transition-colors duration-300">{link.label}</a>
+            ))}
           </div>
+          {/* Hamburger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-everlake-ivory/80 hover:text-everlake-gold transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </motion.div>
       </nav>
 
-      {/* Hero Content */}
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="relative z-10 md:hidden bg-everlake-warm-black/90 backdrop-blur-md px-8 py-6 flex flex-col gap-4"
+            style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="font-body text-sm tracking-[0.15em] uppercase text-everlake-ivory/80 hover:text-everlake-gold transition-colors duration-300 py-2 border-b border-everlake-ivory/10"
+              >
+                {link.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] pb-20 md:pb-28 px-8 md:px-16" style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
