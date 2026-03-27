@@ -200,7 +200,7 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
             {product.description && <div className="spv-modal-desc">{product.description}</div>}
             {variants.length > 0 && (
               <div>
-                <label style={{ fontSize: 13, color: "#64748b", marginBottom: 6, display: "block" }}>Opción</label>
+                <label style={{ fontSize: 13, color: "#64748b", marginBottom: 6, display: "block" }}>{t.option}</label>
                 <div className="spv-var-group">
                   {variants.map((e, i) => (
                     <button key={e.node.id} className={`spv-var-pill ${i === selectedVariantIdx ? "selected" : ""}`} onClick={() => setSelectedVariantIdx(i)}>
