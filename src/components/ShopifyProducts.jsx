@@ -193,7 +193,7 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
           <div className="spv-modal-img">
             {product.featuredImage
               ? <img src={product.featuredImage.url} alt={product.title} />
-              : <span>Sin imagen</span>}
+              : <span>{t.noImage}</span>}
           </div>
           <div className="spv-modal-content">
             <div className="spv-modal-price">{fmtRange(product.priceRange, product.variants)}</div>
