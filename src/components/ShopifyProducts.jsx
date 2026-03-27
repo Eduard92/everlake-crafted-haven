@@ -286,7 +286,7 @@ export default function ShopifyProducts({
         return p.variants.edges.some(e => e.node.availableForSale);
       });
       setProducts(filtered);
-    } catch (err) { setError(`Error al cargar productos: ${err.message}`); }
+    } catch (err) { setError(`${t.loading} ${err.message}`); }
     finally { setLoading(false); }
   }, [storeUrl, storefrontToken, apiVersion]);
 
