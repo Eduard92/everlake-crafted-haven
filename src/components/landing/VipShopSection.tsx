@@ -4,7 +4,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import ShopifyProducts from "@/components/ShopifyProducts";
 
 const VipShopSection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section id="vip-shop" className="section-dark pt-8 md:pt-12 pb-24 md:pb-36 px-8 md:px-16">
