@@ -253,16 +253,20 @@ export default function ShopifyProducts({
   storeUrl,
   storefrontToken,
   apiVersion = "2025-01",
-  title = "Unlock Your Stay Before Everyone Else",
-  subtitle = "Get your VIP coupons now and lock in priority access before dates are released.",
+  title,
+  subtitle,
 }) {
+  const { lang } = useLanguage();
+  const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const displayTitle = title || t.headerTitle;
+  const displaySubtitle = subtitle || t.headerSubtitle;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalProduct, setModalProduct] = useState(null);
 
   const fetchProducts = useCallback(async () => {
-    if (!storeUrl || !storefrontToken) { setError("Configura storeUrl y storefrontToken en las props."); setLoading(false); return; }
+    if (!storeUrl || !storefrontToken) { setError(t.configError); setLoading(false); return; }
     setLoading(true); setError(null);
     try {
       const res = await fetch(`https://${storeUrl}/api/${apiVersion}/graphql.json`, {
