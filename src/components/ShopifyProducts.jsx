@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from "react";
-import { useLanguage } from "../i18n/LanguageContext";
+import { useState, useEffect, useCallback } from "react";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
