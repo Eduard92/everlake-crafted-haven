@@ -297,8 +297,8 @@ export default function ShopifyProducts({
       <style>{css}</style>
       <div className="spv-wrap">
         <div className="spv-header">
-          <h2 className="spv-header-title">{title}</h2>
-          <p className="spv-header-subtitle">{subtitle}</p>
+          <h2 className="spv-header-title">{displayTitle}</h2>
+          <p className="spv-header-subtitle">{displaySubtitle}</p>
         </div>
         {error && <div className="spv-alert spv-alert-error">{error}</div>}
         <div className="spv-grid">
