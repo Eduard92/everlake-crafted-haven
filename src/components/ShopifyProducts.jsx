@@ -236,7 +236,7 @@ function ProductCard({ product, onClick, t }) {
       <div className="spv-card-img">
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
-          : <span>Sin imagen</span>}
+          : <span>{t.noImage}</span>}
       </div>
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
