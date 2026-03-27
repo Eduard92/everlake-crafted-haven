@@ -313,7 +313,7 @@ export default function ShopifyProducts({
           )}
         </div>
         {modalProduct && (
-          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} />
+          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} t={t} />
         )}
       </div>
     </>
