@@ -33,7 +33,7 @@ const HeroSection = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 pt-8">
+      <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 pt-8" style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
