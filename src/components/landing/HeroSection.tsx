@@ -21,11 +21,11 @@ const HeroSection = () => {
       </div>
 
       {/* Brand Video (Vimeo) */}
-      <div className="absolute inset-0 z-[1]">
+      <div className="absolute inset-0 z-[1]" style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         <iframe
           src="https://player.vimeo.com/video/1177005098?background=1&autoplay=1&muted=1&loop=1&autopause=0"
           className="h-full w-full object-cover pointer-events-none"
-          style={{ position: 'absolute', top: '50%', left: '50%', width: '177.78vh', height: '100vh', minWidth: '100%', minHeight: '100%', transform: 'translate(-50%, -50%)' }}
+          style={{ position: 'absolute', top: '50%', left: '50%', width: '177.78vh', height: '100vh', minWidth: '100%', minHeight: '100%', transform: 'translate(-50%, -50%)', WebkitTransform: 'translate(-50%, -50%)' }}
           allow="autoplay; fullscreen"
           title="Everlake Brand Video"
         />
@@ -33,7 +33,7 @@ const HeroSection = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 pt-8">
+      <nav className="relative z-10 flex items-center justify-between px-8 md:px-16 pt-8" style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -64,7 +64,7 @@ const HeroSection = () => {
       </nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] pb-20 md:pb-28 px-8 md:px-16">
+      <div className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] pb-20 md:pb-28 px-8 md:px-16" style={{ WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
