@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import heroImage from "@/assets/hero-lake.jpg";
 import everlakeLogo from "@/assets/everlake-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
