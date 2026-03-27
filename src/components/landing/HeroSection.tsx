@@ -7,7 +7,14 @@ import { useLanguage } from "@/i18n/LanguageContext";
 
 const HeroSection = () => {
   const { lang, setLang, t } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const navLinks = [
+    { href: "#hideaways", label: t("nav.hideaways") },
+    { href: "#experiences", label: t("nav.experiences") },
+    { href: "#vip-shop", label: t("nav.vipShop") },
+    { href: "#faq", label: t("nav.faq") },
+  ];
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background image as fallback / poster */}
