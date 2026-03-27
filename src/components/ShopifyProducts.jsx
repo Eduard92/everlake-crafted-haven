@@ -230,7 +230,7 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
 }
 
 
-function ProductCard({ product, onClick }) {
+function ProductCard({ product, onClick, t }) {
   return (
     <div className="spv-card" tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
       <div className="spv-card-img">
