@@ -59,7 +59,7 @@ const HeroSection = () => {
           {/* Language toggle */}
           <button
             onClick={() => setLang(lang === "en" ? "es" : "en")}
-            className="font-body text-xs tracking-[0.1em] uppercase text-everlake-ivory/80 hover:text-everlake-gold transition-colors duration-300 border border-everlake-ivory/30 hover:border-everlake-gold rounded-sm px-3 py-1.5"
+            className="font-body text-xs tracking-[0.1em] uppercase text-everlake-ivory font-semibold hover:text-everlake-gold transition-colors duration-300 border-2 border-everlake-ivory hover:border-everlake-gold rounded-sm px-3 py-1.5"
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
