@@ -114,7 +114,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.8 }}
           className="max-w-2xl"
         >
-          <p className="font-body text-xs md:text-sm tracking-[0.2em] uppercase text-everlake-gold mb-4">
+          <p className="font-body text-xs md:text-sm tracking-[0.2em] uppercase text-white mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
             {t("hero.badge")}
           </p>
           <h1 className="text-editorial text-everlake-ivory text-4xl md:text-6xl lg:text-7xl leading-[0.95] mb-6">
