@@ -63,7 +63,7 @@ const HeroSection = () => {
           >
             {lang === "en" ? "ES" : "EN"}
           </button>
-          <div className="hidden md:flex items-center gap-8 font-body text-sm tracking-[0.1em] text-everlake-ivory/80 uppercase">
+          <div className="hidden md:flex items-center gap-8 font-body text-sm font-semibold tracking-[0.1em] text-everlake-ivory uppercase">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="hover:text-everlake-gold transition-colors duration-300">{link.label}</a>
             ))}
