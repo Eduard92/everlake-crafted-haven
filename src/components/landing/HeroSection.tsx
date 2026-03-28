@@ -61,7 +61,7 @@ const HeroSection = () => {
             onClick={() => setLang(lang === "en" ? "es" : "en")}
             className="font-body text-xs tracking-[0.1em] uppercase text-everlake-ivory font-semibold hover:text-everlake-gold transition-colors duration-300 border-2 border-everlake-ivory hover:border-everlake-gold rounded-sm px-3 py-1.5"
           >
-            {lang === "en" ? "ES" : "EN"}
+            {lang === "en" ? "SPA" : "EN"}
           </button>
           <div className="hidden md:flex items-center gap-8 font-body text-sm font-semibold tracking-[0.1em] text-everlake-ivory uppercase">
             {navLinks.map((link) => (
