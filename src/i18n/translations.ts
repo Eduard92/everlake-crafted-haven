@@ -41,7 +41,7 @@ const translations = {
   // Hideaways
   "hideaways.badge": { en: "Our Hideaways", es: "Nuestros Refugios" },
   "hideaways.title": { en: "Designed for", es: "Diseñados para la" },
-  "hideaways.titleItalic": { en: "stillness", es: "quietud" },
+  "hideaways.titleItalic": { en: "stillness", es: "silencio" },
   "hideaways.imgLabel1": { en: "Exterior · Forest Setting", es: "Exterior · Entorno Boscoso" },
   "hideaways.imgLabel2": { en: "Interior · Bedroom Suite", es: "Interior · Suite Dormitorio" },
   "hideaways.tourBadge": { en: "Take a Cabin Tour", es: "Haz un Recorrido por la Cabaña" },
