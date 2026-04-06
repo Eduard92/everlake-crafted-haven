@@ -20,7 +20,7 @@ const translations = {
     en: "Your 2-Week Exclusive Window Is Now Open.",
     es: "Su Ventana Exclusiva de 2 Semanas Está Abierta.",
   },
-  "hero.cta": { en: "See My VIP Packages", es: "Ver Paquetes VIP" },
+  "hero.cta": { en: "VIP Packages", es: "Paquetes VIP" },
   "hero.scroll": { en: "Scroll", es: "Desplazar" },
 
   // Intro
