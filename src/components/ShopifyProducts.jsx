@@ -105,8 +105,8 @@ function isCouponProduct(p) {
 
 const TRANSLATIONS = {
   es: {
-    headerTitle: "Unlock Your Stay Before Everyone Else",
-    headerSubtitle: "Get your VIP coupons now and lock in priority access before dates are released.",
+    headerTitle: "",
+    headerSubtitle: "Asegura tu tarifa de Fundador antes de que se publiquen las fechas.",
     cart: "Carrito",
     clear: "Limpiar",
     checkout: "Checkout",
@@ -126,8 +126,8 @@ const TRANSLATIONS = {
     configError: "Configura storeUrl y storefrontToken en las props.",
   },
   en: {
-    headerTitle: "Unlock Your Stay Before Everyone Else",
-    headerSubtitle: "Get your VIP coupons now and lock in priority access before dates are released.",
+    headerTitle: "",
+    headerSubtitle: "Lock in your Founders rate before dates are released.",
     cart: "Cart",
     clear: "Clear",
     checkout: "Checkout",
