@@ -106,7 +106,7 @@ function isCouponProduct(p) {
 const TRANSLATIONS = {
   es: {
     headerTitle: "",
-    headerSubtitle: "Asegura tu tarifa de Fundador antes de que se publiquen las fechas.",
+    headerSubtitle: "",
     cart: "Carrito",
     clear: "Limpiar",
     checkout: "Checkout",
@@ -127,7 +127,7 @@ const TRANSLATIONS = {
   },
   en: {
     headerTitle: "",
-    headerSubtitle: "Lock in your Founders rate before dates are released.",
+    headerSubtitle: "",
     cart: "Cart",
     clear: "Clear",
     checkout: "Checkout",
