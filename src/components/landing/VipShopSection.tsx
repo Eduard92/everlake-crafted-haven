@@ -30,7 +30,7 @@ const VipShopSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-12"
+          className="mt-6"
         >
           <ShopifyProducts
             storeUrl="0vis13-xd.myshopify.com"
