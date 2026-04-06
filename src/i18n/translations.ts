@@ -156,7 +156,7 @@ const translations = {
   "faq.q2": { en: "Is this refundable?", es: "¿Es reembolsable?" },
   "faq.a2": { en: "No, VIP packages are non-refundable.", es: "No, los paquetes VIP no son reembolsables." },
   "faq.q3": { en: "When do I get to book my dates?", es: "¿Cuándo puedo reservar mis fechas?" },
-  "faq.a3": { en: "The booking calendar opens on May 1st. You'll be able to select your preferred dates at that time.", es: "El calendario de reservas abre el 1 de mayo. Podrás seleccionar tus fechas en ese momento." },
+  "faq.a3": { en: "The booking calendar opens on May 1st. Platinum Status guests get first access to select their dates, followed by Gold Status, then Silver Status, and then the rest of our VIP members.", es: "El calendario de reservas abre el 1 de mayo. Los huéspedes con estatus Platino tienen primer acceso para seleccionar sus fechas, seguidos por estatus Oro, luego estatus Plata, y después el resto de nuestros miembros VIP." },
   "faq.q4": { en: "Where is Everlake located?", es: "¿Dónde está ubicado Everlake?" },
   "faq.a4": { en: "Everlake is built on 110 acres in Covington, Georgia — just 1 hour from Atlanta's Hartsfield-Jackson Airport. Nestled in the woods beside two different bodies of water.", es: "Everlake está construido en 110 acres en Covington, Georgia — a solo 1 hora del Aeropuerto Hartsfield-Jackson de Atlanta. Ubicado en el bosque junto a dos cuerpos de agua." },
   "faq.q5": { en: "What does VIP membership include?", es: "¿Qué incluye la membresía VIP?" },
