@@ -13,6 +13,7 @@ const FaqSection = () => {
     { question: t("faq.q4"), answer: t("faq.a4") },
     { question: t("faq.q5"), answer: t("faq.a5") },
     { question: t("faq.q6"), answer: t("faq.a6") },
+    { question: t("faq.q7"), answer: t("faq.a7") },
   ];
 
   return (
@@ -57,7 +58,7 @@ const FaqSection = () => {
               </button>
               <div
                 className="overflow-hidden transition-all duration-500 ease-out"
-                style={{ maxHeight: openIndex === i ? '200px' : '0', opacity: openIndex === i ? 1 : 0 }}
+                style={{ maxHeight: openIndex === i ? '300px' : '0', opacity: openIndex === i ? 1 : 0 }}
               >
                 <p className="font-body text-sm text-everlake-charcoal/50 pb-6 pl-12 md:pl-16 leading-relaxed max-w-lg">
                   {faq.answer}
