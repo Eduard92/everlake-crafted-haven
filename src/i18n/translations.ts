@@ -175,8 +175,8 @@ const translations = {
 
   // Shop Gate
   "shopgate.prompt": {
-    en: "Enter your VIP email to unlock exclusive Founders pricing.",
-    es: "Ingresa tu correo VIP para desbloquear precios exclusivos de Fundador.",
+    en: "Enter your VIP email to unlock your exclusive Founders packages.",
+    es: "Ingresa tu correo VIP para desbloquear tus paquetes exclusivos de Fundador.",
   },
   "shopgate.unlock": { en: "Unlock", es: "Desbloquear" },
 
