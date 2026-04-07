@@ -58,7 +58,7 @@ const FaqSection = () => {
               </button>
               <div
                 className="overflow-hidden transition-all duration-500 ease-out"
-                style={{ maxHeight: openIndex === i ? '200px' : '0', opacity: openIndex === i ? 1 : 0 }}
+                style={{ maxHeight: openIndex === i ? '300px' : '0', opacity: openIndex === i ? 1 : 0 }}
               >
                 <p className="font-body text-sm text-everlake-charcoal/50 pb-6 pl-12 md:pl-16 leading-relaxed max-w-lg">
                   {faq.answer}
