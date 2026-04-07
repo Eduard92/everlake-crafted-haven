@@ -67,8 +67,8 @@ const translations = {
   "vip.title2": { en: "Unlock Your Stay", es: "Desbloquea Tu Estadía" },
   "vip.title3": { en: "Before Everyone Else", es: "Antes Que Nadie" },
   "vip.subtitle": {
-    en: "Each package below is a discounted rate voucher — not a booking. Purchase yours now at Founders pricing, then use it to book your actual stay once our calendar opens after May 1st.",
-    es: "Cada paquete a continuación es un cupón con tarifa de descuento — no una reserva. Compra el tuyo ahora a precio de Fundador, luego úsalo para reservar tu estadía una vez que nuestro calendario abra después del 1 de mayo.",
+    en: "Each package below is a discounted rate voucher — not a booking. Purchase yours now at Founders pricing, with up to 45% discount, then use it to book your actual stay once our calendar opens on May 1st. You will have a 2-Week Exclusive Window to book your preferred dates.",
+    es: "Cada paquete a continuación es un cupón con tarifa de descuento — no una reserva. Compra el tuyo ahora a precio de Fundador, con hasta un 45% de descuento, luego úsalo para reservar tu estadía una vez que nuestro calendario abra el 1 de mayo. Tendrás una Ventana Exclusiva de 2 Semanas para reservar tus fechas preferidas.",
   },
 
   // Countdown
