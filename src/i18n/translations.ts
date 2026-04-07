@@ -173,6 +173,32 @@ const translations = {
   "faq.q7": { en: "Who can I contact if I have questions?", es: "¿Con quién puedo contactar si tengo preguntas?" },
   "faq.a7": { en: "Please don't hesitate to reach out to our wonderful Resort Manager, Montana at montana@everlakega.com", es: "No dudes en comunicarte con nuestra maravillosa Gerente del Resort, Montana en montana@everlakega.com" },
 
+  // Shop Gate
+  "shopgate.prompt": {
+    en: "Enter your VIP email to unlock exclusive Founders pricing.",
+    es: "Ingresa tu correo VIP para desbloquear precios exclusivos de Fundador.",
+  },
+  "shopgate.unlock": { en: "Unlock", es: "Desbloquear" },
+
+  // Upgrade Dialog
+  "upgrade.badge": { en: "Limited-Time Offer", es: "Oferta por Tiempo Limitado" },
+  "upgrade.title": { en: "Become a Founding VIP", es: "Conviértete en VIP Fundador" },
+  "upgrade.subtitle": {
+    en: "Your email isn't on the VIP list yet — but you can join right now. Pay $50 today and unlock up to $445 in exclusive perks.",
+    es: "Tu correo aún no está en la lista VIP — pero puedes unirte ahora. Paga $50 hoy y desbloquea hasta $445 en beneficios exclusivos.",
+  },
+  "upgrade.perk1": { en: "Save 40% on your reservation starting May 1st", es: "Ahorra 40% en tu reservación a partir del 1 de mayo" },
+  "upgrade.perk2": { en: "15-day early access to the booking calendar", es: "15 días de acceso anticipado al calendario de reservas" },
+  "upgrade.perk3": { en: "$100 Resort Credit", es: "$100 de Crédito en el Resort" },
+  "upgrade.perk4": { en: "Welcome Basket (Value $75)", es: "Canasta de Bienvenida (Valor $75)" },
+  "upgrade.perk5": { en: "Founding Guest Status", es: "Estatus de Huésped Fundador" },
+  "upgrade.perk6": { en: "Exclusive access to future deals", es: "Acceso exclusivo a ofertas futuras" },
+  "upgrade.cta": { en: "Reserve Your VIP Access", es: "Reserva Tu Acceso VIP" },
+  "upgrade.footnote": {
+    en: "You'll be redirected to our reservation page to complete your purchase.",
+    es: "Serás redirigido a nuestra página de reservación para completar tu compra.",
+  },
+
   // Gallery
   "gallery.badge": { en: "A Glimpse Into The Quiet", es: "Un Vistazo a la Tranquilidad" },
   "gallery.title": { en: "Every detail is crafted for", es: "Cada detalle está diseñado para" },
