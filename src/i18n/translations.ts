@@ -30,8 +30,8 @@ const translations = {
     es: "Un santuario donde el <italic>descanso personalizado</italic> está integrado en cada elemento de nuestro diseño.",
   },
   "intro.subtitle": {
-    en: "In a world that never stops, we're building a place where you can. Find yourself completely immersed in nature without sacrificing a single comfort.",
-    es: "En un mundo que nunca se detiene, estamos construyendo un lugar donde tú puedes hacerlo. Sumérgete completamente en la naturaleza sin sacrificar una sola comodidad.",
+    en: "In a world that never stops, we're building a place where you can. Surrounded by nature, wrapped in comfort, finally still.",
+    es: "En un mundo que nunca se detiene, estamos construyendo un lugar donde tú puedes. Rodeado de naturaleza, envuelto en comodidad, finalmente en calma.",
   },
   "intro.founders": {
     en: "You believed in Everlake before anyone else did. Your Founders Reward is now waiting.",
