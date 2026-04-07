@@ -149,8 +149,8 @@ const translations = {
   "loc.title": { en: "Covington,", es: "Covington," },
   "loc.titleItalic": { en: "Georgia", es: "Georgia" },
   "loc.subtitle": {
-    en: "Tucked into the woods on 110 acres just <strong>1 hour</strong> from Atlanta's Hartsfield-Jackson Airport. Everlake is your invitation to unplug with ease and stay present with joy.",
-    es: "Ubicado en el bosque en 110 acres a solo <strong>1 hora</strong> del Aeropuerto Hartsfield-Jackson de Atlanta. Everlake es tu invitación a desconectarte con facilidad y vivir el presente con alegría.",
+    en: "Tucked into the woods on 110 acres just <strong>45 minutes</strong> from Atlanta. Everlake is your invitation to escape the noise and unplug with ease.",
+    es: "Ubicado en el bosque en 110 acres a solo <strong>45 minutos</strong> de Atlanta. Everlake es tu invitación a escapar del ruido y desconectarte con facilidad.",
   },
   "loc.from": { en: "from", es: "desde" },
 
