@@ -14,11 +14,22 @@ const VipGate = ({ onUnlock }: VipGateProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/vip-list.csv")
+    const SHEET_CSV_URL =
+      "https://docs.google.com/spreadsheets/d/14Q6D_RgAJY8eOuc_GhIFSISO5w_MVDfyc-JecfvwTSo/export?format=csv&gid=1903356590";
+
+    fetch(SHEET_CSV_URL)
       .then((res) => res.text())
       .then((text) => {
         const lines = text.trim().split("\n").slice(1); // skip header
-        const emails = new Set(lines.map((l) => l.trim().toLowerCase()).filter(Boolean));
+        const emails = new Set(
+          lines
+            .map((l) => {
+              // EMAIL is the 4th column (index 3)
+              const cols = l.split(",");
+              return cols[3]?.trim().toLowerCase();
+            })
+            .filter((e) => e && e.includes("@"))
+        );
         setVipEmails(emails);
         setLoading(false);
       })
