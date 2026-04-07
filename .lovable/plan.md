@@ -1,56 +1,62 @@
 
 
-## Email Gate for VIP Access
+## Convert VIP Gate to VIP Shop Section Gate with $50 Upgrade Offer
 
 ### Overview
-Add a full-screen email gate that visitors must pass before seeing the site. The VIP email list is maintained in a CSV file that can be updated easily. No passwords, no magic links — just enter your email and you're in.
+
+Remove the full-page email gate so everyone can browse the site freely. Instead, gate only the VIP Shop section: VIP members enter their email to reveal Shopify products, while non-VIP visitors see a compelling $50 upgrade offer that links to `stay.everlakegeorgia.com/reservation`. After purchase, users are redirected back with automatic access.
 
 ### How It Works
 
-1. Visitor lands on the site → sees a branded gate screen with an email input
-2. They enter their email → it's checked against a CSV-based VIP list
-3. If the email matches → access is granted, email is stored in localStorage so they don't have to re-enter it on future visits
-4. If no match → a friendly message says they're not on the VIP list yet
+1. Visitor browses the entire site freely (no email gate on page load)
+2. When they scroll to the VIP Shop section, they see an email input asking for their VIP email
+3. **If email matches the Google Sheet** -- the Shopify products are revealed
+4. **If email does NOT match** -- a branded popup appears offering VIP access for $50, highlighting the value proposition (save 40%, 15-day early booking access, up to $445 in perks)
+5. The popup's CTA links to `https://stay.everlakegeorgia.com/reservation`
+6. After purchase, users are redirected back to the site with a URL parameter (e.g., `?vip=unlocked`) that auto-grants access and stores it in localStorage
 
-### Files to Create/Modify
+### Value Proposition (shown in the popup)
 
-**1. Create `/public/vip-list.csv`**
-A simple CSV with one column (`email`). You can update this file anytime to add/remove VIPs. Example:
-```
-email
-john@example.com
-maria@example.com
-```
+- Save 40% on your reservation starting May 1st
+- Exclusive 15-day early access to the booking calendar
+- $100 Resort Credit
+- Welcome Basket (Value $75)
+- Founding Guest Status
+- Exclusive access to future deals
 
-**2. Create `src/components/landing/VipGate.tsx`**
-- Full-screen overlay matching Everlake branding (dark background, gold accents, editorial fonts)
-- Everlake logo at top
-- Email input field + "Enter" button
-- Fetches `/vip-list.csv` at load, parses it, and checks the entered email (case-insensitive)
-- On success: stores email in localStorage, calls a callback to unlock the site
-- On failure: shows a message like "This email is not on the VIP list"
-- Bilingual support via `useLanguage()` — add translation keys for gate text
+### Files to Modify
 
-**3. Modify `src/pages/Index.tsx`**
-- Add state: `const [vipUnlocked, setVipUnlocked] = useState(false)`
-- On mount, check localStorage for a previously verified email
-- If not unlocked, render `<VipGate onUnlock={() => setVipUnlocked(true)} />` instead of the page content
+**1. Remove `VipGate` from `src/pages/Index.tsx`**
+- Delete the `vipUnlocked` state and conditional rendering
+- Render all sections for everyone
+- Add logic to check for `?vip=unlocked` URL parameter on mount, and if present, store in localStorage
+
+**2. Modify `src/components/landing/VipShopSection.tsx`**
+- Add an inline email gate within this section only
+- On valid email: reveal the Shopify products (save to localStorage)
+- On invalid email: open a dialog popup with the $50 upgrade offer
+- On return visits with localStorage set: show products directly
+
+**3. Create `src/components/landing/VipUpgradeDialog.tsx`**
+- Branded modal matching Everlake's dark aesthetic (dark bg, gold accents, editorial fonts)
+- Headline: "Become a Founding VIP"
+- Value proposition bullets from the reservation page
+- Price: $50 USD
+- CTA button: "Reserve Your VIP Access" linking to `https://stay.everlakegeorgia.com/reservation`
+- Close button to dismiss
 
 **4. Update `src/i18n/translations.ts`**
-Add translation keys for:
-- Gate heading (e.g., "Exclusive VIP Access")
-- Input placeholder
-- Button text
-- Error message for non-VIP emails
-- Success/welcome message
+- Add bilingual translation keys for the VIP upgrade dialog copy, the inline email prompt in the shop section, and the value proposition bullets
+
+### Auto-Unlock via Redirect
+
+When someone completes payment on `stay.everlakegeorgia.com/reservation`, they can be redirected to `https://everlake-crafted-haven.lovable.app/?vip=unlocked`. The Index page detects this parameter and stores VIP status in localStorage, granting immediate access to the shop section without needing to enter an email.
 
 ### Technical Details
-- CSV is fetched client-side from `/public/vip-list.csv` — no backend needed
-- Email comparison is case-insensitive and trimmed
-- localStorage key: `everlake-vip-email`
-- The CSV approach means you can swap in an updated file anytime without code changes
-- If you later want to use a Google Sheet, you can publish it as CSV and fetch the published URL instead
 
-### Security Note
-This is a soft gate — it's not cryptographically secure since the CSV is publicly accessible. It's designed to reduce friction and filter casual visitors, not to protect sensitive data. If stronger security is needed later, we can add a Supabase-backed check.
+- The Google Sheet fetch logic moves from `VipGate.tsx` into `VipShopSection.tsx`
+- localStorage key `everlake-vip-email` is reused for continuity
+- A second localStorage key (e.g., `everlake-vip-purchased`) handles purchased-via-redirect users
+- The upgrade dialog uses the existing Radix `Dialog` component from the UI library
+- All copy is bilingual (EN/ES) via the existing translation system
 
