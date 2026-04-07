@@ -17,8 +17,8 @@ const translations = {
     es: "Antes de que Everlake abra sus puertas, ustedes, nuestros Fundadores, tienen acceso prioritario.",
   },
   "hero.subtitle2": {
-    en: "Your 2-Week Exclusive Window Is Now Open.",
-    es: "Su Ventana Exclusiva de 2 Semanas Está Abierta.",
+    en: "Your Exclusive Discounted Packages Are Now Available.",
+    es: "Sus Paquetes Exclusivos Con Descuento Ya Están Disponibles.",
   },
   "hero.cta": { en: "VIP Packages", es: "Paquetes VIP" },
   "hero.scroll": { en: "Scroll", es: "Desplazar" },
