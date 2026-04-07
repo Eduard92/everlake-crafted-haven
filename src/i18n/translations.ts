@@ -163,8 +163,8 @@ const translations = {
   "faq.a5": { en: "Everlake is built on 110 acres in Covington, Georgia — just 1 hour from Atlanta's Hartsfield-Jackson Airport. Nestled in the woods beside two different bodies of water.", es: "Everlake está construido en 110 acres en Covington, Georgia — a solo 1 hora del Aeropuerto Hartsfield-Jackson de Atlanta. Ubicado en el bosque junto a dos cuerpos de agua." },
   "faq.q6": { en: "What does VIP membership include?", es: "¿Qué incluye la membresía VIP?" },
   "faq.a6": { en: "VIP members get early access to the booking calendar and discounted rates on stays, packages, and add-ons before public availability.", es: "Los miembros VIP obtienen acceso anticipado al calendario de reservas y tarifas con descuento en estadías, paquetes y complementos antes de la disponibilidad pública." },
-  "faq.q6": { en: "Who can I contact if I have questions?", es: "¿Con quién puedo contactar si tengo preguntas?" },
-  "faq.a6": { en: "Please don't hesitate to reach out to our wonderful Resort Manager, Montana at montana@everlakega.com", es: "No dudes en comunicarte con nuestra maravillosa Gerente del Resort, Montana en montana@everlakega.com" },
+  "faq.q7": { en: "Who can I contact if I have questions?", es: "¿Con quién puedo contactar si tengo preguntas?" },
+  "faq.a7": { en: "Please don't hesitate to reach out to our wonderful Resort Manager, Montana at montana@everlakega.com", es: "No dudes en comunicarte con nuestra maravillosa Gerente del Resort, Montana en montana@everlakega.com" },
 
   // Gallery
   "gallery.badge": { en: "A Glimpse Into The Quiet", es: "Un Vistazo a la Tranquilidad" },
