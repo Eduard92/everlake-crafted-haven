@@ -78,6 +78,13 @@ const translations = {
   "countdown.minutes": { en: "Minutes", es: "Minutos" },
   "countdown.seconds": { en: "Seconds", es: "Segundos" },
 
+  // VIP Gate
+  "gate.badge": { en: "Founders Only", es: "Solo Fundadores" },
+  "gate.heading": { en: "Enter your email to access the VIP experience.", es: "Ingresa tu correo para acceder a la experiencia VIP." },
+  "gate.placeholder": { en: "Your email address", es: "Tu correo electrónico" },
+  "gate.button": { en: "Enter", es: "Entrar" },
+  "gate.error": { en: "This email is not on the VIP list.", es: "Este correo no está en la lista VIP." },
+
   // Experiences
   "exp.badge": { en: "On-Property", es: "En la Propiedad" },
   "exp.title": { en: "Experiences", es: "Experiencias" },
