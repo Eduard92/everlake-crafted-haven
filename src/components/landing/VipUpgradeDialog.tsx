@@ -11,19 +11,13 @@ interface VipUpgradeDialogProps {
 const VipUpgradeDialog = ({ open, onOpenChange }: VipUpgradeDialogProps) => {
   const { t } = useLanguage();
 
-  const perks = [
-    t("upgrade.perk1"),
-    t("upgrade.perk2"),
-    t("upgrade.perk3"),
-    t("upgrade.perk4"),
-    t("upgrade.perk5"),
-    t("upgrade.perk6"),
-  ];
+  const pathA = [t("upgrade.pathA1"), t("upgrade.pathA2"), t("upgrade.pathA3")];
+  const pathB = [t("upgrade.pathB1"), t("upgrade.pathB2"), t("upgrade.pathB3")];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="border-none p-0 max-w-lg overflow-hidden"
+        className="border-none p-0 max-w-2xl overflow-hidden"
         style={{ backgroundColor: "hsl(200,10%,10%)" }}
       >
         <button
@@ -33,9 +27,9 @@ const VipUpgradeDialog = ({ open, onOpenChange }: VipUpgradeDialogProps) => {
           <X size={20} />
         </button>
 
-        <div className="px-8 py-10 text-center">
+        <div className="px-6 md:px-8 py-8 md:py-10 text-center">
           <DialogTitle className="sr-only">{t("upgrade.title")}</DialogTitle>
-          
+
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -63,48 +57,91 @@ const VipUpgradeDialog = ({ open, onOpenChange }: VipUpgradeDialogProps) => {
             </h2>
 
             <p
-              className="text-sm leading-relaxed mb-6 max-w-sm mx-auto"
+              className="text-sm leading-relaxed mb-6 max-w-md mx-auto"
               style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(40,20%,70%)" }}
             >
               {t("upgrade.subtitle")}
             </p>
           </motion.div>
 
-          {/* Price */}
-          <div className="mb-6">
-            <span
-              className="text-4xl font-light"
-              style={{ fontFamily: "'Playfair Display', serif", color: "hsl(38,60%,55%)" }}
+          {/* Two Paths */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-left">
+            {/* Path A — Pay $50 Now */}
+            <div
+              className="rounded-lg p-5 border"
+              style={{
+                borderColor: "hsl(38,60%,55%,0.3)",
+                backgroundColor: "hsl(38,60%,55%,0.06)",
+              }}
             >
-              $50
-            </span>
-            <span
-              className="text-sm ml-1"
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(40,20%,60%)" }}
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.2em] mb-4"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(38,60%,55%)" }}
+              >
+                {t("upgrade.pathA")}
+              </p>
+              <div className="space-y-3">
+                {pathA.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                      style={{ backgroundColor: "hsl(38,60%,55%,0.2)" }}
+                    >
+                      <Check size={12} style={{ color: "hsl(38,60%,55%)" }} />
+                    </div>
+                    <span
+                      className="text-sm leading-snug"
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(40,20%,85%)" }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Path B — Wait & Do Nothing */}
+            <div
+              className="rounded-lg p-5 border"
+              style={{
+                borderColor: "hsl(0,0%,30%,0.3)",
+                backgroundColor: "hsl(0,0%,100%,0.02)",
+              }}
             >
-              USD
-            </span>
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.2em] mb-4"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(0,30%,60%)" }}
+              >
+                {t("upgrade.pathB")}
+              </p>
+              <div className="space-y-3">
+                {pathB.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                      style={{ backgroundColor: "hsl(0,30%,50%,0.15)" }}
+                    >
+                      <X size={12} style={{ color: "hsl(0,30%,55%)" }} />
+                    </div>
+                    <span
+                      className="text-sm leading-snug"
+                      style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(40,10%,55%)" }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Perks */}
-          <div className="text-left space-y-3 mb-8 max-w-xs mx-auto">
-            {perks.map((perk, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div
-                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
-                  style={{ backgroundColor: "hsl(38,60%,55%,0.15)" }}
-                >
-                  <Check size={12} style={{ color: "hsl(38,60%,55%)" }} />
-                </div>
-                <span
-                  className="text-sm leading-snug"
-                  style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(40,20%,80%)" }}
-                >
-                  {perk}
-                </span>
-              </div>
-            ))}
-          </div>
+          {/* Reframe */}
+          <p
+            className="text-sm font-medium mb-6"
+            style={{ fontFamily: "'DM Sans', sans-serif", color: "hsl(38,60%,55%)" }}
+          >
+            {t("upgrade.reframe")}
+          </p>
 
           {/* CTA */}
           <a
