@@ -58,8 +58,9 @@ const VipShopSection = () => {
         setUnlocked(true);
       } else {
         // Track non-VIP email attempt
-        if (typeof window.fbq === 'function') {
-          window.fbq('track', 'Lead', { content_name: 'Non-VIP Email Attempt' });
+        const fbq = (window as any).fbq;
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'Non-VIP Email Attempt' });
         }
         setShowUpgrade(true);
       }

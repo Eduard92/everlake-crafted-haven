@@ -149,8 +149,9 @@ const VipUpgradeDialog = ({ open, onOpenChange }: VipUpgradeDialogProps) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
-              if (typeof window.fbq === 'function') {
-                window.fbq('track', 'InitiateCheckout', { content_name: 'VIP Access Reserve CTA' });
+              const fbq = (window as any).fbq;
+              if (typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout', { content_name: 'VIP Access Reserve CTA' });
               }
             }}
             className="block w-full py-3.5 text-xs font-medium uppercase tracking-[0.25em] transition-opacity hover:opacity-90 text-center"
