@@ -1,12 +1,17 @@
 
 
-## Update Intro Subtitle Copy
+## Add Facebook Pixel + Google Analytics 4
 
-### Change
-Update `src/i18n/translations.ts` — `intro.subtitle`:
+### IDs
+- **Facebook Pixel**: `760845936505991`
+- **GA4 Measurement**: `G-XRPMZTPYYW`
 
-- **EN**: "In a world that never stops, we're building a place where you can. Surrounded by nature, wrapped in comfort, finally still."
-- **ES**: "En un mundo que nunca se detiene, estamos construyendo un lugar donde tú puedes. Rodeado de naturaleza, envuelto en comodidad, finalmente en calma."
+### Implementation
 
-Single file edit, no other changes needed.
+**Edit `index.html`** — add both scripts to `<head>`, and Facebook `<noscript>` to `<body>`:
+
+1. **GA4**: Add the standard `gtag.js` async script and config snippet with `G-XRPMZTPYYW`
+2. **Facebook Pixel**: Add the Meta Pixel base code with ID `760845936505991`, plus the `<noscript><img>` fallback inside `<body>` (not `<head>`, per HTML5 rules)
+
+Single file change. No dependencies or packages needed — both are inline script tags.
 
