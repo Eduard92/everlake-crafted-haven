@@ -58,14 +58,14 @@ const VipShopSection = () => {
         // Track VIP email verified
         const fbq = (window as any).fbq;
         if (typeof fbq === 'function') {
-          fbq('track', 'CompleteRegistration', { content_name: 'VIP Email Verified' });
+          fbq('trackCustom', 'VIPAccess', { content_name: 'VIP Email Verified' });
         }
         setUnlocked(true);
       } else {
         // Track non-VIP email attempt
         const fbq = (window as any).fbq;
         if (typeof fbq === 'function') {
-          fbq('track', 'Lead', { content_name: 'Non-VIP Email Attempt' });
+          fbq('trackCustom', 'NonVIPLead', { content_name: 'Non-VIP Email Attempt' });
         }
         setShowUpgrade(true);
       }
