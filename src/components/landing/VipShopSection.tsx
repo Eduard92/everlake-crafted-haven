@@ -57,6 +57,10 @@ const VipShopSection = () => {
         localStorage.setItem("everlake-vip-email", trimmed);
         setUnlocked(true);
       } else {
+        // Track non-VIP email attempt
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead', { content_name: 'Non-VIP Email Attempt' });
+        }
         setShowUpgrade(true);
       }
     },
