@@ -177,6 +177,16 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
     if (!selectedVariant) return;
     const vid = varId(selectedVariant.id);
     if (!storeUrl) { alert("Store not configured."); return; }
+    // Track VIP coupon checkout click
+    const fbq = window.fbq;
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'VIP Coupon Checkout',
+        content_ids: [vid],
+        value: selectedVariant.price?.amount || 0,
+        currency: selectedVariant.price?.currencyCode || 'USD',
+      });
+    }
     window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
     onClose();
   }

@@ -55,6 +55,11 @@ const VipShopSection = () => {
       if (!trimmed) return;
       if (vipEmails.has(trimmed)) {
         localStorage.setItem("everlake-vip-email", trimmed);
+        // Track VIP email verified
+        const fbq = (window as any).fbq;
+        if (typeof fbq === 'function') {
+          fbq('track', 'CompleteRegistration', { content_name: 'VIP Email Verified' });
+        }
         setUnlocked(true);
       } else {
         // Track non-VIP email attempt
