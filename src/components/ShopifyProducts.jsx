@@ -62,6 +62,29 @@ const css = `
 .spv-qty-stepper button:hover { background: #e2e8f0; }
 .spv-qty-stepper input { width: 40px; border: none; background: none; text-align: center; font-size: 14px; font-weight: 500; color: #1a1a1a; outline: none; -moz-appearance: textfield; }
 .spv-qty-stepper input::-webkit-outer-spin-button, .spv-qty-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.spv-btn-row { display: flex; gap: 8px; }
+.spv-btn-row > button { flex: 1; }
+.spv-btn-outline { background: #fff !important; color: #1e3433 !important; border: 1px solid #1e3433 !important; }
+.spv-btn-outline:hover { background: #f1f5f9 !important; }
+.spv-upsell-card { max-width: 560px !important; }
+.spv-upsell-base { display: flex; gap: 12px; padding: 14px 1.25rem; border-bottom: 1px solid #e2e8f0; align-items: center; }
+.spv-upsell-base img { width: 56px; height: 56px; object-fit: cover; border-radius: 6px; background: #f1f5f9; }
+.spv-upsell-base-info { flex: 1; min-width: 0; }
+.spv-upsell-base-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #1a1a1a; margin-bottom: 4px; line-height: 1.2; }
+.spv-upsell-base-price { font-size: 13px; color: #64748b; }
+.spv-upsell-list { max-height: 50vh; overflow-y: auto; padding: 6px 1.25rem; }
+.spv-upsell-empty { padding: 24px 0; text-align: center; color: #94a3b8; font-size: 13px; }
+.spv-upsell-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; align-items: center; }
+.spv-upsell-item:last-child { border-bottom: none; }
+.spv-upsell-img { width: 52px; height: 52px; border-radius: 6px; background: #f1f5f9; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 10px; flex-shrink: 0; }
+.spv-upsell-img img { width: 100%; height: 100%; object-fit: cover; }
+.spv-upsell-item-info { flex: 1; min-width: 0; }
+.spv-upsell-item-title { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; }
+.spv-upsell-item-price { font-size: 13px; color: #64748b; }
+.spv-upsell-add-btn { background: #fff; border: 1px solid #1e3433; color: #1e3433; border-radius: 99px; padding: 6px 18px; font-size: 11px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all .15s; flex-shrink: 0; }
+.spv-upsell-add-btn:hover { background: #f1f5f9; }
+.spv-upsell-add-btn.selected { background: #1e3433; color: #fff; }
+.spv-upsell-footer { padding: 1rem 1.25rem; border-top: 1px solid #e2e8f0; }
 @media(max-width: 768px) {
   .spv-modal-layout { flex-direction: column; }
   .spv-modal-img { width: 100%; min-height: 200px; border-right: none; border-bottom: 1px solid #e2e8f0; }
@@ -69,6 +92,7 @@ const css = `
   .spv-modal-content { padding: 1rem; }
   .spv-modal-card { max-width: 100%; }
   .spv-card { flex: 0 0 100% !important; max-width: 100% !important; }
+  .spv-btn-row { flex-direction: column; }
 }
 `;
 
@@ -121,7 +145,12 @@ const TRANSLATIONS = {
     loading: "Cargando productos...",
     noProducts: "No se encontraron productos.",
     noImage: "Sin imagen",
-    shopNow: "Checkout",
+    shopNow: "Comprar ahora",
+    redeemCoupon: "Canjear cupón",
+    enhanceStay: "Mejora tu estadía",
+    add: "Agregar",
+    added: "Agregado",
+    continueLabel: "Continuar",
     inCart: "En carrito",
     configError: "Configura storeUrl y storefrontToken en las props.",
   },
@@ -142,7 +171,12 @@ const TRANSLATIONS = {
     loading: "Loading products...",
     noProducts: "No products found.",
     noImage: "No image",
-    shopNow: "Checkout",
+    shopNow: "Shop Now",
+    redeemCoupon: "Redeem Coupon",
+    enhanceStay: "Enhance Your Stay",
+    add: "Add",
+    added: "Added",
+    continueLabel: "Continue",
     inCart: "In cart",
     configError: "Please configure storeUrl and storefrontToken props.",
   },
@@ -154,7 +188,7 @@ const BagIcon = () => (
   </svg>
 );
 
-function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
+function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t }) {
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -227,9 +261,14 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
                 <button onClick={() => setQty(q => Math.min(99, q + 1))}>+</button>
               </div>
             </div>
-            <button className="spv-btn-green" onClick={handleAction} disabled={loading}>
-              {loading ? t.processing : <><BagIcon /> {t.goToCheckout}</>}
-            </button>
+            <div className="spv-btn-row">
+              <button className="spv-btn-green spv-btn-outline" onClick={() => onRedeem(selectedVariant?.id, qty)} disabled={loading || !selectedVariant}>
+                {t.redeemCoupon}
+              </button>
+              <button className="spv-btn-green" onClick={handleAction} disabled={loading || !selectedVariant}>
+                {loading ? t.processing : <><BagIcon /> {t.shopNow}</>}
+              </button>
+            </div>
             <p className="spv-note">{t.checkoutNote}</p>
           </div>
         </div>
@@ -239,7 +278,105 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, t }) {
 }
 
 
-function ProductCard({ product, onClick, t }) {
+function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, onClose, t }) {
+  const [selected, setSelected] = useState(() => new Set());
+
+  useEffect(() => {
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  const toggle = (id) => {
+    setSelected(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  const handleContinue = () => {
+    if (!storeUrl || !baseVariantId) return;
+    const parts = [`${varId(baseVariantId)}:${baseQty}`];
+    for (const addon of addons) {
+      const v = addon.variants.edges[0]?.node;
+      if (v && selected.has(v.id)) {
+        parts.push(`${varId(v.id)}:1`);
+      }
+    }
+    const fbq = window.fbq;
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'VIP Coupon Upsell Checkout',
+        num_items: parts.length,
+      });
+    }
+    window.open(`https://${storeUrl}/cart/${parts.join(',')}`, "_blank");
+    onClose();
+  };
+
+  return (
+    <div className="spv-modal-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="spv-modal-card spv-upsell-card">
+        <div className="spv-modal-header">
+          <div className="spv-modal-title">{t.enhanceStay}</div>
+          <button className="spv-btn-sec" onClick={onClose}>✕</button>
+        </div>
+        <div className="spv-upsell-base">
+          {baseProduct.featuredImage && (
+            <img src={baseProduct.featuredImage.url} alt={baseProduct.title} />
+          )}
+          <div className="spv-upsell-base-info">
+            <div className="spv-upsell-base-title">{baseProduct.title}</div>
+            <div className="spv-upsell-base-price">
+              {fmt(baseProduct.priceRange.minVariantPrice.amount)} × {baseQty}
+            </div>
+          </div>
+        </div>
+        <div className="spv-upsell-list">
+          {addons.length === 0 ? (
+            <div className="spv-upsell-empty">{t.noProducts}</div>
+          ) : addons.map(addon => {
+            const v = addon.variants.edges[0]?.node;
+            if (!v) return null;
+            const isSelected = selected.has(v.id);
+            return (
+              <div key={addon.id} className="spv-upsell-item">
+                <div className="spv-upsell-img">
+                  {addon.featuredImage
+                    ? <img src={addon.featuredImage.url} alt={addon.title} />
+                    : <span>{t.noImage}</span>}
+                </div>
+                <div className="spv-upsell-item-info">
+                  <div className="spv-upsell-item-title">{addon.title}</div>
+                  <div className="spv-upsell-item-price">{fmt(v.price.amount)}</div>
+                </div>
+                <button
+                  className={`spv-upsell-add-btn ${isSelected ? 'selected' : ''}`}
+                  onClick={() => toggle(v.id)}
+                >
+                  {isSelected ? t.added : t.add}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        <div className="spv-upsell-footer">
+          <button className="spv-btn-green" onClick={handleContinue}>
+            {t.continueLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function ProductCard({ product, onClick, onRedeem, t }) {
   return (
     <div className="spv-card" tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
       <div className="spv-card-img">
@@ -250,8 +387,8 @@ function ProductCard({ product, onClick, t }) {
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
-        <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); onClick(); }}>
-          <BagIcon /> {t.shopNow}
+        <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); onRedeem(); }}>
+          <BagIcon /> {t.redeemCoupon}
         </button>
       </div>
     </div>
@@ -270,9 +407,11 @@ export default function ShopifyProducts({
   const displayTitle = title || t.headerTitle;
   const displaySubtitle = subtitle || t.headerSubtitle;
   const [products, setProducts] = useState([]);
+  const [addons, setAddons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalProduct, setModalProduct] = useState(null);
+  const [upsellState, setUpsellState] = useState(null);
 
   const fetchProducts = useCallback(async () => {
     if (!storeUrl || !storefrontToken) { setError(t.configError); setLoading(false); return; }
@@ -287,14 +426,11 @@ export default function ShopifyProducts({
       const data = await res.json();
       if (data.errors) throw new Error(data.errors[0]?.message || "GraphQL error");
       const allProducts = (data?.data?.products?.edges || []).map(e => e.node);
-      const filtered = allProducts.filter(p => {
-        const isCoupon = (p.productType || "").toLowerCase().includes("coupon") ||
-                         (p.productType || "").toLowerCase().includes("gift") ||
-                         (p.productType || "").toLowerCase().includes("perk");
-        if (isCoupon) return true;
-        return p.variants.edges.some(e => e.node.availableForSale);
-      });
-      setProducts(filtered);
+      const isCouponCard = (p) => (p.productType || "").toLowerCase() === "perk coupons";
+      const cards = allProducts.filter(isCouponCard);
+      const addonList = allProducts.filter(p => !isCouponCard(p) && p.variants.edges.some(e => e.node.availableForSale));
+      setProducts(cards);
+      setAddons(addonList);
     } catch (err) { setError(`${t.loading} ${err.message}`); }
     finally { setLoading(false); }
   }, [storeUrl, storefrontToken, apiVersion]);
@@ -317,12 +453,44 @@ export default function ShopifyProducts({
             <div className="spv-empty">{t.noProducts}</div>
           ) : (
             products.map(p => (
-              <ProductCard key={p.id} product={p} onClick={() => setModalProduct(p)} t={t} />
+              <ProductCard
+                key={p.id}
+                product={p}
+                onClick={() => setModalProduct(p)}
+                onRedeem={() => {
+                  const firstVariant = p.variants.edges[0]?.node;
+                  if (!firstVariant) return;
+                  setUpsellState({ product: p, variantId: firstVariant.id, qty: 1 });
+                }}
+                t={t}
+              />
             ))
           )}
         </div>
         {modalProduct && (
-          <ProductModal product={modalProduct} storeUrl={storeUrl} storefrontToken={storefrontToken} onClose={() => setModalProduct(null)} t={t} />
+          <ProductModal
+            product={modalProduct}
+            storeUrl={storeUrl}
+            storefrontToken={storefrontToken}
+            onClose={() => setModalProduct(null)}
+            onRedeem={(variantId, qty) => {
+              if (!variantId) return;
+              setUpsellState({ product: modalProduct, variantId, qty });
+              setModalProduct(null);
+            }}
+            t={t}
+          />
+        )}
+        {upsellState && (
+          <UpsellModal
+            baseProduct={upsellState.product}
+            baseVariantId={upsellState.variantId}
+            baseQty={upsellState.qty}
+            addons={addons}
+            storeUrl={storeUrl}
+            onClose={() => setUpsellState(null)}
+            t={t}
+          />
         )}
       </div>
     </>
