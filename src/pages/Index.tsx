@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import HeroSection from "@/components/landing/HeroSection";
 import IntroSection from "@/components/landing/IntroSection";
 import HideawaysSection from "@/components/landing/HideawaysSection";
@@ -12,15 +11,6 @@ import FooterSection from "@/components/landing/FooterSection";
 import QAViewportToggle from "@/components/QAViewportToggle";
 
 const Index = () => {
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("vip") === "unlocked") {
-      localStorage.setItem("everlake-vip-purchased", "true");
-      // Clean URL
-      window.history.replaceState({}, "", window.location.pathname);
-    }
-  }, []);
-
   return (
     <div className="overflow-x-hidden">
       <HeroSection />
