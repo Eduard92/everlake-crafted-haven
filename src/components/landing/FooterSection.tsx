@@ -1,36 +1,8 @@
 import { useLanguage } from "@/i18n/LanguageContext";
-
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-    fbq?: (...args: any[]) => void;
-  }
-}
+import { trackEvent } from "@/lib/analytics";
 
 const trackContactClick = (location: "footer_email" | "footer_cta") => {
-  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
-  const device = isMobile ? "mobile" : "desktop";
-
-  try {
-    window.gtag?.("event", "contact_guest_services_click", {
-      event_category: "engagement",
-      event_label: `${location}_${device}`,
-      location,
-      device,
-      method: "mailto",
-    });
-  } catch (e) {
-    // no-op
-  }
-
-  try {
-    window.fbq?.("trackCustom", "ContactGuestServicesClick", {
-      location,
-      device,
-    });
-  } catch (e) {
-    // no-op
-  }
+  trackEvent("contact_guest_services_click", { location, method: "mailto" });
 };
 
 const FooterSection = () => {

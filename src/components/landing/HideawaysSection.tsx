@@ -1,10 +1,48 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import cabinInterior from "@/assets/cabin-interior.webp";
 import cabinExterior from "@/assets/cabin-exterior.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { trackEvent } from "@/lib/analytics";
 
 const HideawaysSection = () => {
   const { t } = useLanguage();
+  const cabinIframeRef = useRef<HTMLIFrameElement | null>(null);
+
+  // Track first play on the Cabin Tour Vimeo via postMessage API.
+  useEffect(() => {
+    const iframe = cabinIframeRef.current;
+    if (!iframe) return;
+    let played = false;
+
+    const post = (method: string) => {
+      try {
+        iframe.contentWindow?.postMessage(JSON.stringify({ method }), "*");
+      } catch {}
+    };
+
+    const onReady = () => {
+      post("addEventListener:play");
+    };
+
+    const onMessage = (e: MessageEvent) => {
+      if (!iframe.contentWindow || e.source !== iframe.contentWindow) return;
+      let data: any = e.data;
+      if (typeof data === "string") {
+        try { data = JSON.parse(data); } catch { return; }
+      }
+      if (data?.event === "ready") onReady();
+      if (data?.event === "play" && !played) {
+        played = true;
+        trackEvent("video_play", { video: "cabin_tour", video_id: "1143138281" });
+      }
+    };
+
+    window.addEventListener("message", onMessage);
+    // Some browsers fire ready before listener attached — ping for state.
+    post("ping");
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   const features = [
     { title: t("hideaways.feat1Title"), desc: t("hideaways.feat1Desc") },
@@ -64,7 +102,13 @@ const HideawaysSection = () => {
         >
           <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-6 text-center">{t("hideaways.tourBadge")}</p>
           <div className="vimeo-wrapper">
-            <iframe src="https://player.vimeo.com/video/1143138281?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" title="Everlake Cabin Tour" />
+            <iframe
+              ref={cabinIframeRef}
+              src="https://player.vimeo.com/video/1143138281?title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Everlake Cabin Tour"
+            />
           </div>
         </motion.div>
       </div>
