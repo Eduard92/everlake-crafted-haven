@@ -56,6 +56,7 @@ const translations = {
     es: "Junto al lago o entre el bosque — la naturaleza serena está a un paso.",
   },
   "hideaways.feat3Title": { en: "Skip Check-In", es: "Sin Check-In" },
+  "hideaways.playOverlay": { en: "Play Cabin Tour", es: "Ver Recorrido por la Cabaña" },
   "hideaways.feat3Desc": {
     en: "Digital check-in grants instant access. Arrive with ease and step straight into calm.",
     es: "El check-in digital te da acceso inmediato. Llega con tranquilidad y entra directo a la calma.",
