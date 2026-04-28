@@ -83,12 +83,16 @@ const VipShopSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-6"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">{t("vip.badge")}</p>
-          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-6">
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-3 md:mb-4">{t("vip.badge")}</p>
+          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.1] md:leading-[1.05] mb-5 md:mb-6">
             {t("vip.title1")}<br />
             <span className="text-editorial-italic">{t("vip.title2")}<br />{t("vip.title3")}</span>
           </h2>
-          <p className="font-body text-[13px] md:text-sm text-everlake-ivory/55 max-w-[19rem] sm:max-w-md md:max-w-lg mx-auto leading-[1.55] md:leading-relaxed whitespace-pre-line px-2 md:px-0">{t("vip.subtitle")}</p>
+          <div className="font-body text-sm md:text-base text-everlake-ivory/75 max-w-[18rem] sm:max-w-md md:max-w-xl mx-auto leading-[1.6] md:leading-relaxed px-3 md:px-0 space-y-3 md:space-y-2">
+            {t("vip.subtitle").split("\n").filter(Boolean).map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
+          </div>
           <CountdownTimer />
         </motion.div>
 
