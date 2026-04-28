@@ -70,21 +70,6 @@ const FaqSection = () => {
             ))}
             <div className="border-t border-everlake-sand" />
           </div>
-
-          {/* Illustration on desktop — sticky sidebar */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block w-[340px] flex-shrink-0 sticky top-32"
-          >
-            <img
-              src={faqIllustration}
-              alt="Everlake FAQ illustration"
-              className="w-full h-auto"
-            />
-          </motion.div>
         </div>
       </div>
     </section>
