@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const css = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&display=swap');
 
 .spv-wrap { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1a1a1a; position: relative; padding: 0 24px; }
 .spv-header { text-align: center; padding: 32px 24px 8px; }
@@ -15,14 +15,53 @@ const css = `
 .spv-card-img img { width: 100%; height: auto; object-fit: contain; display: block; background: #f8f8f6; }
 .spv-cart-indicator { position: absolute; top: 8px; right: 8px; background: #1e3433; color: #fff; font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 99px; }
 .spv-card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; gap: 8px; }
-.spv-card-title { font-size: 15px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: #1a1a1a; margin-bottom: 0; letter-spacing: 0.02em; min-height: 48px; display: flex; align-items: flex-start; }
-.spv-card-price { font-size: 14px; color: #444; }
+.spv-card-title { font-size: 18px; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: #1a1a1a; margin-bottom: 6px; letter-spacing: 0.02em; min-height: 52px; display: flex; align-items: flex-start; line-height: 1.25; }
+.spv-card-price { font-size: 18px; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: #444; margin-bottom: 10px; letter-spacing: 0.02em; }
 .spv-card-btn { display: flex !important; width: 100% !important; padding: 9px 0 !important; background: #1e3433 !important; color: #fff !important; border: none !important; border-radius: 8px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; gap: 6px !important; transition: background .15s !important; }
 .spv-card-btn:hover { background: #2d4f4d !important; }
 .spv-card-btn.spv-card-btn-added { background: #fff !important; color: #1e3433 !important; border: 1px solid #1e3433 !important; }
 .spv-card-btn.spv-card-btn-added:hover { background: #f1f5f9 !important; }
 .spv-alert { border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 1rem; }
 .spv-alert-error { background: #FCEBEB; color: #A32D2D; border: 1px solid #fca5a5; }
+
+/* Product detail modal */
+.spv-modal-backdrop { position: fixed; inset: 0; z-index: 9997; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+.spv-modal-card { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; width: 100%; max-width: 900px; max-height: calc(100vh - 4rem); display: flex; flex-direction: column; overflow: hidden; }
+.spv-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid #e2e8f0; }
+.spv-modal-title { font-size: 22px; font-weight: 700; font-family: 'Cormorant Garamond', serif; letter-spacing: 0.02em; color: #1a1a1a; }
+.spv-modal-close { background: transparent; border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 12px; font-size: 14px; cursor: pointer; color: #1a1a1a; transition: background .15s; }
+.spv-modal-close:hover { background: #f1f5f9; }
+.spv-modal-layout { display: flex; flex: 1; min-height: 0; }
+.spv-modal-img { width: 50%; min-width: 50%; background-color: #f1f5f9; background-size: cover; background-position: center; border-right: 1px solid #e2e8f0; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+.spv-modal-img::before { content: ''; position: absolute; inset: 0; backdrop-filter: blur(28px) saturate(1.1); -webkit-backdrop-filter: blur(28px) saturate(1.1); background: rgba(255,255,255,0.35); }
+.spv-modal-img img { position: relative; z-index: 1; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.spv-modal-img > span { position: relative; z-index: 1; color: #94a3b8; font-size: 13px; }
+.spv-modal-content { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+.spv-modal-price { font-size: 22px; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: #1a1a1a; letter-spacing: 0.02em; }
+.spv-modal-desc { font-size: 14px; color: #444; line-height: 1.6; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; }
+.spv-modal-label { font-size: 12px; color: #64748b; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+.spv-var-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.spv-var-pill { display: inline-flex; align-items: center; justify-content: center; padding: 8px 18px; border: 1px solid #cbd5e1; border-radius: 99px; font-size: 13px; font-weight: 500; color: #1a1a1a; background: #fff; cursor: pointer; transition: all .15s; }
+.spv-var-pill.selected { background: #1e3433; color: #fff; border-color: #1e3433; }
+.spv-var-pill:hover { border-color: #1e3433; }
+.spv-qty-row { display: flex; align-items: center; gap: 14px; }
+.spv-qty-stepper { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 99px; overflow: hidden; background: #f8fafc; }
+.spv-qty-stepper button { background: none; border: none; width: 36px; height: 36px; font-size: 18px; cursor: pointer; color: #1a1a1a; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+.spv-qty-stepper button:hover { background: #e2e8f0; }
+.spv-qty-stepper input { width: 40px; border: none; background: none; text-align: center; font-size: 14px; font-weight: 500; color: #1a1a1a; outline: none; -moz-appearance: textfield; }
+.spv-qty-stepper input::-webkit-outer-spin-button, .spv-qty-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.spv-modal-actions { display: flex; gap: 8px; margin-top: 6px; }
+.spv-modal-actions > button { flex: 1; }
+.spv-modal-action { display: inline-flex !important; padding: 12px 18px !important; background: #1e3433 !important; color: #fff !important; border: none !important; border-radius: 8px !important; font-size: 14px !important; font-weight: 600 !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; gap: 8px !important; transition: background .15s !important; }
+.spv-modal-action:hover { background: #2d4f4d !important; }
+.spv-modal-action:disabled { opacity: 0.4 !important; cursor: not-allowed !important; }
+.spv-modal-action-outline { background: #fff !important; color: #1e3433 !important; border: 1px solid #1e3433 !important; }
+.spv-modal-action-outline:hover { background: #f1f5f9 !important; }
+@media(max-width: 480px) {
+  .spv-modal-actions { flex-direction: column; }
+}
+.spv-modal-note { font-size: 11px; color: #94a3b8; text-align: center; margin: 0; }
+.spv-card-clickable { cursor: pointer; }
 
 /* Floating cart button (matches addons modal palette: white card + dark green button) */
 .spv-fab { position: fixed; bottom: 24px; right: 24px; z-index: 9998; width: 60px; height: 60px; border-radius: 50%; background: #1e3433; color: #fff; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.25); transition: transform .15s, box-shadow .15s; }
@@ -32,7 +71,7 @@ const css = `
 /* Cart drawer — Light theme matching the addons modal (white + dark green + cream tones) */
 .spv-drawer-overlay { position: fixed; inset: 0; z-index: 9998; background: rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .25s; }
 .spv-drawer-overlay.spv-open { opacity: 1; pointer-events: auto; }
-.spv-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 9999; width: 100%; max-width: 420px; background: #fff; color: #1a1a1a; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .25s ease-out; box-shadow: -8px 0 24px rgba(0,0,0,.15); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.spv-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 9999; width: 100%; max-width: 420px; background: #fff; color: #1a1a1a; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .25s ease-out; box-shadow: -8px 0 24px rgba(0,0,0,.15); font-family: 'DM Sans', system-ui, -apple-system, sans-serif; }
 .spv-drawer.spv-open { transform: translateX(0); }
 .spv-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid #e2e8f0; }
 .spv-drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.02em; color: #1a1a1a; }
@@ -79,6 +118,12 @@ const css = `
 
 @media(max-width: 1024px) {
   .spv-card { flex: 0 0 calc(50% - 10px) !important; max-width: calc(50% - 10px) !important; }
+}
+@media(max-width: 768px) {
+  .spv-modal-layout { flex-direction: column; }
+  .spv-modal-img { width: 100%; height: 220px; min-height: 220px; border-right: none; border-bottom: 1px solid #e2e8f0; }
+  .spv-modal-content { padding: 1rem; }
+  .spv-modal-card { max-width: 100%; }
 }
 @media(max-width: 600px) {
   .spv-card { flex: 0 0 100% !important; max-width: 100% !important; }
@@ -131,6 +176,8 @@ const TRANSLATIONS = {
     free: "Gratis",
     complimentary: "Cortesía",
     giftNote: "Incluido con tu compra",
+    quantity: "Cantidad",
+    option: "Opción",
     configError: "Configura storeUrl y storefrontToken en las props.",
   },
   en: {
@@ -151,6 +198,8 @@ const TRANSLATIONS = {
     free: "Free",
     complimentary: "Complimentary",
     giftNote: "Included with your purchase",
+    quantity: "Quantity",
+    option: "Option",
     configError: "Please configure storeUrl and storefrontToken props.",
   },
 };
@@ -199,7 +248,7 @@ function getDevice() {
   return isMobile ? 'mobile' : 'desktop';
 }
 
-function ProductCard({ product, qtyInCart, onAdd, t }) {
+function ProductCard({ product, qtyInCart, onAdd, onOpen, t }) {
   const cardRef = useRef(null);
 
   // 10-second dwell tracking — fires once per product card per session.
@@ -270,16 +319,24 @@ function ProductCard({ product, qtyInCart, onAdd, t }) {
 
   const inCart = qtyInCart > 0;
 
+  const handleOpen = () => onOpen && onOpen();
+
   return (
     <div ref={cardRef} className={`spv-card ${inCart ? 'spv-in-cart' : ''}`}>
-      <div className="spv-card-img">
+      <div
+        className="spv-card-img spv-card-clickable"
+        onClick={handleOpen}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === "Enter") handleOpen(); }}
+      >
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
           : <span>{t.noImage}</span>}
         {inCart && <span className="spv-cart-indicator">{qtyInCart} {t.inCart}</span>}
       </div>
       <div className="spv-card-body">
-        <div className="spv-card-title">{product.title}</div>
+        <div className="spv-card-title spv-card-clickable" onClick={handleOpen}>{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
         <button
           className={`spv-card-btn ${inCart ? 'spv-card-btn-added' : ''}`}
@@ -287,6 +344,111 @@ function ProductCard({ product, qtyInCart, onAdd, t }) {
         >
           <BagIcon /> {inCart ? `${t.added} (${qtyInCart})` : t.addToCart}
         </button>
+      </div>
+    </div>
+  );
+}
+
+function ProductModal({ product, onClose, onAddToCart, onCheckout, t }) {
+  const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
+  const [qty, setQty] = useState(1);
+
+  const variants = product.variants.edges;
+  const selectedVariant = variants[selectedVariantIdx]?.node;
+
+  useEffect(() => {
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  const handleAdd = () => {
+    if (!selectedVariant) return;
+    onAddToCart(product, selectedVariant, qty);
+    onClose();
+  };
+
+  const handleCheckout = () => {
+    if (!selectedVariant) return;
+    onCheckout(product, selectedVariant, qty);
+    onClose();
+  };
+
+  return (
+    <div
+      className="spv-modal-backdrop"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
+      <div className="spv-modal-card">
+        <div className="spv-modal-header">
+          <div className="spv-modal-title">{product.title}</div>
+          <button className="spv-modal-close" onClick={onClose} aria-label="Close">✕</button>
+        </div>
+        <div className="spv-modal-layout">
+          <div
+            className="spv-modal-img"
+            style={product.featuredImage
+              ? { backgroundImage: `url(${product.featuredImage.url})` }
+              : undefined}
+          >
+            {product.featuredImage
+              ? <img src={product.featuredImage.url} alt={product.title} />
+              : <span>{t.noImage}</span>}
+          </div>
+          <div className="spv-modal-content">
+            <div className="spv-modal-price">{fmt(selectedVariant?.price?.amount || product.priceRange.minVariantPrice.amount)}</div>
+            {product.description && <div className="spv-modal-desc">{product.description}</div>}
+            {variants.length > 1 && (
+              <div>
+                <label className="spv-modal-label">{t.option}</label>
+                <div className="spv-var-group">
+                  {variants.map((e, i) => (
+                    <button
+                      key={e.node.id}
+                      className={`spv-var-pill ${i === selectedVariantIdx ? "selected" : ""}`}
+                      onClick={() => setSelectedVariantIdx(i)}
+                      disabled={!e.node.availableForSale}
+                    >
+                      {e.node.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="spv-qty-row">
+              <label className="spv-modal-label" style={{ marginBottom: 0 }}>{t.quantity}</label>
+              <div className="spv-qty-stepper">
+                <button onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="-">−</button>
+                <input
+                  type="number"
+                  value={qty}
+                  onChange={(e) => setQty(Math.min(99, Math.max(1, parseInt(e.target.value) || 1)))}
+                />
+                <button onClick={() => setQty(q => Math.min(99, q + 1))} aria-label="+">+</button>
+              </div>
+            </div>
+            <div className="spv-modal-actions">
+              <button
+                className="spv-modal-action spv-modal-action-outline"
+                onClick={handleAdd}
+                disabled={!selectedVariant || !selectedVariant.availableForSale}
+              >
+                <BagIcon size={16} /> {t.addToCart}
+              </button>
+              <button
+                className="spv-modal-action"
+                onClick={handleCheckout}
+                disabled={!selectedVariant || !selectedVariant.availableForSale}
+              >
+                {t.checkout}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -426,6 +588,7 @@ export default function ShopifyProducts({
   const [error, setError] = useState(null);
   const [cart, setCart] = useState(() => loadCart());
   const [cartOpen, setCartOpen] = useState(false);
+  const [modalProduct, setModalProduct] = useState(null);
 
   useEffect(() => { saveCart(cart); }, [cart]);
 
@@ -472,23 +635,23 @@ export default function ShopifyProducts({
 
   const findVariant = (product) => product.variants.edges[0]?.node;
 
-  const addToCart = (product) => {
-    const variant = findVariant(product);
-    if (!variant) return;
+  const addToCart = (product, variant = null, qty = 1) => {
+    const v = variant || findVariant(product);
+    if (!v) return;
     setCart(prev => {
-      const existing = prev.find(i => i.variantId === variant.id);
+      const existing = prev.find(i => i.variantId === v.id);
       if (existing) {
-        return prev.map(i => i.variantId === variant.id ? { ...i, qty: i.qty + 1 } : i);
+        return prev.map(i => i.variantId === v.id ? { ...i, qty: Math.min(99, i.qty + qty) } : i);
       }
       return [...prev, {
-        variantId: variant.id,
+        variantId: v.id,
         productId: product.id,
         title: product.title,
-        variantTitle: variant.title,
+        variantTitle: v.title,
         image: product.featuredImage?.url || null,
-        price: variant.price.amount,
-        currencyCode: variant.price.currencyCode,
-        qty: 1,
+        price: v.price.amount,
+        currencyCode: v.price.currencyCode,
+        qty,
         isPerkCoupon: !!product.__isPerkCoupon,
       }];
     });
@@ -539,6 +702,29 @@ export default function ShopifyProducts({
     setCartOpen(false);
   };
 
+  // Checkout directo desde el modal: combina cart actual + producto seleccionado
+  const checkoutNow = (product, variant, qty) => {
+    const v = variant || findVariant(product);
+    if (!v || !storeUrl) return;
+    const merged = new Map(cart.map(i => [i.variantId, i.qty]));
+    merged.set(v.id, Math.min(99, (merged.get(v.id) || 0) + qty));
+    const parts = Array.from(merged.entries())
+      .map(([vid, q]) => `${varId(vid)}:${q}`)
+      .join(',');
+    const device = getDevice();
+    try {
+      window.gtag && window.gtag('event', 'coupon_checkout_click', {
+        flow: 'modal_buy_now',
+        product_id: product.id,
+        product_title: product.title,
+        device,
+      });
+    } catch {}
+    window.open(`https://${storeUrl}/cart?autoadd=${parts}`, "_blank");
+    setCart([]);
+    setCartOpen(false);
+  };
+
   const itemCount = cart.reduce((sum, i) => sum + i.qty, 0);
   const cartByVariant = new Map(cart.map(i => [i.variantId, i.qty]));
   const hasPerkInCart = cart.some(i => i.isPerkCoupon);
@@ -566,6 +752,7 @@ export default function ShopifyProducts({
                   product={p}
                   qtyInCart={v ? (cartByVariant.get(v.id) || 0) : 0}
                   onAdd={() => addToCart(p)}
+                  onOpen={() => setModalProduct(p)}
                   t={t}
                 />
               );
@@ -597,6 +784,16 @@ export default function ShopifyProducts({
         onCheckout={checkout}
         t={t}
       />
+
+      {modalProduct && (
+        <ProductModal
+          product={modalProduct}
+          onClose={() => setModalProduct(null)}
+          onAddToCart={addToCart}
+          onCheckout={checkoutNow}
+          t={t}
+        />
+      )}
     </>
   );
 }
