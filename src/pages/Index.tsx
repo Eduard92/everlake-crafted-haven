@@ -9,6 +9,7 @@ import FaqSection from "@/components/landing/FaqSection";
 import GallerySection from "@/components/landing/GallerySection";
 import PropertyMapSection from "@/components/landing/PropertyMapSection";
 import FooterSection from "@/components/landing/FooterSection";
+import QAViewportToggle from "@/components/QAViewportToggle";
 
 const Index = () => {
   useEffect(() => {
@@ -32,6 +33,7 @@ const Index = () => {
       <FaqSection />
       <GallerySection />
       <FooterSection />
+      <QAViewportToggle />
     </div>
   );
 };
