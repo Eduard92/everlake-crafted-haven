@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SectionCta from "./SectionCta";
 
 const FaqSection = () => {
   const { t } = useLanguage();
@@ -67,6 +68,7 @@ const FaqSection = () => {
             <div className="border-t border-everlake-sand" />
           </div>
         </div>
+        <SectionCta />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SectionCta from "./SectionCta";
 
 const IntroSection = () => {
   const { t } = useLanguage();
@@ -33,6 +34,7 @@ const IntroSection = () => {
             {t("intro.subtitle")}
           </p>
         </motion.div>
+        <SectionCta />
       </div>
     </section>
   );
