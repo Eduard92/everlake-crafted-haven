@@ -6,9 +6,10 @@ const FaqSection = () => {
   const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs = Array.from({ length: 16 }, (_, i) => ({
-    question: t(`faq.q${i + 1}` as any),
-    answer: t(`faq.a${i + 1}` as any),
+  const faqIndices = [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  const faqs = faqIndices.map((n) => ({
+    question: t(`faq.q${n}` as any),
+    answer: t(`faq.a${n}` as any),
   }));
 
   return (
