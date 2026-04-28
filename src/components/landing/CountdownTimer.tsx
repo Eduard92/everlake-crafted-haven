@@ -51,20 +51,20 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center mt-8">
-      <p className="font-body text-xs md:text-sm tracking-[0.15em] uppercase text-everlake-gold/80 mb-4 text-center">
+    <div className="flex flex-col items-center mt-10 md:mt-12 px-2">
+      <p className="font-body text-[11px] md:text-sm tracking-[0.15em] uppercase text-everlake-gold/80 mb-4 text-center">
         {t("countdown.launches")} {formatTargetIn("America/New_York", lang === "es" ? "es-ES" : "en-US")}
       </p>
-      <div className="flex items-center justify-center gap-4 md:gap-6">
+      <div className="flex items-center justify-center gap-2.5 sm:gap-4 md:gap-6 w-full max-w-[18rem] sm:max-w-none mx-auto">
         {units.map(({ value, label }) => (
           <div
             key={label}
-            className="flex flex-col items-center justify-center w-20 h-20 md:w-24 md:h-24 border border-everlake-gold/30 rounded-sm bg-everlake-warm-black/50"
+            className="flex flex-1 sm:flex-none flex-col items-center justify-center aspect-square sm:aspect-auto sm:w-20 sm:h-20 md:w-24 md:h-24 min-w-0 border border-everlake-gold/30 rounded-sm bg-everlake-warm-black/50"
           >
-            <span className="font-display text-2xl md:text-3xl text-everlake-gold leading-none">
+            <span className="font-display text-xl sm:text-2xl md:text-3xl text-everlake-gold leading-none">
               {String(value).padStart(2, "0")}
             </span>
-            <span className="font-body text-[10px] md:text-xs tracking-[0.2em] uppercase text-everlake-ivory/50 mt-1">
+            <span className="font-body text-[9px] sm:text-[10px] md:text-xs tracking-[0.18em] sm:tracking-[0.2em] uppercase text-everlake-ivory/60 mt-1">
               {label}
             </span>
           </div>
