@@ -32,9 +32,6 @@ const IntroSection = () => {
           <p className="font-body text-everlake-charcoal/60 text-[15px] md:text-lg max-w-2xl mx-auto leading-[1.65] md:leading-relaxed">
             {t("intro.subtitle")}
           </p>
-          <p className="font-body text-everlake-charcoal/80 text-[15px] md:text-lg max-w-2xl mx-auto leading-[1.65] md:leading-relaxed mt-7 md:mt-6 font-medium">
-            {t("intro.founders")}
-          </p>
         </motion.div>
       </div>
     </section>
