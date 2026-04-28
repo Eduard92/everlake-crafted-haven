@@ -16,8 +16,8 @@ const FooterSection = () => {
             </p>
           </div>
           <div className="flex flex-col md:items-end gap-2">
-            <a href="mailto:montana@everlakega.com" className="font-body text-sm text-everlake-ivory/60 hover:text-everlake-gold transition-colors">
-              montana@everlakega.com
+            <a href="mailto:guestservices@everlakega.com" className="font-body text-sm text-everlake-ivory/60 hover:text-everlake-gold transition-colors">
+              guestservices@everlakega.com
             </a>
             <a href="https://everlakega.com" target="_blank" rel="noopener noreferrer" className="font-body text-sm text-everlake-ivory/60 hover:text-everlake-gold transition-colors">
               everlakega.com
