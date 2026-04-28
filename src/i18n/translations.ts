@@ -190,7 +190,7 @@ const translations = {
   "faq.q15": { en: "Where is Everlake located?", es: "¿Dónde está ubicado Everlake?" },
   "faq.a15": { en: "Everlake is built on 110 acres in Covington, Georgia — just 1 hour from Atlanta's Hartsfield-Jackson Airport. Nestled in the woods beside two different bodies of water.", es: "Everlake está construido en 110 acres en Covington, Georgia — a solo 1 hora del Aeropuerto Hartsfield-Jackson de Atlanta. Ubicado en el bosque junto a dos cuerpos de agua." },
   "faq.q16": { en: "Who can I contact if I have questions?", es: "¿Con quién puedo contactar si tengo preguntas?" },
-  "faq.a16": { en: "Please don't hesitate to reach out to our wonderful Resort Manager, Montana at montana@everlakega.com", es: "No dudes en comunicarte con nuestra maravillosa Gerente del Resort, Montana en montana@everlakega.com" },
+  "faq.a16": { en: "Please don't hesitate to reach out to our Guest Services team at guestservices@everlakega.com", es: "No dudes en comunicarte con nuestro equipo de Guest Services en guestservices@everlakega.com" },
 
   // Shop Gate
   "shopgate.prompt": {
@@ -230,6 +230,7 @@ const translations = {
   "footer.tagline": { en: "The Getaway That Stays With You", es: "La Escapada Que Se Queda Contigo" },
   "footer.rights": { en: "All rights reserved.", es: "Todos los derechos reservados." },
   "footer.location": { en: "Covington, Georgia · 110 acres of quiet", es: "Covington, Georgia · 110 acres de tranquilidad" },
+  "footer.contactCta": { en: "Contact Guest Services", es: "Contactar Guest Services" },
 } as const;
 
 export type TranslationKey = keyof typeof translations;
