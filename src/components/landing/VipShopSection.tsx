@@ -92,7 +92,6 @@ const VipShopSection = () => {
               <p key={i}>{line}</p>
             ))}
           </div>
-          <CountdownTimer />
         </motion.div>
 
         {unlocked ? (
