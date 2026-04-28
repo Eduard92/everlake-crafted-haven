@@ -7,92 +7,83 @@ const css = `
 .spv-header { text-align: center; padding: 32px 24px 8px; }
 .spv-header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px,4vw,38px); font-weight: 300; color: #1a1a1a; margin-bottom: 12px; letter-spacing: 0.02em; line-height: 1.2; }
 .spv-header-subtitle { font-size: 16px; color: #64748b; max-width: 540px; margin: 0 auto; line-height: 1.6; }
-.spv-cart-bar { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
-.spv-cart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.spv-cart-title { font-size: 14px; font-weight: 600; }
-.spv-cart-actions { display: flex; gap: 8px; align-items: center; }
-.spv-cart-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-.spv-cart-item:last-child { border-bottom: none; }
-.spv-cart-item-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
-.spv-cart-item-sub { font-size: 11px; color: #64748b; }
-.spv-cart-item-price { font-weight: 600; white-space: nowrap; font-size: 13px; }
-.spv-cart-total { display: flex; justify-content: space-between; padding-top: 10px; margin-top: 6px; border-top: 1px solid #e2e8f0; font-size: 14px; font-weight: 600; }
-.spv-btn-green { background: #1e3433 !important; color: #fff !important; border: none !important; border-radius: 8px !important; padding: 12px 18px !important; font-size: 14px !important; font-weight: 600 !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; width: 100% !important; transition: background .15s !important; }
-.spv-btn-green:hover { background: #2d4f4d !important; }
-.spv-btn-green:disabled { opacity: .4 !important; cursor: not-allowed !important; }
-.spv-btn-sm { width: auto !important; padding: 6px 14px !important; font-size: 13px !important; }
-.spv-btn-sec { background: transparent; border: 1px solid #cbd5e1; border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; color: #1a1a1a; }
-.spv-btn-sec:hover { background: #f1f5f9; }
-.spv-btn-danger { background: transparent; border: 1px solid #fca5a5; border-radius: 8px; padding: 4px 10px; font-size: 12px; cursor: pointer; color: #A32D2D; }
-.spv-btn-danger:hover { background: #FCEBEB; }
 .spv-grid { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 20px !important; padding: 28px 0 !important; }
 .spv-loading, .spv-empty { width: 100%; text-align: center; padding: 3rem 1rem; color: #64748b; font-size: 14px; }
-.spv-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; cursor: pointer; transition: border-color .15s, box-shadow .15s; flex: 0 0 350px !important; max-width: 350px !important; display: flex; flex-direction: column; }
-.spv-card:hover { border-color: #94a3b8; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.spv-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; transition: border-color .15s, box-shadow .15s; flex: 0 0 calc(25% - 15px) !important; max-width: calc(25% - 15px) !important; min-width: 0; display: flex; flex-direction: column; }
 .spv-card.spv-in-cart { border-color: #1e3433; border-width: 2px; }
 .spv-card-img { width: 100%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 13px; overflow: hidden; position: relative; }
 .spv-card-img img { width: 100%; height: auto; object-fit: contain; display: block; background: #f8f8f6; }
-.spv-cart-indicator { position: absolute; top: 8px; right: 8px; background: #1e3433; color: #fff; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
-.spv-card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
-.spv-card-title { font-size: 15px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: #1a1a1a; margin-bottom: 5px; letter-spacing: 0.02em; min-height: 48px; display: flex; align-items: flex-start; }
-.spv-card-price { font-size: 14px; color: #444; margin-bottom: 10px; }
+.spv-cart-indicator { position: absolute; top: 8px; right: 8px; background: #1e3433; color: #fff; font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 99px; }
+.spv-card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; gap: 8px; }
+.spv-card-title { font-size: 15px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: #1a1a1a; margin-bottom: 0; letter-spacing: 0.02em; min-height: 48px; display: flex; align-items: flex-start; }
+.spv-card-price { font-size: 14px; color: #444; }
 .spv-card-btn { display: flex !important; width: 100% !important; padding: 9px 0 !important; background: #1e3433 !important; color: #fff !important; border: none !important; border-radius: 8px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; gap: 6px !important; transition: background .15s !important; }
 .spv-card-btn:hover { background: #2d4f4d !important; }
+.spv-card-btn.spv-card-btn-added { background: #fff !important; color: #1e3433 !important; border: 1px solid #1e3433 !important; }
+.spv-card-btn.spv-card-btn-added:hover { background: #f1f5f9 !important; }
 .spv-alert { border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 1rem; }
 .spv-alert-error { background: #FCEBEB; color: #A32D2D; border: 1px solid #fca5a5; }
-.spv-modal-backdrop { position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
-.spv-modal-card { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; width: 100%; max-width: 900px; }
-.spv-modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid #e2e8f0; }
-.spv-modal-title { font-size: 16px; font-weight: 300; font-family: 'Cormorant Garamond', serif; letter-spacing: 0.02em; }
-.spv-modal-layout { display: flex; }
-.spv-modal-img { width: 60%; min-width: 60%; min-height: 400px; background: #fff; border-right: 1px solid #e2e8f0; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.spv-modal-img img { width: 100%; height: 100%; min-height: 400px; object-fit: contain; }
-.spv-modal-content { flex: 1; padding: 1.25rem; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-.spv-modal-price { font-size: 22px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: #1a1a1a; letter-spacing: 0.02em; }
-.spv-modal-desc { font-size: 14px; color: #444; line-height: 1.6; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; }
-.spv-note { font-size: 11px; color: #94a3b8; text-align: center; }
-.spv-var-group { display: flex; flex-wrap: wrap; gap: 8px; }
-.spv-var-pill { display: inline-flex; align-items: center; justify-content: center; padding: 8px 18px; border: 1px solid #cbd5e1; border-radius: 99px; font-size: 13px; font-weight: 500; color: #1a1a1a; background: #fff; cursor: pointer; transition: all .15s; }
-.spv-var-pill.selected { background: #1e3433; color: #fff; border-color: #1e3433; }
-.spv-var-pill:hover { border-color: #1e3433; }
-.spv-qty-row { display: flex; align-items: center; gap: 10px; }
-.spv-qty-row label { font-size: 13px; color: #64748b; }
-.spv-qty-stepper { display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 99px; overflow: hidden; background: #f8fafc; }
-.spv-qty-stepper button { background: none; border: none; width: 36px; height: 36px; font-size: 18px; cursor: pointer; color: #1a1a1a; display: flex; align-items: center; justify-content: center; transition: background .15s; }
-.spv-qty-stepper button:hover { background: #e2e8f0; }
-.spv-qty-stepper input { width: 40px; border: none; background: none; text-align: center; font-size: 14px; font-weight: 500; color: #1a1a1a; outline: none; -moz-appearance: textfield; }
-.spv-qty-stepper input::-webkit-outer-spin-button, .spv-qty-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; }
-.spv-btn-row { display: flex; gap: 8px; }
-.spv-btn-row > button { flex: 1; }
-.spv-btn-outline { background: #fff !important; color: #1e3433 !important; border: 1px solid #1e3433 !important; }
-.spv-btn-outline:hover { background: #f1f5f9 !important; }
-.spv-upsell-card { max-width: 560px !important; }
-.spv-upsell-base { display: flex; gap: 12px; padding: 14px 1.25rem; border-bottom: 1px solid #e2e8f0; align-items: center; }
-.spv-upsell-base img { width: 56px; height: 56px; object-fit: cover; border-radius: 6px; background: #f1f5f9; }
-.spv-upsell-base-info { flex: 1; min-width: 0; }
-.spv-upsell-base-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #1a1a1a; margin-bottom: 4px; line-height: 1.2; }
-.spv-upsell-base-price { font-size: 13px; color: #64748b; }
-.spv-upsell-list { max-height: 50vh; overflow-y: auto; padding: 6px 1.25rem; }
-.spv-upsell-empty { padding: 24px 0; text-align: center; color: #94a3b8; font-size: 13px; }
-.spv-upsell-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; align-items: center; }
-.spv-upsell-item:last-child { border-bottom: none; }
-.spv-upsell-img { width: 52px; height: 52px; border-radius: 6px; background: #f1f5f9; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 10px; flex-shrink: 0; }
-.spv-upsell-img img { width: 100%; height: 100%; object-fit: cover; }
-.spv-upsell-item-info { flex: 1; min-width: 0; }
-.spv-upsell-item-title { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; }
-.spv-upsell-item-price { font-size: 13px; color: #64748b; }
-.spv-upsell-add-btn { background: #fff; border: 1px solid #1e3433; color: #1e3433; border-radius: 99px; padding: 6px 18px; font-size: 11px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: all .15s; flex-shrink: 0; }
-.spv-upsell-add-btn:hover { background: #f1f5f9; }
-.spv-upsell-add-btn.selected { background: #1e3433; color: #fff; }
-.spv-upsell-footer { padding: 1rem 1.25rem; border-top: 1px solid #e2e8f0; }
-@media(max-width: 768px) {
-  .spv-modal-layout { flex-direction: column; }
-  .spv-modal-img { width: 100%; min-height: 200px; border-right: none; border-bottom: 1px solid #e2e8f0; }
-  .spv-modal-img img { min-height: 200px; }
-  .spv-modal-content { padding: 1rem; }
-  .spv-modal-card { max-width: 100%; }
+
+/* Floating cart button (matches addons modal palette: white card + dark green button) */
+.spv-fab { position: fixed; bottom: 24px; right: 24px; z-index: 9998; width: 60px; height: 60px; border-radius: 50%; background: #1e3433; color: #fff; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.25); transition: transform .15s, box-shadow .15s; }
+.spv-fab:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,.3); background: #2d4f4d; }
+.spv-fab-badge { position: absolute; top: -4px; right: -4px; background: #fff; color: #1e3433; font-size: 11px; font-weight: 700; min-width: 22px; height: 22px; border-radius: 99px; display: flex; align-items: center; justify-content: center; padding: 0 6px; border: 1px solid #1e3433; }
+
+/* Cart drawer — Light theme matching the addons modal (white + dark green + cream tones) */
+.spv-drawer-overlay { position: fixed; inset: 0; z-index: 9998; background: rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .25s; }
+.spv-drawer-overlay.spv-open { opacity: 1; pointer-events: auto; }
+.spv-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 9999; width: 100%; max-width: 420px; background: #fff; color: #1a1a1a; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .25s ease-out; box-shadow: -8px 0 24px rgba(0,0,0,.15); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.spv-drawer.spv-open { transform: translateX(0); }
+.spv-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid #e2e8f0; }
+.spv-drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.02em; color: #1a1a1a; }
+.spv-drawer-close { background: transparent; border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 12px; font-size: 14px; cursor: pointer; color: #1a1a1a; line-height: 1; transition: background .15s; }
+.spv-drawer-close:hover { background: #f1f5f9; }
+.spv-drawer-items { flex: 1; overflow-y: auto; padding: 6px 1.25rem; }
+.spv-drawer-empty { padding: 60px 0; text-align: center; color: #94a3b8; font-size: 13px; }
+.spv-drawer-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f1f5f9; align-items: flex-start; }
+.spv-drawer-item:last-child { border-bottom: none; }
+.spv-drawer-item-img { width: 56px; height: 56px; border-radius: 6px; background: #f1f5f9; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 10px; }
+.spv-drawer-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.spv-drawer-item-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.spv-drawer-item-title { font-size: 14px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+.spv-drawer-item-price { color: #64748b; font-size: 13px; }
+.spv-drawer-item-actions { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.spv-drawer-qty { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 99px; overflow: hidden; background: #f8fafc; }
+.spv-drawer-qty button { background: none; border: none; width: 28px; height: 28px; cursor: pointer; font-size: 16px; color: #1a1a1a; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+.spv-drawer-qty button:hover { background: #e2e8f0; }
+.spv-drawer-qty span { padding: 0 8px; font-size: 13px; min-width: 24px; text-align: center; font-weight: 500; color: #1a1a1a; }
+.spv-drawer-remove { background: none; border: none; color: #94a3b8; cursor: pointer; padding: 6px; display: inline-flex; align-items: center; justify-content: center; transition: color .15s; line-height: 1; }
+.spv-drawer-remove:hover { color: #A32D2D; }
+
+/* Welcome Gift line in drawer (matches Shopify checkout style) */
+.spv-drawer-gift { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f1f5f9; align-items: center; position: relative; }
+.spv-drawer-gift:last-child { border-bottom: none; }
+.spv-drawer-gift-img { width: 56px; height: 56px; border-radius: 6px; background: #f1f5f9; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+.spv-drawer-gift-img img { width: 100%; height: 100%; object-fit: cover; }
+.spv-drawer-gift-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.spv-drawer-gift-title { font-size: 14px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+.spv-drawer-gift-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+.spv-drawer-gift-tag svg { flex-shrink: 0; }
+.spv-drawer-gift-price-col { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+.spv-drawer-gift-orig-price { font-size: 12px; color: #94a3b8; text-decoration: line-through; }
+.spv-drawer-gift-free { font-size: 13px; color: #1a1a1a; font-weight: 600; letter-spacing: 0.06em; }
+.spv-drawer-footer { padding: 1rem 1.25rem; border-top: 1px solid #e2e8f0; background: #fff; }
+.spv-drawer-total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.spv-drawer-total > span:first-child { color: #64748b; font-size: 13px; }
+.spv-drawer-total > span:last-child { color: #1a1a1a; font-weight: 600; font-size: 16px; font-family: 'Cormorant Garamond', serif; }
+.spv-drawer-checkout { display: flex !important; width: 100% !important; padding: 12px 18px !important; background: #1e3433 !important; color: #fff !important; border: none !important; border-radius: 8px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !important; align-items: center !important; justify-content: center !important; gap: 8px !important; transition: background .15s !important; text-transform: uppercase; letter-spacing: 0.08em; }
+.spv-drawer-checkout:hover { background: #2d4f4d !important; }
+.spv-drawer-checkout:disabled { opacity: .4 !important; cursor: not-allowed !important; }
+.spv-drawer-clear { background: none; border: none; color: #94a3b8; font-size: 11px; cursor: pointer; margin-top: 12px; display: block; margin-left: auto; margin-right: auto; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; transition: color .15s; }
+.spv-drawer-clear:hover { color: #A32D2D; }
+
+@media(max-width: 1024px) {
+  .spv-card { flex: 0 0 calc(50% - 10px) !important; max-width: calc(50% - 10px) !important; }
+}
+@media(max-width: 600px) {
   .spv-card { flex: 0 0 100% !important; max-width: 100% !important; }
-  .spv-btn-row { flex-direction: column; }
+  .spv-fab { bottom: 16px; right: 16px; }
+  .spv-drawer { max-width: 100%; }
 }
 `;
 
@@ -121,350 +112,97 @@ function fmtRange(priceRange, variants) {
 
 function varId(gid) { return gid.split("/").pop(); }
 
-function isCouponProduct(p) {
-  const t = (p.productType || "").toLowerCase();
-  return t.includes("coupon") || t.includes("gift") || t.includes("perk");
-}
-
-
 const TRANSLATIONS = {
   es: {
     headerTitle: "",
     headerSubtitle: "",
     cart: "Carrito",
-    clear: "Limpiar",
-    checkout: "Checkout",
-    estimatedTotal: "Total estimado",
-    quantity: "Cantidad",
-    option: "Opción",
+    clear: "Vaciar carrito",
+    checkout: "Ir al checkout",
+    estimatedTotal: "Subtotal",
     addToCart: "Agregar al carrito",
-    goToCheckout: "Ir al checkout",
-    processing: "Procesando...",
-    cartNote: "Se agregará al carrito. Sigue explorando.",
-    checkoutNote: "Se abrirá el checkout de Shopify.",
+    added: "Agregado",
     loading: "Cargando productos...",
     noProducts: "No se encontraron productos.",
     noImage: "Sin imagen",
-    shopNow: "Comprar ahora",
-    redeemCoupon: "Canjear cupón",
-    enhanceStay: "Mejora tu estadía",
-    add: "Agregar",
-    added: "Agregado",
-    continueLabel: "Continuar",
+    emptyCart: "Tu carrito está vacío",
     inCart: "En carrito",
+    remove: "Eliminar",
+    free: "Gratis",
+    complimentary: "Cortesía",
+    giftNote: "Incluido con tu compra",
     configError: "Configura storeUrl y storefrontToken en las props.",
   },
   en: {
     headerTitle: "",
     headerSubtitle: "",
     cart: "Cart",
-    clear: "Clear",
-    checkout: "Checkout",
-    estimatedTotal: "Estimated total",
-    quantity: "Quantity",
-    option: "Option",
+    clear: "Clear cart",
+    checkout: "Proceed to checkout",
+    estimatedTotal: "Subtotal",
     addToCart: "Add to cart",
-    goToCheckout: "Go to checkout",
-    processing: "Processing...",
-    cartNote: "Added to cart. Keep browsing.",
-    checkoutNote: "Shopify checkout will open.",
+    added: "Added",
     loading: "Loading products...",
     noProducts: "No products found.",
     noImage: "No image",
-    shopNow: "Shop Now",
-    redeemCoupon: "Redeem Coupon",
-    enhanceStay: "Enhance Your Stay",
-    add: "Add",
-    added: "Added",
-    continueLabel: "Continue",
+    emptyCart: "Your cart is empty",
     inCart: "In cart",
+    remove: "Remove",
+    free: "Free",
+    complimentary: "Complimentary",
+    giftNote: "Included with your purchase",
     configError: "Please configure storeUrl and storefrontToken props.",
   },
 };
 
-const BagIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+const BagIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
   </svg>
 );
 
-function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t }) {
-  const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
-  const [qty, setQty] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const closedReasonRef = useRef(null);
+const TrashIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
+  </svg>
+);
 
-  const variants = product.variants.edges;
-  const selectedVariant = variants[selectedVariantIdx]?.node;
-  const isCoupon = isCouponProduct(product);
+const GiftIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </svg>
+);
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.key === "Escape") {
-        closedReasonRef.current = "escape_key";
-        onClose();
-      }
-    };
-    document.addEventListener("keydown", handler);
-    document.body.style.overflow = "hidden";
-    const openedAt = Date.now();
-    return () => {
-      document.removeEventListener("keydown", handler);
-      document.body.style.overflow = "";
-      // Fire close tracking on unmount (covers all close paths).
-      const reason = closedReasonRef.current || "unknown";
-      // Skip when modal is unmounted because user proceeded to checkout.
-      if (reason === "checkout_proceed") return;
-      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-      const device = isMobile ? 'mobile' : 'desktop';
-      const dwell_seconds = Math.round((Date.now() - openedAt) / 1000);
-      try {
-        window.gtag && window.gtag('event', 'coupon_modal_close', {
-          reason,
-          product_id: product.id,
-          product_title: product.title,
-          dwell_seconds,
-          device,
-        });
-      } catch {}
-      try {
-        window.fbq && window.fbq('trackCustom', 'CouponModalClose', {
-          reason,
-          product_id: product.id,
-          dwell_seconds,
-          device,
-        });
-      } catch {}
-    };
-  }, [onClose]);
+const TagIcon = ({ size = 12 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+  </svg>
+);
 
-  async function handleAction() {
-    if (!selectedVariant) return;
-    const vid = varId(selectedVariant.id);
-    if (!storeUrl) { alert("Store not configured."); return; }
-    // Track VIP coupon checkout click (Meta + GA4, w/ device)
-    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-    const device = isMobile ? 'mobile' : 'desktop';
-    const value = Number(selectedVariant.price?.amount || 0);
-    const currency = selectedVariant.price?.currencyCode || 'USD';
-    try {
-      window.fbq && window.fbq('track', 'InitiateCheckout', {
-        content_name: 'VIP Coupon Checkout',
-        content_ids: [vid],
-        value,
-        currency,
-        device,
-      });
-    } catch {}
-    try {
-      window.gtag && window.gtag('event', 'coupon_checkout_click', {
-        flow: 'shop_now_modal',
-        product_id: product.id,
-        product_title: product.title,
-        variant_id: vid,
-        quantity: qty,
-        value,
-        currency,
-        device,
-      });
-    } catch {}
-    closedReasonRef.current = "checkout_proceed";
-    window.open(`https://${storeUrl}/cart?autoadd=${vid}:${qty}`, "_blank");
-    onClose();
-  }
+const CART_STORAGE_KEY = "everlake-cart-v1";
 
-  return (
-    <div
-      className="spv-modal-backdrop"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          closedReasonRef.current = "outside_click";
-          onClose();
-        }
-      }}
-    >
-      <div className="spv-modal-card">
-        <div className="spv-modal-header">
-          <div className="spv-modal-title">{product.title}</div>
-          <button
-            className="spv-btn-sec"
-            onClick={() => {
-              closedReasonRef.current = "x_button";
-              onClose();
-            }}
-          >✕</button>
-        </div>
-        <div className="spv-modal-layout">
-          <div className="spv-modal-img">
-            {product.featuredImage
-              ? <img src={product.featuredImage.url} alt={product.title} />
-              : <span>{t.noImage}</span>}
-          </div>
-          <div className="spv-modal-content">
-            <div className="spv-modal-price">{fmtRange(product.priceRange, product.variants)}</div>
-            {product.description && <div className="spv-modal-desc">{product.description}</div>}
-            {variants.length > 0 && (
-              <div>
-                <label style={{ fontSize: 13, color: "#64748b", marginBottom: 6, display: "block" }}>{t.option}</label>
-                <div className="spv-var-group">
-                  {variants.map((e, i) => (
-                    <button key={e.node.id} className={`spv-var-pill ${i === selectedVariantIdx ? "selected" : ""}`} onClick={() => setSelectedVariantIdx(i)}>
-                      {e.node.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="spv-qty-row">
-              <label>{t.quantity}</label>
-              <div className="spv-qty-stepper">
-                <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
-                <input type="number" value={qty} onChange={(e) => setQty(Math.min(99, Math.max(1, parseInt(e.target.value) || 1)))} />
-                <button onClick={() => setQty(q => Math.min(99, q + 1))}>+</button>
-              </div>
-            </div>
-            <div className="spv-btn-row">
-              <button
-                className="spv-btn-green spv-btn-outline"
-                onClick={() => {
-                  closedReasonRef.current = "checkout_proceed";
-                  onRedeem(selectedVariant?.id, qty);
-                }}
-                disabled={loading || !selectedVariant}
-              >
-                {t.redeemCoupon}
-              </button>
-              <button className="spv-btn-green" onClick={handleAction} disabled={loading || !selectedVariant}>
-                {loading ? t.processing : <><BagIcon /> {t.shopNow}</>}
-              </button>
-            </div>
-            <p className="spv-note">{t.checkoutNote}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+function loadCart() {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
 }
 
-
-function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, onClose, t }) {
-  const [selected, setSelected] = useState(() => new Set());
-
-  useEffect(() => {
-    const handler = (e) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", handler);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", handler);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
-  const toggle = (id) => {
-    setSelected(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
-  };
-
-  const handleContinue = () => {
-    if (!storeUrl || !baseVariantId) return;
-    const parts = [`${varId(baseVariantId)}:${baseQty}`];
-    const addonIds = [];
-    for (const addon of addons) {
-      const v = addon.variants.edges[0]?.node;
-      if (v && selected.has(v.id)) {
-        parts.push(`${varId(v.id)}:1`);
-        addonIds.push(varId(v.id));
-      }
-    }
-    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-    const device = isMobile ? 'mobile' : 'desktop';
-    try {
-      window.fbq && window.fbq('track', 'InitiateCheckout', {
-        content_name: 'VIP Coupon Upsell Checkout',
-        num_items: parts.length,
-        device,
-      });
-    } catch {}
-    try {
-      window.gtag && window.gtag('event', 'coupon_checkout_click', {
-        flow: 'upsell_continue',
-        base_product_id: baseProduct.id,
-        base_product_title: baseProduct.title,
-        base_variant_id: varId(baseVariantId),
-        addons_count: addonIds.length,
-        addon_variant_ids: addonIds.join(','),
-        device,
-      });
-    } catch {}
-    window.open(`https://${storeUrl}/cart?autoadd=${parts.join(',')}`, "_blank");
-    onClose();
-  };
-
-  return (
-    <div className="spv-modal-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="spv-modal-card spv-upsell-card">
-        <div className="spv-modal-header">
-          <div className="spv-modal-title">{t.enhanceStay}</div>
-          <button className="spv-btn-sec" onClick={onClose}>✕</button>
-        </div>
-        <div className="spv-upsell-base">
-          {baseProduct.featuredImage && (
-            <img src={baseProduct.featuredImage.url} alt={baseProduct.title} />
-          )}
-          <div className="spv-upsell-base-info">
-            <div className="spv-upsell-base-title">{baseProduct.title}</div>
-            <div className="spv-upsell-base-price">
-              {fmt(baseProduct.priceRange.minVariantPrice.amount)} × {baseQty}
-            </div>
-          </div>
-        </div>
-        <div className="spv-upsell-list">
-          {addons.length === 0 ? (
-            <div className="spv-upsell-empty">{t.noProducts}</div>
-          ) : addons.map(addon => {
-            const v = addon.variants.edges[0]?.node;
-            if (!v) return null;
-            const isSelected = selected.has(v.id);
-            return (
-              <div key={addon.id} className="spv-upsell-item">
-                <div className="spv-upsell-img">
-                  {addon.featuredImage
-                    ? <img src={addon.featuredImage.url} alt={addon.title} />
-                    : <span>{t.noImage}</span>}
-                </div>
-                <div className="spv-upsell-item-info">
-                  <div className="spv-upsell-item-title">{addon.title}</div>
-                  <div className="spv-upsell-item-price">{fmt(v.price.amount)}</div>
-                </div>
-                <button
-                  className={`spv-upsell-add-btn ${isSelected ? 'selected' : ''}`}
-                  onClick={() => toggle(v.id)}
-                >
-                  {isSelected ? t.added : t.add}
-                </button>
-              </div>
-            );
-          })}
-        </div>
-        <div className="spv-upsell-footer">
-          <button className="spv-btn-green" onClick={handleContinue}>
-            {t.continueLabel}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+function saveCart(cart) {
+  try { localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart)); } catch {}
 }
 
+function getDevice() {
+  const isMobile = typeof window !== "undefined" && window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+  return isMobile ? 'mobile' : 'desktop';
+}
 
-function ProductCard({ product, onClick, onRedeem, t }) {
+function ProductCard({ product, qtyInCart, onAdd, t }) {
   const cardRef = useRef(null);
 
-  // 10-second dwell tracking: fire once when the card is at least 50%
-  // visible for a continuous 10 seconds.
+  // 10-second dwell tracking — fires once per product card per session.
   useEffect(() => {
     const el = cardRef.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
@@ -474,8 +212,7 @@ function ProductCard({ product, onClick, onRedeem, t }) {
     const fire = () => {
       if (fired) return;
       fired = true;
-      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-      const device = isMobile ? 'mobile' : 'desktop';
+      const device = getDevice();
       try {
         window.gtag && window.gtag('event', 'coupon_card_dwell_10s', {
           product_id: product.id,
@@ -511,47 +248,164 @@ function ProductCard({ product, onClick, onRedeem, t }) {
     };
   }, [product.id, product.title]);
 
-  const fireCardTap = (action) => {
-    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-    const device = isMobile ? 'mobile' : 'desktop';
+  const handleAdd = (e) => {
+    e.stopPropagation();
+    const device = getDevice();
     try {
-      window.gtag && window.gtag('event', 'coupon_card_tap', {
-        action,
+      window.gtag && window.gtag('event', 'add_to_cart', {
         product_id: product.id,
         product_title: product.title,
         device,
       });
     } catch {}
     try {
-      window.fbq && window.fbq('trackCustom', 'CouponCardTap', {
-        action,
-        product_id: product.id,
-        product_title: product.title,
+      window.fbq && window.fbq('track', 'AddToCart', {
+        content_name: product.title,
+        content_ids: [product.id],
         device,
       });
     } catch {}
+    onAdd();
   };
+
+  const inCart = qtyInCart > 0;
+
   return (
-    <div
-      ref={cardRef}
-      className="spv-card"
-      tabIndex={0}
-      onClick={() => { fireCardTap('open_card'); onClick(); }}
-      onKeyDown={(e) => { if (e.key === "Enter") { fireCardTap('open_card'); onClick(); } }}
-    >
+    <div ref={cardRef} className={`spv-card ${inCart ? 'spv-in-cart' : ''}`}>
       <div className="spv-card-img">
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
           : <span>{t.noImage}</span>}
+        {inCart && <span className="spv-cart-indicator">{qtyInCart} {t.inCart}</span>}
       </div>
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
-        <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); fireCardTap('redeem_button'); onRedeem(); }}>
-          <BagIcon /> {t.redeemCoupon}
+        <button
+          className={`spv-card-btn ${inCart ? 'spv-card-btn-added' : ''}`}
+          onClick={handleAdd}
+        >
+          <BagIcon /> {inCart ? `${t.added} (${qtyInCart})` : t.addToCart}
         </button>
       </div>
     </div>
+  );
+}
+
+function CartDrawer({ open, items, welcomeGift, hasPerkInCart, onClose, onUpdateQty, onRemove, onClear, onCheckout, t }) {
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [open, onClose]);
+
+  const total = items.reduce((sum, i) => sum + i.qty * parseFloat(i.price), 0);
+  const currency = items[0]?.currencyCode || "USD";
+
+  return (
+    <>
+      <div
+        className={`spv-drawer-overlay ${open ? 'spv-open' : ''}`}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <aside
+        className={`spv-drawer ${open ? 'spv-open' : ''}`}
+        role="dialog"
+        aria-label={t.cart}
+        aria-hidden={!open}
+      >
+        <div className="spv-drawer-header">
+          <div className="spv-drawer-title">{t.cart}</div>
+          <button className="spv-drawer-close" onClick={onClose} aria-label="Close">✕</button>
+        </div>
+        <div className="spv-drawer-items">
+          {items.length === 0 ? (
+            <div className="spv-drawer-empty">{t.emptyCart}</div>
+          ) : (
+            <>
+              {items.map(item => (
+                <div key={item.variantId} className="spv-drawer-item">
+                  <div className="spv-drawer-item-img">
+                    {item.image
+                      ? <img src={item.image} alt={item.title} />
+                      : <span>{t.noImage}</span>}
+                  </div>
+                  <div className="spv-drawer-item-info">
+                    <div className="spv-drawer-item-title">{item.title}</div>
+                    <div className="spv-drawer-item-price">
+                      {fmt(item.price)} {item.currencyCode}
+                    </div>
+                    <div className="spv-drawer-item-actions">
+                      <div className="spv-drawer-qty">
+                        <button onClick={() => onUpdateQty(item.variantId, item.qty - 1)} aria-label="-">−</button>
+                        <span>{item.qty}</span>
+                        <button onClick={() => onUpdateQty(item.variantId, item.qty + 1)} aria-label="+">+</button>
+                      </div>
+                      <button
+                        className="spv-drawer-remove"
+                        onClick={() => onRemove(item.variantId)}
+                        aria-label={t.remove}
+                        title={t.remove}
+                      >
+                        <TrashIcon size={18} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {hasPerkInCart && welcomeGift && (() => {
+                const giftVariant = welcomeGift.variants.edges[0]?.node;
+                const origPrice = giftVariant?.price?.amount;
+                return (
+                  <div className="spv-drawer-gift">
+                    <div className="spv-drawer-gift-img">
+                      {welcomeGift.featuredImage?.url
+                        ? <img src={welcomeGift.featuredImage.url} alt={welcomeGift.title} />
+                        : <GiftIcon size={24} />}
+                    </div>
+                    <div className="spv-drawer-gift-info">
+                      <div className="spv-drawer-gift-title">{welcomeGift.title}</div>
+                      <div className="spv-drawer-gift-tag">
+                        <TagIcon size={11} />
+                        {welcomeGift.title.toUpperCase()}{origPrice ? ` (-${fmt(origPrice)})` : ''}
+                      </div>
+                    </div>
+                    <div className="spv-drawer-gift-price-col">
+                      {origPrice && <span className="spv-drawer-gift-orig-price">{fmt(origPrice)}</span>}
+                      <span className="spv-drawer-gift-free">{t.free.toUpperCase()}</span>
+                    </div>
+                  </div>
+                );
+              })()}
+            </>
+          )}
+        </div>
+        <div className="spv-drawer-footer">
+          <div className="spv-drawer-total">
+            <span>{t.estimatedTotal}</span>
+            <span>{fmt(total)} {currency}</span>
+          </div>
+          <button
+            className="spv-drawer-checkout"
+            onClick={onCheckout}
+            disabled={items.length === 0}
+          >
+            <BagIcon size={16} /> {t.checkout}
+          </button>
+          {items.length > 0 && (
+            <button className="spv-drawer-clear" onClick={onClear}>
+              {t.clear}
+            </button>
+          )}
+        </div>
+      </aside>
+    </>
   );
 }
 
@@ -567,11 +421,13 @@ export default function ShopifyProducts({
   const displayTitle = title || t.headerTitle;
   const displaySubtitle = subtitle || t.headerSubtitle;
   const [products, setProducts] = useState([]);
-  const [addons, setAddons] = useState([]);
+  const [welcomeGift, setWelcomeGift] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [modalProduct, setModalProduct] = useState(null);
-  const [upsellState, setUpsellState] = useState(null);
+  const [cart, setCart] = useState(() => loadCart());
+  const [cartOpen, setCartOpen] = useState(false);
+
+  useEffect(() => { saveCart(cart); }, [cart]);
 
   const fetchProducts = useCallback(async () => {
     if (!storeUrl || !storefrontToken) { setError(t.configError); setLoading(false); return; }
@@ -586,25 +442,106 @@ export default function ShopifyProducts({
       const data = await res.json();
       if (data.errors) throw new Error(data.errors[0]?.message || "GraphQL error");
       const allProducts = (data?.data?.products?.edges || []).map(e => e.node);
-      const isCouponCard = (p) =>
+      const isPerkCoupon = (p) =>
         (p.productType || "").toLowerCase() === "perk coupons" ||
         /\bnight\b.*\bstay\b/i.test(p.title);
       const isWelcomeGift = (p) =>
         (p.productType || "").toLowerCase() === "welcome gift" ||
         p.title.toLowerCase().includes("welcome gift");
-      const cards = allProducts.filter(isCouponCard);
-      const addonList = allProducts.filter(p =>
-        !isCouponCard(p) &&
-        !isWelcomeGift(p) &&
-        p.variants.edges.some(e => e.node.availableForSale)
-      );
-      setProducts(cards);
-      setAddons(addonList);
+      // Solo lo consideramos disponible si tiene stock real (alguna variante availableForSale).
+      const giftProduct = allProducts.find(
+        (p) => isWelcomeGift(p) && p.variants.edges.some((e) => e.node.availableForSale)
+      ) || null;
+      const visible = allProducts
+        .filter(p => !isWelcomeGift(p) && p.variants.edges.some(e => e.node.availableForSale))
+        .sort((a, b) => {
+          // Perk Coupons first, then everything else.
+          const aPerk = isPerkCoupon(a) ? 0 : 1;
+          const bPerk = isPerkCoupon(b) ? 0 : 1;
+          return aPerk - bPerk;
+        });
+      // Tag perks so we can detect them in the cart later
+      visible.forEach(p => { p.__isPerkCoupon = isPerkCoupon(p); });
+      setProducts(visible);
+      setWelcomeGift(giftProduct);
     } catch (err) { setError(`${t.loading} ${err.message}`); }
     finally { setLoading(false); }
-  }, [storeUrl, storefrontToken, apiVersion]);
+  }, [storeUrl, storefrontToken, apiVersion, t.configError, t.loading]);
 
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
+
+  const findVariant = (product) => product.variants.edges[0]?.node;
+
+  const addToCart = (product) => {
+    const variant = findVariant(product);
+    if (!variant) return;
+    setCart(prev => {
+      const existing = prev.find(i => i.variantId === variant.id);
+      if (existing) {
+        return prev.map(i => i.variantId === variant.id ? { ...i, qty: i.qty + 1 } : i);
+      }
+      return [...prev, {
+        variantId: variant.id,
+        productId: product.id,
+        title: product.title,
+        variantTitle: variant.title,
+        image: product.featuredImage?.url || null,
+        price: variant.price.amount,
+        currencyCode: variant.price.currencyCode,
+        qty: 1,
+        isPerkCoupon: !!product.__isPerkCoupon,
+      }];
+    });
+  };
+
+  const updateQty = (variantId, qty) => {
+    if (qty <= 0) {
+      setCart(prev => prev.filter(i => i.variantId !== variantId));
+      return;
+    }
+    setCart(prev => prev.map(i => i.variantId === variantId ? { ...i, qty: Math.min(99, qty) } : i));
+  };
+
+  const removeFromCart = (variantId) => {
+    setCart(prev => prev.filter(i => i.variantId !== variantId));
+  };
+
+  const clearCart = () => setCart([]);
+
+  const checkout = () => {
+    if (!cart.length || !storeUrl) return;
+    const parts = cart.map(i => `${varId(i.variantId)}:${i.qty}`).join(',');
+    const device = getDevice();
+    const total = cart.reduce((sum, i) => sum + i.qty * parseFloat(i.price), 0);
+    const currency = cart[0]?.currencyCode || 'USD';
+    try {
+      window.fbq && window.fbq('track', 'InitiateCheckout', {
+        content_name: 'VIP Cart Checkout',
+        num_items: cart.reduce((s, i) => s + i.qty, 0),
+        value: total,
+        currency,
+        device,
+      });
+    } catch {}
+    try {
+      window.gtag && window.gtag('event', 'coupon_checkout_click', {
+        flow: 'cart_checkout',
+        items_count: cart.length,
+        units_count: cart.reduce((s, i) => s + i.qty, 0),
+        value: total,
+        currency,
+        device,
+      });
+    } catch {}
+    window.open(`https://${storeUrl}/cart?autoadd=${parts}`, "_blank");
+    // Vaciar el cart local después de mandar al checkout
+    setCart([]);
+    setCartOpen(false);
+  };
+
+  const itemCount = cart.reduce((sum, i) => sum + i.qty, 0);
+  const cartByVariant = new Map(cart.map(i => [i.variantId, i.qty]));
+  const hasPerkInCart = cart.some(i => i.isPerkCoupon);
 
   return (
     <>
@@ -621,47 +558,45 @@ export default function ShopifyProducts({
           ) : products.length === 0 ? (
             <div className="spv-empty">{t.noProducts}</div>
           ) : (
-            products.map(p => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                onClick={() => setModalProduct(p)}
-                onRedeem={() => {
-                  const firstVariant = p.variants.edges[0]?.node;
-                  if (!firstVariant) return;
-                  setUpsellState({ product: p, variantId: firstVariant.id, qty: 1 });
-                }}
-                t={t}
-              />
-            ))
+            products.map(p => {
+              const v = findVariant(p);
+              return (
+                <ProductCard
+                  key={p.id}
+                  product={p}
+                  qtyInCart={v ? (cartByVariant.get(v.id) || 0) : 0}
+                  onAdd={() => addToCart(p)}
+                  t={t}
+                />
+              );
+            })
           )}
         </div>
-        {modalProduct && (
-          <ProductModal
-            product={modalProduct}
-            storeUrl={storeUrl}
-            storefrontToken={storefrontToken}
-            onClose={() => setModalProduct(null)}
-            onRedeem={(variantId, qty) => {
-              if (!variantId) return;
-              setUpsellState({ product: modalProduct, variantId, qty });
-              setModalProduct(null);
-            }}
-            t={t}
-          />
-        )}
-        {upsellState && (
-          <UpsellModal
-            baseProduct={upsellState.product}
-            baseVariantId={upsellState.variantId}
-            baseQty={upsellState.qty}
-            addons={addons}
-            storeUrl={storeUrl}
-            onClose={() => setUpsellState(null)}
-            t={t}
-          />
-        )}
       </div>
+
+      {itemCount > 0 && !cartOpen && (
+        <button
+          className="spv-fab"
+          onClick={() => setCartOpen(true)}
+          aria-label={t.cart}
+        >
+          <BagIcon size={22} />
+          <span className="spv-fab-badge">{itemCount}</span>
+        </button>
+      )}
+
+      <CartDrawer
+        open={cartOpen}
+        items={cart}
+        welcomeGift={welcomeGift}
+        hasPerkInCart={hasPerkInCart}
+        onClose={() => setCartOpen(false)}
+        onUpdateQty={updateQty}
+        onRemove={removeFromCart}
+        onClear={clearCart}
+        onCheckout={checkout}
+        t={t}
+      />
     </>
   );
 }
