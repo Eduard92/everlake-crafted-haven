@@ -68,8 +68,8 @@ const translations = {
   "vip.title2": { en: "Unlock Your Stay", es: "Desbloquea Tu Estadía" },
   "vip.title3": { en: "Before Everyone Else", es: "Antes Que Nadie" },
   "vip.subtitle": {
-    en: "Each package below is a prepaid stay, not a reservation.\nYou will be choosing your dates later when the booking calendar opens on May 12th. As a VIP, you'll have a 2-week exclusive window to book your preferred dates before the public.",
-    es: "Cada paquete a continuación es una estadía prepagada, no una reserva.\nElegirás tus fechas más tarde cuando el calendario de reservas abra el 12 de mayo. Como VIP, tendrás una ventana exclusiva de 2 semanas para reservar tus fechas preferidas antes que el público.",
+    en: "Each Package below is a prepaid stay at your discounted rate, not a reservation.\nSelect your packages by clicking \"Add to Cart\". You can purchase multiple stays.\nYou can also enhance your stay by adding Priority Status and/or any credit. Your Welcome Gift will be automatically added at checkout.",
+    es: "Cada Paquete a continuación es una estadía prepagada a tu tarifa con descuento, no una reserva.\nSelecciona tus paquetes haciendo clic en \"Añadir al Carrito\". Puedes comprar varias estadías.\nTambién puedes mejorar tu estadía añadiendo Estatus Prioritario y/o cualquier crédito. Tu Regalo de Bienvenida se añadirá automáticamente al finalizar la compra.",
   },
 
   // Countdown
