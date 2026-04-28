@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import cabinInterior from "@/assets/cabin-interior.webp";
 import cabinExterior from "@/assets/cabin-exterior.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -8,12 +8,15 @@ import { trackEvent } from "@/lib/analytics";
 const HideawaysSection = () => {
   const { t } = useLanguage();
   const cabinIframeRef = useRef<HTMLIFrameElement | null>(null);
+  const [overlayHidden, setOverlayHidden] = useState(false);
 
-  // Track first play on the Cabin Tour Vimeo via postMessage API.
+  // Cabin Tour Vimeo tracking: first play + 25/50/75/100% milestones via postMessage API.
   useEffect(() => {
     const iframe = cabinIframeRef.current;
     if (!iframe) return;
     let played = false;
+    const milestones = [25, 50, 75, 100];
+    const fired = new Set<number>();
 
     const post = (method: string) => {
       try {
@@ -23,6 +26,8 @@ const HideawaysSection = () => {
 
     const onReady = () => {
       post("addEventListener:play");
+      post("addEventListener:timeupdate");
+      post("addEventListener:ended");
     };
 
     const onMessage = (e: MessageEvent) => {
@@ -34,7 +39,29 @@ const HideawaysSection = () => {
       if (data?.event === "ready") onReady();
       if (data?.event === "play" && !played) {
         played = true;
+        setOverlayHidden(true);
         trackEvent("video_play", { video: "cabin_tour", video_id: "1143138281" });
+      }
+      if (data?.event === "timeupdate" && data?.data) {
+        const percent = Math.floor((data.data.percent || 0) * 100);
+        for (const m of milestones) {
+          if (percent >= m && !fired.has(m)) {
+            fired.add(m);
+            trackEvent("video_progress", {
+              video: "cabin_tour",
+              video_id: "1143138281",
+              percent: m,
+            });
+          }
+        }
+      }
+      if (data?.event === "ended" && !fired.has(100)) {
+        fired.add(100);
+        trackEvent("video_progress", {
+          video: "cabin_tour",
+          video_id: "1143138281",
+          percent: 100,
+        });
       }
     };
 
@@ -43,6 +70,18 @@ const HideawaysSection = () => {
     post("ping");
     return () => window.removeEventListener("message", onMessage);
   }, []);
+
+  const handleOverlayPlay = () => {
+    trackEvent("video_play_overlay_click", {
+      video: "cabin_tour",
+      video_id: "1143138281",
+    });
+    const iframe = cabinIframeRef.current;
+    try {
+      iframe?.contentWindow?.postMessage(JSON.stringify({ method: "play" }), "*");
+    } catch {}
+    setOverlayHidden(true);
+  };
 
   const features = [
     { title: t("hideaways.feat1Title"), desc: t("hideaways.feat1Desc") },
@@ -101,7 +140,7 @@ const HideawaysSection = () => {
           className="max-w-4xl mx-auto"
         >
           <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-6 text-center">{t("hideaways.tourBadge")}</p>
-          <div className="vimeo-wrapper">
+          <div className="vimeo-wrapper relative">
             <iframe
               ref={cabinIframeRef}
               src="https://player.vimeo.com/video/1143138281?title=0&byline=0&portrait=0"
@@ -109,6 +148,23 @@ const HideawaysSection = () => {
               loading="lazy"
               title="Everlake Cabin Tour"
             />
+            {!overlayHidden && (
+              <button
+                type="button"
+                onClick={handleOverlayPlay}
+                aria-label={t("hideaways.playOverlay")}
+                className="absolute inset-0 z-10 flex items-center justify-center bg-everlake-warm-black/30 hover:bg-everlake-warm-black/40 transition-colors group"
+              >
+                <span className="flex items-center gap-3 px-6 py-3 border border-everlake-gold/60 bg-everlake-warm-black/70 backdrop-blur-sm rounded-sm group-hover:border-everlake-gold transition-colors">
+                  <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor" className="text-everlake-gold">
+                    <path d="M0 0L14 8L0 16V0Z" />
+                  </svg>
+                  <span className="font-body text-xs tracking-[0.25em] uppercase text-everlake-ivory">
+                    {t("hideaways.playOverlay")}
+                  </span>
+                </span>
+              </button>
+            )}
           </div>
         </motion.div>
       </div>
