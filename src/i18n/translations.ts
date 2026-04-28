@@ -68,8 +68,8 @@ const translations = {
   "vip.title2": { en: "Unlock Your Stay", es: "Desbloquea Tu Estadía" },
   "vip.title3": { en: "Before Everyone Else", es: "Antes Que Nadie" },
   "vip.subtitle": {
-    en: "Each package below is a prepaid stay, not a reservation.\n\nYou're securing a complete stay at Founders pricing (up to 45% off) today, and choosing your dates later when the booking calendar opens on May 12th.\n\nAs a VIP, you'll have a 2-week exclusive window to book your preferred dates before the public.",
-    es: "Cada paquete a continuación es una estadía prepagada, no una reserva.\n\nHoy aseguras una estadía completa a precio de Fundador (hasta 45% de descuento) y eliges tus fechas más tarde cuando el calendario de reservas abra el 12 de mayo.\n\nComo VIP, tendrás una ventana exclusiva de 2 semanas para reservar tus fechas preferidas antes que el público.",
+    en: "Each package below is a prepaid stay, not a reservation.\nYou're securing a complete stay at Founders pricing (up to 45% off) today, and choosing your dates later when the booking calendar opens on May 12th.\nAs a VIP, you'll have a 2-week exclusive window to book your preferred dates before the public.",
+    es: "Cada paquete a continuación es una estadía prepagada, no una reserva.\nHoy aseguras una estadía completa a precio de Fundador (hasta 45% de descuento) y eliges tus fechas más tarde cuando el calendario de reservas abra el 12 de mayo.\nComo VIP, tendrás una ventana exclusiva de 2 semanas para reservar tus fechas preferidas antes que el público.",
   },
 
   // Countdown
