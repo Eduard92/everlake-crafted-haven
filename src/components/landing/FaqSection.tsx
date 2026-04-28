@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import faqIllustration from "@/assets/faq-illustration.svg";
 
 const FaqSection = () => {
   const { t } = useLanguage();
@@ -33,24 +32,7 @@ const FaqSection = () => {
           </h2>
         </motion.div>
 
-        {/* Illustration on mobile — above accordion */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="lg:hidden flex justify-center mb-10"
-        >
-          <img
-            src={faqIllustration}
-            alt="Everlake FAQ illustration"
-            className="w-48 h-auto"
-          />
-        </motion.div>
-
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-          {/* FAQ Accordion */}
-          <div className="flex-1 space-y-0 w-full">
+        <div className="space-y-0">
             {faqs.map((faq, i) => (
               <motion.div
                 key={i}
@@ -85,22 +67,6 @@ const FaqSection = () => {
               </motion.div>
             ))}
             <div className="border-t border-everlake-sand" />
-          </div>
-
-          {/* Illustration on desktop — sticky sidebar */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block w-[340px] flex-shrink-0 sticky top-32"
-          >
-            <img
-              src={faqIllustration}
-              alt="Everlake FAQ illustration"
-              className="w-full h-auto"
-            />
-          </motion.div>
         </div>
       </div>
     </section>
