@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
@@ -192,18 +192,49 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t
   const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
+  const closedReasonRef = useRef(null);
 
   const variants = product.variants.edges;
   const selectedVariant = variants[selectedVariantIdx]?.node;
   const isCoupon = isCouponProduct(product);
 
   useEffect(() => {
-    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    const handler = (e) => {
+      if (e.key === "Escape") {
+        closedReasonRef.current = "escape_key";
+        onClose();
+      }
+    };
     document.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
+    const openedAt = Date.now();
     return () => {
       document.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
+      // Fire close tracking on unmount (covers all close paths).
+      const reason = closedReasonRef.current || "unknown";
+      // Skip when modal is unmounted because user proceeded to checkout.
+      if (reason === "checkout_proceed") return;
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+      const device = isMobile ? 'mobile' : 'desktop';
+      const dwell_seconds = Math.round((Date.now() - openedAt) / 1000);
+      try {
+        window.gtag && window.gtag('event', 'coupon_modal_close', {
+          reason,
+          product_id: product.id,
+          product_title: product.title,
+          dwell_seconds,
+          device,
+        });
+      } catch {}
+      try {
+        window.fbq && window.fbq('trackCustom', 'CouponModalClose', {
+          reason,
+          product_id: product.id,
+          dwell_seconds,
+          device,
+        });
+      } catch {}
     };
   }, [onClose]);
 
@@ -237,16 +268,31 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t
         device,
       });
     } catch {}
+    closedReasonRef.current = "checkout_proceed";
     window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
     onClose();
   }
 
   return (
-    <div className="spv-modal-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="spv-modal-backdrop"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          closedReasonRef.current = "outside_click";
+          onClose();
+        }
+      }}
+    >
       <div className="spv-modal-card">
         <div className="spv-modal-header">
           <div className="spv-modal-title">{product.title}</div>
-          <button className="spv-btn-sec" onClick={onClose}>✕</button>
+          <button
+            className="spv-btn-sec"
+            onClick={() => {
+              closedReasonRef.current = "x_button";
+              onClose();
+            }}
+          >✕</button>
         </div>
         <div className="spv-modal-layout">
           <div className="spv-modal-img">
@@ -278,7 +324,14 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t
               </div>
             </div>
             <div className="spv-btn-row">
-              <button className="spv-btn-green spv-btn-outline" onClick={() => onRedeem(selectedVariant?.id, qty)} disabled={loading || !selectedVariant}>
+              <button
+                className="spv-btn-green spv-btn-outline"
+                onClick={() => {
+                  closedReasonRef.current = "checkout_proceed";
+                  onRedeem(selectedVariant?.id, qty);
+                }}
+                disabled={loading || !selectedVariant}
+              >
                 {t.redeemCoupon}
               </button>
               <button className="spv-btn-green" onClick={handleAction} disabled={loading || !selectedVariant}>
@@ -408,6 +461,56 @@ function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, on
 
 
 function ProductCard({ product, onClick, onRedeem, t }) {
+  const cardRef = useRef(null);
+
+  // 10-second dwell tracking: fire once when the card is at least 50%
+  // visible for a continuous 10 seconds.
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    let timer = null;
+    let fired = false;
+
+    const fire = () => {
+      if (fired) return;
+      fired = true;
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+      const device = isMobile ? 'mobile' : 'desktop';
+      try {
+        window.gtag && window.gtag('event', 'coupon_card_dwell_10s', {
+          product_id: product.id,
+          product_title: product.title,
+          device,
+        });
+      } catch {}
+      try {
+        window.fbq && window.fbq('trackCustom', 'CouponCardDwell10s', {
+          product_id: product.id,
+          product_title: product.title,
+          device,
+        });
+      } catch {}
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (!timer && !fired) timer = window.setTimeout(fire, 10_000);
+          } else {
+            if (timer) { clearTimeout(timer); timer = null; }
+          }
+        }
+      },
+      { threshold: [0, 0.5, 1] }
+    );
+    io.observe(el);
+    return () => {
+      if (timer) clearTimeout(timer);
+      io.disconnect();
+    };
+  }, [product.id, product.title]);
+
   const fireCardTap = (action) => {
     const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
     const device = isMobile ? 'mobile' : 'desktop';
@@ -430,6 +533,7 @@ function ProductCard({ product, onClick, onRedeem, t }) {
   };
   return (
     <div
+      ref={cardRef}
       className="spv-card"
       tabIndex={0}
       onClick={() => { fireCardTap('open_card'); onClick(); }}
