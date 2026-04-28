@@ -2,7 +2,7 @@ export type Lang = "en" | "es";
 
 const translations = {
   // Nav
-  "nav.hideaways": { en: "Hideaways", es: "Refugios" },
+  "nav.hideaways": { en: "Hideaways", es: "Cabañas" },
   "nav.experiences": { en: "Experiences", es: "Experiencias" },
   "nav.vipShop": { en: "VIP Shop", es: "Tienda VIP" },
   "nav.faq": { en: "FAQ", es: "Preguntas" },
@@ -39,8 +39,8 @@ const translations = {
   },
 
   // Hideaways
-  "hideaways.badge": { en: "Our Hideaways", es: "Nuestros Refugios" },
-  "hideaways.title": { en: "Designed for", es: "Diseñados para la" },
+  "hideaways.badge": { en: "Our Hideaways", es: "Nuestras Cabañas" },
+  "hideaways.title": { en: "Designed for", es: "Diseñados para el" },
   "hideaways.titleItalic": { en: "stillness", es: "silencio" },
   "hideaways.imgLabel1": { en: "Exterior · Forest Setting", es: "Exterior · Entorno Boscoso" },
   "hideaways.imgLabel2": { en: "Interior · Bedroom Suite", es: "Interior · Suite Dormitorio" },
@@ -48,17 +48,17 @@ const translations = {
   "hideaways.feat1Title": { en: "Private Space", es: "Espacio Privado" },
   "hideaways.feat1Desc": {
     en: "Each hideaway is entirely yours. Slow mornings and quiet nights beneath the stars.",
-    es: "Cada refugio es completamente tuyo. Mañanas tranquilas y noches silenciosas bajo las estrellas.",
+    es: "Cada cabaña es completamente tuya. Mañanas tranquilas y noches silenciosas bajo las estrellas.",
   },
   "hideaways.feat2Title": { en: "Scenic Views", es: "Vistas Panorámicas" },
   "hideaways.feat2Desc": {
     en: "Nestled on the lake or tucked into the woods — serene nature is just a step away.",
     es: "Junto al lago o entre el bosque — la naturaleza serena está a un paso.",
   },
-  "hideaways.feat3Title": { en: "Skip Check-In", es: "Sin Registro" },
+  "hideaways.feat3Title": { en: "Skip Check-In", es: "Sin Check-In" },
   "hideaways.feat3Desc": {
     en: "Digital check-in grants instant access. Arrive with ease and step straight into calm.",
-    es: "El registro digital te da acceso inmediato. Llega con tranquilidad y entra directo a la calma.",
+    es: "El check-in digital te da acceso inmediato. Llega con tranquilidad y entra directo a la calma.",
   },
 
   // VIP Shop
@@ -77,6 +77,7 @@ const translations = {
   "countdown.hours": { en: "Hours", es: "Horas" },
   "countdown.minutes": { en: "Minutes", es: "Minutos" },
   "countdown.seconds": { en: "Seconds", es: "Segundos" },
+  "countdown.launches": { en: "Launches", es: "Comienza" },
 
   // VIP Gate
   "gate.badge": { en: "Founders Only", es: "Solo Fundadores" },
@@ -133,7 +134,7 @@ const translations = {
   // Property Map
   "map.badge": { en: "The Property", es: "La Propiedad" },
   "map.title1": { en: "110 Acres. Two Lakes.", es: "110 Acres. Dos Lagos." },
-  "map.title2": { en: "10 Lakeside Hideaways.", es: "10 Refugios Junto al Lago." },
+  "map.title2": { en: "10 Lakeside Hideaways.", es: "10 Cabañas Junto al Lago." },
   "map.phase1": {
     en: "Everlake is designed to grow in intentional phases — perfecting every detail while honoring the natural landscape. Phase 1 introduces our flagship 10 lakeside cabins, each crafted to deliver the full Everlake experience from day one.",
     es: "Everlake está diseñado para crecer en fases intencionales — perfeccionando cada detalle mientras honramos el paisaje natural. La Fase 1 presenta nuestras 10 cabañas insignia junto al lago, cada una diseñada para ofrecer la experiencia completa de Everlake desde el primer día.",
