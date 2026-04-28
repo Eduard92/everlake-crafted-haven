@@ -26,6 +26,12 @@ const FooterSection = () => {
         </div>
 
         <div className="border-t border-everlake-ivory/10 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <a
+            href="mailto:guestservices@everlakega.com"
+            className="inline-flex items-center self-start md:self-auto px-5 py-2.5 border border-everlake-gold/40 text-everlake-gold font-body text-xs tracking-[0.2em] uppercase hover:bg-everlake-gold hover:text-everlake-warm-black transition-colors rounded-sm"
+          >
+            {t("footer.contactCta")}
+          </a>
           <p className="font-body text-xs text-everlake-ivory/30">
             © {new Date().getFullYear()} Everlake. {t("footer.rights")}
           </p>
