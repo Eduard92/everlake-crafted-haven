@@ -49,7 +49,7 @@ const GallerySection = () => {
           transition={{ duration: 0.7 }}
           className="text-center"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-3 md:mb-4">{t("gallery.badge")}</p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4 md:mb-4">{t("gallery.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-4xl text-everlake-ivory leading-[1.1]">
             {t("gallery.title")} <span className="text-editorial-italic">{t("gallery.titleItalic")}</span>
           </h2>
