@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import faqIllustration from "@/assets/faq-illustration.svg";
 
 const FaqSection = () => {
   const { t } = useLanguage();
