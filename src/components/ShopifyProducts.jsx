@@ -324,7 +324,14 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t
               </div>
             </div>
             <div className="spv-btn-row">
-              <button className="spv-btn-green spv-btn-outline" onClick={() => onRedeem(selectedVariant?.id, qty)} disabled={loading || !selectedVariant}>
+              <button
+                className="spv-btn-green spv-btn-outline"
+                onClick={() => {
+                  closedReasonRef.current = "checkout_proceed";
+                  onRedeem(selectedVariant?.id, qty);
+                }}
+                disabled={loading || !selectedVariant}
+              >
                 {t.redeemCoupon}
               </button>
               <button className="spv-btn-green" onClick={handleAction} disabled={loading || !selectedVariant}>
