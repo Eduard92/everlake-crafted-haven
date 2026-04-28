@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SectionCta from "./SectionCta";
 
 const LocationSection = () => {
   const { t } = useLanguage();
@@ -53,6 +54,7 @@ const LocationSection = () => {
           </div>
         </motion.div>
       </div>
+      <SectionCta />
     </section>
   );
 };
