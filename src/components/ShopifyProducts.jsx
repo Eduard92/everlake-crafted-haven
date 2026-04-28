@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&display=swap');
@@ -638,6 +639,8 @@ export default function ShopifyProducts({
   const addToCart = (product, variant = null, qty = 1) => {
     const v = variant || findVariant(product);
     if (!v) return;
+    // Detectar si es el primer item (cart vacío antes de agregar)
+    const wasEmpty = cart.length === 0;
     setCart(prev => {
       const existing = prev.find(i => i.variantId === v.id);
       if (existing) {
@@ -655,6 +658,10 @@ export default function ShopifyProducts({
         isPerkCoupon: !!product.__isPerkCoupon,
       }];
     });
+    // Solo desplegar el drawer cuando es el primer add (cart estaba vacío)
+    if (wasEmpty) {
+      setCartOpen(true);
+    }
   };
 
   const updateQty = (variantId, qty) => {
@@ -761,38 +768,46 @@ export default function ShopifyProducts({
         </div>
       </div>
 
-      {itemCount > 0 && !cartOpen && (
-        <button
-          className="spv-fab"
-          onClick={() => setCartOpen(true)}
-          aria-label={t.cart}
-        >
-          <BagIcon size={22} />
-          <span className="spv-fab-badge">{itemCount}</span>
-        </button>
-      )}
+      {/* FAB, CartDrawer y ProductModal van en un Portal al body para escapar
+          de cualquier `transform` de los padres (sección con motion.div, etc.)
+          y posicionarse correctamente respecto al viewport. */}
+      {typeof document !== "undefined" && createPortal(
+        <>
+          {itemCount > 0 && !cartOpen && (
+            <button
+              className="spv-fab"
+              onClick={() => setCartOpen(true)}
+              aria-label={t.cart}
+            >
+              <BagIcon size={22} />
+              <span className="spv-fab-badge">{itemCount}</span>
+            </button>
+          )}
 
-      <CartDrawer
-        open={cartOpen}
-        items={cart}
-        welcomeGift={welcomeGift}
-        hasPerkInCart={hasPerkInCart}
-        onClose={() => setCartOpen(false)}
-        onUpdateQty={updateQty}
-        onRemove={removeFromCart}
-        onClear={clearCart}
-        onCheckout={checkout}
-        t={t}
-      />
+          <CartDrawer
+            open={cartOpen}
+            items={cart}
+            welcomeGift={welcomeGift}
+            hasPerkInCart={hasPerkInCart}
+            onClose={() => setCartOpen(false)}
+            onUpdateQty={updateQty}
+            onRemove={removeFromCart}
+            onClear={clearCart}
+            onCheckout={checkout}
+            t={t}
+          />
 
-      {modalProduct && (
-        <ProductModal
-          product={modalProduct}
-          onClose={() => setModalProduct(null)}
-          onAddToCart={addToCart}
-          onCheckout={checkoutNow}
-          t={t}
-        />
+          {modalProduct && (
+            <ProductModal
+              product={modalProduct}
+              onClose={() => setModalProduct(null)}
+              onAddToCart={addToCart}
+              onCheckout={checkoutNow}
+              t={t}
+            />
+          )}
+        </>,
+        document.body
       )}
     </>
   );
