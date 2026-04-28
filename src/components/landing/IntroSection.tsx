@@ -23,16 +23,16 @@ const IntroSection = () => {
           transition={{ duration: 0.8 }}
         >
           <span className="divider-organic mx-auto mb-6 md:mb-8" />
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-6 md:mb-8">
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-5 md:mb-8">
             {t("intro.badge")}
           </p>
-          <h2 className="text-editorial text-3xl md:text-5xl lg:text-6xl leading-[1.15] md:leading-[1.1] text-everlake-charcoal mb-6 md:mb-8">
+          <h2 className="text-editorial text-3xl md:text-5xl lg:text-6xl leading-[1.15] md:leading-[1.1] text-everlake-charcoal mb-7 md:mb-8">
             {renderTitle()}
           </h2>
-          <p className="font-body text-everlake-charcoal/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="font-body text-everlake-charcoal/60 text-[15px] md:text-lg max-w-2xl mx-auto leading-[1.65] md:leading-relaxed">
             {t("intro.subtitle")}
           </p>
-          <p className="font-body text-everlake-charcoal/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
+          <p className="font-body text-everlake-charcoal/80 text-[15px] md:text-lg max-w-2xl mx-auto leading-[1.65] md:leading-relaxed mt-7 md:mt-6 font-medium">
             {t("intro.founders")}
           </p>
         </motion.div>

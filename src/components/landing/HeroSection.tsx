@@ -114,15 +114,15 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.8 }}
           className="max-w-2xl"
         >
-          <p className="font-body text-xs md:text-sm tracking-[0.2em] uppercase text-white mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
+          <p className="font-body text-xs md:text-sm tracking-[0.2em] uppercase text-white mb-5 md:mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
             {t("hero.badge")}
           </p>
-          <h1 className="text-editorial text-everlake-ivory text-4xl md:text-6xl lg:text-7xl leading-[0.95] mb-6">
+          <h1 className="text-editorial text-everlake-ivory text-4xl md:text-6xl lg:text-7xl leading-[1.0] md:leading-[0.95] mb-7 md:mb-6">
             {t("hero.title1")}<br />
             <span className="text-editorial-italic">{t("hero.title2")}</span><br />
             {t("hero.title3")}
           </h1>
-          <p className="font-body text-everlake-ivory/70 text-base md:text-lg max-w-md leading-relaxed mb-8 font-medium">
+          <p className="font-body text-everlake-ivory/70 text-[15px] md:text-lg max-w-md leading-[1.65] md:leading-relaxed mb-9 md:mb-8 font-medium">
             {t("hero.subtitle2")}
           </p>
           <a

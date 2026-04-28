@@ -22,7 +22,7 @@ const FaqSection = () => {
           transition={{ duration: 0.7 }}
           className="mb-16"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-3 md:mb-4">{t("faq.badge")}</p>
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4 md:mb-4">{t("faq.badge")}</p>
           <h2 className="text-editorial text-3xl md:text-4xl text-everlake-charcoal leading-[1.1]">
             {t("faq.title")} <span className="text-editorial-italic">{t("faq.titleItalic")}</span>
           </h2>
