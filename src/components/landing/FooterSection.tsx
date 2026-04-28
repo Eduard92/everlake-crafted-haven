@@ -1,5 +1,38 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+    fbq?: (...args: any[]) => void;
+  }
+}
+
+const trackContactClick = (location: "footer_email" | "footer_cta") => {
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
+  const device = isMobile ? "mobile" : "desktop";
+
+  try {
+    window.gtag?.("event", "contact_guest_services_click", {
+      event_category: "engagement",
+      event_label: `${location}_${device}`,
+      location,
+      device,
+      method: "mailto",
+    });
+  } catch (e) {
+    // no-op
+  }
+
+  try {
+    window.fbq?.("trackCustom", "ContactGuestServicesClick", {
+      location,
+      device,
+    });
+  } catch (e) {
+    // no-op
+  }
+};
+
 const FooterSection = () => {
   const { t } = useLanguage();
 
@@ -16,7 +49,11 @@ const FooterSection = () => {
             </p>
           </div>
           <div className="flex flex-col md:items-end gap-2">
-            <a href="mailto:guestservices@everlakega.com" className="font-body text-sm text-everlake-ivory/60 hover:text-everlake-gold transition-colors">
+            <a
+              href="mailto:guestservices@everlakega.com"
+              onClick={() => trackContactClick("footer_email")}
+              className="font-body text-sm text-everlake-ivory/60 hover:text-everlake-gold transition-colors"
+            >
               guestservices@everlakega.com
             </a>
             <a href="https://everlakega.com" target="_blank" rel="noopener noreferrer" className="font-body text-sm text-everlake-ivory/60 hover:text-everlake-gold transition-colors">
@@ -28,6 +65,7 @@ const FooterSection = () => {
         <div className="border-t border-everlake-ivory/10 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <a
             href="mailto:guestservices@everlakega.com"
+            onClick={() => trackContactClick("footer_cta")}
             className="inline-flex items-center self-start md:self-auto px-5 py-2.5 border border-everlake-gold/40 text-everlake-gold font-body text-xs tracking-[0.2em] uppercase hover:bg-everlake-gold hover:text-everlake-warm-black transition-colors rounded-sm"
           >
             {t("footer.contactCta")}
