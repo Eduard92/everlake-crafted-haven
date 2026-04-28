@@ -3,20 +3,6 @@ import { useLanguage } from "@/i18n/LanguageContext";
 
 const TARGET_DATE = new Date("2026-04-29T11:00:00Z").getTime();
 
-const TIMEZONES = [
-  { label: "Eastern (ET)", tz: "America/New_York" },
-  { label: "Central (CT)", tz: "America/Chicago" },
-  { label: "Mountain (MT)", tz: "America/Denver" },
-  { label: "Pacific (PT)", tz: "America/Los_Angeles" },
-  { label: "UTC", tz: "UTC" },
-  { label: "London (BST)", tz: "Europe/London" },
-  { label: "Madrid (CEST)", tz: "Europe/Madrid" },
-  { label: "Mexico City", tz: "America/Mexico_City" },
-  { label: "Bogotá", tz: "America/Bogota" },
-  { label: "Tokyo (JST)", tz: "Asia/Tokyo" },
-  { label: "Sydney (AEST)", tz: "Australia/Sydney" },
-];
-
 function formatTargetIn(tz: string) {
   return new Intl.DateTimeFormat("en-US", {
     timeZone: tz,
@@ -32,7 +18,6 @@ function formatTargetIn(tz: string) {
 const CountdownTimer = () => {
   const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
-  const [tz, setTz] = useState<string>("America/New_York");
 
   function getTimeLeft() {
     const diff = Math.max(0, TARGET_DATE - Date.now());
@@ -84,25 +69,6 @@ const CountdownTimer = () => {
             </span>
           </div>
         ))}
-      </div>
-      <div className="mt-5 flex flex-col items-center gap-1.5">
-        <label className="font-body text-[10px] tracking-[0.2em] uppercase text-everlake-ivory/40">
-          Preview in timezone
-        </label>
-        <select
-          value={tz}
-          onChange={(e) => setTz(e.target.value)}
-          className="bg-everlake-warm-black/60 border border-everlake-gold/30 text-everlake-ivory/80 font-body text-xs px-3 py-1.5 rounded-sm focus:outline-none focus:border-everlake-gold"
-        >
-          {TIMEZONES.map((z) => (
-            <option key={z.tz} value={z.tz} className="bg-everlake-warm-black">
-              {z.label}
-            </option>
-          ))}
-        </select>
-        <p className="font-body text-[11px] text-everlake-ivory/50 mt-1">
-          {formatTargetIn(tz)}
-        </p>
       </div>
     </div>
   );
