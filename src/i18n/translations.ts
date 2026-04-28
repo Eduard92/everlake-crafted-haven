@@ -68,8 +68,8 @@ const translations = {
   "vip.title2": { en: "Unlock Your Stay", es: "Desbloquea Tu Estadía" },
   "vip.title3": { en: "Before Everyone Else", es: "Antes Que Nadie" },
   "vip.subtitle": {
-    en: "Each Package below is a prepaid stay at your discounted rate, not a reservation. You can purchase multiple stays.\nYou can also enhance your stay by adding Priority Status and/or any credit. Your Welcome Gift will be automatically added at checkout.",
-    es: "Cada Paquete a continuación es una estadía prepagada a tu tarifa con descuento, no una reserva. Puedes comprar varias estadías.\nTambién puedes mejorar tu estadía añadiendo Estatus Prioritario y/o cualquier crédito. Tu Regalo de Bienvenida se añadirá automáticamente al finalizar la compra.",
+    en: "Each Package below is a prepaid stay at your discounted rate, not a reservation. You can purchase multiple stays.\nYou can also enhance your stay by adding Priority Status or any credit add-on. Your Welcome Gift will be automatically added at checkout.",
+    es: "Cada Paquete a continuación es una estadía prepagada a tu tarifa con descuento, no una reserva. Puedes comprar varias estadías.\nTambién puedes mejorar tu estadía añadiendo Estatus Prioritario o cualquier crédito adicional. Tu Regalo de Bienvenida se añadirá automáticamente al finalizar la compra.",
   },
 
   // Countdown
@@ -195,10 +195,10 @@ const translations = {
 
   // Shop Gate
   "shopgate.prompt": {
-    en: "Enter your VIP email to unlock your exclusive Founders packages.",
-    es: "Ingresa tu correo VIP para desbloquear tus paquetes exclusivos de Fundador.",
+    en: "Enter your VIP email to unlock your exclusive Founders Packages.",
+    es: "Ingresa tu correo VIP para desbloquear tus Paquetes exclusivos de Fundador.",
   },
-  "shopgate.unlock": { en: "Unlock", es: "Desbloquear" },
+  "shopgate.unlock": { en: "Unlock Packages", es: "Ver Paquetes" },
 
   // Upgrade Dialog
   "upgrade.badge": { en: "Limited-Time Offer", es: "Oferta por Tiempo Limitado" },
