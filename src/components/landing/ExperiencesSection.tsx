@@ -10,6 +10,7 @@ import yogaImg from "@/assets/experiences-yoga.webp";
 import massageImg from "@/assets/experiences-massage.webp";
 import cinemaImg from "@/assets/experiences-cinema.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SectionCta from "./SectionCta";
 
 const ExperiencesSection = () => {
   const { t } = useLanguage();
@@ -99,6 +100,7 @@ const ExperiencesSection = () => {
             ))}
           </div>
         </motion.div>
+        <SectionCta />
       </div>
     </section>
   );
