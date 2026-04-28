@@ -461,6 +461,56 @@ function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, on
 
 
 function ProductCard({ product, onClick, onRedeem, t }) {
+  const cardRef = useRef(null);
+
+  // 10-second dwell tracking: fire once when the card is at least 50%
+  // visible for a continuous 10 seconds.
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    let timer = null;
+    let fired = false;
+
+    const fire = () => {
+      if (fired) return;
+      fired = true;
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+      const device = isMobile ? 'mobile' : 'desktop';
+      try {
+        window.gtag && window.gtag('event', 'coupon_card_dwell_10s', {
+          product_id: product.id,
+          product_title: product.title,
+          device,
+        });
+      } catch {}
+      try {
+        window.fbq && window.fbq('trackCustom', 'CouponCardDwell10s', {
+          product_id: product.id,
+          product_title: product.title,
+          device,
+        });
+      } catch {}
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (!timer && !fired) timer = window.setTimeout(fire, 10_000);
+          } else {
+            if (timer) { clearTimeout(timer); timer = null; }
+          }
+        }
+      },
+      { threshold: [0, 0.5, 1] }
+    );
+    io.observe(el);
+    return () => {
+      if (timer) clearTimeout(timer);
+      io.disconnect();
+    };
+  }, [product.id, product.title]);
+
   const fireCardTap = (action) => {
     const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
     const device = isMobile ? 'mobile' : 'desktop';
@@ -483,6 +533,7 @@ function ProductCard({ product, onClick, onRedeem, t }) {
   };
   return (
     <div
+      ref={cardRef}
       className="spv-card"
       tabIndex={0}
       onClick={() => { fireCardTap('open_card'); onClick(); }}
