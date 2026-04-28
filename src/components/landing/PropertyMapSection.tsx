@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SectionCta from "./SectionCta";
 
 const PropertyMapSection = () => {
   const { t } = useLanguage();
@@ -40,6 +41,7 @@ const PropertyMapSection = () => {
           <iframe src="https://player.vimeo.com/video/1130962377?background=1&autoplay=1&muted=1&loop=1&autopause=0" allow="autoplay; fullscreen" loading="lazy" title="Everlake Property Map" />
         </div>
       </motion.div>
+      <SectionCta />
     </section>
   );
 };
