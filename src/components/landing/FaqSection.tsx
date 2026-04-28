@@ -6,15 +6,10 @@ const FaqSection = () => {
   const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs = [
-    { question: t("faq.q1"), answer: t("faq.a1") },
-    { question: t("faq.q2"), answer: t("faq.a2") },
-    { question: t("faq.q3"), answer: t("faq.a3") },
-    { question: t("faq.q4"), answer: t("faq.a4") },
-    { question: t("faq.q5"), answer: t("faq.a5") },
-    { question: t("faq.q6"), answer: t("faq.a6") },
-    { question: t("faq.q7"), answer: t("faq.a7") },
-  ];
+  const faqs = Array.from({ length: 16 }, (_, i) => ({
+    question: t(`faq.q${i + 1}` as any),
+    answer: t(`faq.a${i + 1}` as any),
+  }));
 
   return (
     <section id="faq" className="section-cream py-24 md:py-36 px-8 md:px-16">
@@ -49,7 +44,7 @@ const FaqSection = () => {
                   className="w-full flex items-center justify-between py-6 text-left group"
                 >
                   <span className="flex items-center gap-6">
-                    <span className="text-editorial text-sm text-everlake-sand">0{i + 1}</span>
+                    <span className="text-editorial text-sm text-everlake-sand">{String(i + 1).padStart(2, "0")}</span>
                     <span className="text-editorial text-lg md:text-xl text-everlake-charcoal group-hover:text-everlake-moss transition-colors">
                       {faq.question}
                     </span>
@@ -60,7 +55,7 @@ const FaqSection = () => {
                 </button>
                 <div
                   className="overflow-hidden transition-all duration-500 ease-out"
-                  style={{ maxHeight: openIndex === i ? '300px' : '0', opacity: openIndex === i ? 1 : 0 }}
+                  style={{ maxHeight: openIndex === i ? '600px' : '0', opacity: openIndex === i ? 1 : 0 }}
                 >
                   <p className="font-body text-sm text-everlake-charcoal/50 pb-6 pl-12 md:pl-16 leading-relaxed max-w-lg">
                     {faq.answer}
