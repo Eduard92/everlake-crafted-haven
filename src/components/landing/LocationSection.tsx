@@ -37,8 +37,8 @@ const LocationSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4">{t("loc.badge")}</p>
-          <h2 className="text-editorial text-3xl md:text-4xl text-foreground leading-[1.1] mb-6">
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-3 md:mb-4">{t("loc.badge")}</p>
+          <h2 className="text-editorial text-3xl md:text-4xl text-foreground leading-[1.1] mb-5 md:mb-6">
             {t("loc.title")} <span className="text-editorial-italic">{t("loc.titleItalic")}</span>
           </h2>
           <p className="font-body text-muted-foreground text-base leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t("loc.subtitle") }} />

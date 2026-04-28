@@ -46,8 +46,8 @@ const ExperiencesSection = () => {
           className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
           <div>
-            <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-4">{t("exp.badge")}</p>
-            <h2 className="text-editorial text-3xl md:text-5xl text-foreground leading-[1.05]">
+            <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-moss mb-3 md:mb-4">{t("exp.badge")}</p>
+            <h2 className="text-editorial text-3xl md:text-5xl text-foreground leading-[1.1] md:leading-[1.05]">
               {t("exp.title")} <span className="text-editorial-italic">{t("exp.titleItalic")}</span>
             </h2>
           </div>

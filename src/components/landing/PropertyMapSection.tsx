@@ -14,8 +14,8 @@ const PropertyMapSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">{t("map.badge")}</p>
-          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05] mb-4">
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-3 md:mb-4">{t("map.badge")}</p>
+          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.1] md:leading-[1.05] mb-5 md:mb-4">
             {t("map.title1")}<br />
             <span className="text-editorial-italic">{t("map.title2")}</span>
           </h2>

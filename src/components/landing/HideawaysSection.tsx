@@ -98,10 +98,10 @@ const HideawaysSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
         >
-          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-4">
+          <p className="font-body text-xs tracking-[0.25em] uppercase text-everlake-gold mb-3 md:mb-4">
             {t("hideaways.badge")}
           </p>
-          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.05]">
+          <h2 className="text-editorial text-3xl md:text-5xl text-everlake-ivory leading-[1.1] md:leading-[1.05]">
             {t("hideaways.title")} <span className="text-editorial-italic">{t("hideaways.titleItalic")}</span>
           </h2>
         </motion.div>
