@@ -88,7 +88,7 @@ const VipShopSection = () => {
             {t("vip.title1")}<br />
             <span className="text-editorial-italic">{t("vip.title2")}<br />{t("vip.title3")}</span>
           </h2>
-          <p className="font-body text-sm text-everlake-ivory/50 max-w-lg mx-auto leading-relaxed">{t("vip.subtitle")}</p>
+          <p className="font-body text-sm text-everlake-ivory/50 max-w-lg mx-auto leading-relaxed whitespace-pre-line">{t("vip.subtitle")}</p>
           <CountdownTimer />
         </motion.div>
 
