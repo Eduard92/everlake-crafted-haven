@@ -18,6 +18,12 @@ const VipShopSection = () => {
 
   // Check localStorage on mount
   useEffect(() => {
+    // Honor ?vip=unlocked from Shopify checkout return BEFORE reading localStorage
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("vip") === "unlocked") {
+      localStorage.setItem("everlake-vip-purchased", "true");
+      window.history.replaceState({}, "", window.location.pathname);
+    }
     const savedEmail = localStorage.getItem("everlake-vip-email");
     const purchased = localStorage.getItem("everlake-vip-purchased");
     if (savedEmail || purchased) {
