@@ -269,7 +269,7 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t
       });
     } catch {}
     closedReasonRef.current = "checkout_proceed";
-    window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
+    window.open(`https://${storeUrl}/cart?autoadd=${vid}:${qty}`, "_blank");
     onClose();
   }
 
@@ -399,7 +399,7 @@ function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, on
         device,
       });
     } catch {}
-    window.open(`https://${storeUrl}/cart/${parts.join(',')}`, "_blank");
+    window.open(`https://${storeUrl}/cart?autoadd=${parts.join(',')}`, "_blank");
     onClose();
   };
 
@@ -586,9 +586,18 @@ export default function ShopifyProducts({
       const data = await res.json();
       if (data.errors) throw new Error(data.errors[0]?.message || "GraphQL error");
       const allProducts = (data?.data?.products?.edges || []).map(e => e.node);
-      const isCouponCard = (p) => (p.productType || "").toLowerCase() === "perk coupons";
+      const isCouponCard = (p) =>
+        (p.productType || "").toLowerCase() === "perk coupons" ||
+        /\bnight\b.*\bstay\b/i.test(p.title);
+      const isWelcomeGift = (p) =>
+        (p.productType || "").toLowerCase() === "welcome gift" ||
+        p.title.toLowerCase().includes("welcome gift");
       const cards = allProducts.filter(isCouponCard);
-      const addonList = allProducts.filter(p => !isCouponCard(p) && p.variants.edges.some(e => e.node.availableForSale));
+      const addonList = allProducts.filter(p =>
+        !isCouponCard(p) &&
+        !isWelcomeGift(p) &&
+        p.variants.edges.some(e => e.node.availableForSale)
+      );
       setProducts(cards);
       setAddons(addonList);
     } catch (err) { setError(`${t.loading} ${err.message}`); }
