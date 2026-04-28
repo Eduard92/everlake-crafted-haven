@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import CountdownTimer from "./CountdownTimer";
 import { useLanguage } from "@/i18n/LanguageContext";
 import ShopifyProducts from "@/components/ShopifyProducts";
 import VipUpgradeDialog from "./VipUpgradeDialog";
