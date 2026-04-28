@@ -211,16 +211,32 @@ function ProductModal({ product, storeUrl, storefrontToken, onClose, onRedeem, t
     if (!selectedVariant) return;
     const vid = varId(selectedVariant.id);
     if (!storeUrl) { alert("Store not configured."); return; }
-    // Track VIP coupon checkout click
-    const fbq = window.fbq;
-    if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', {
+    // Track VIP coupon checkout click (Meta + GA4, w/ device)
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    const device = isMobile ? 'mobile' : 'desktop';
+    const value = Number(selectedVariant.price?.amount || 0);
+    const currency = selectedVariant.price?.currencyCode || 'USD';
+    try {
+      window.fbq && window.fbq('track', 'InitiateCheckout', {
         content_name: 'VIP Coupon Checkout',
         content_ids: [vid],
-        value: selectedVariant.price?.amount || 0,
-        currency: selectedVariant.price?.currencyCode || 'USD',
+        value,
+        currency,
+        device,
       });
-    }
+    } catch {}
+    try {
+      window.gtag && window.gtag('event', 'coupon_checkout_click', {
+        flow: 'shop_now_modal',
+        product_id: product.id,
+        product_title: product.title,
+        variant_id: vid,
+        quantity: qty,
+        value,
+        currency,
+        device,
+      });
+    } catch {}
     window.open(`https://${storeUrl}/checkout?variant=${vid}&quantity=${qty}`, "_blank");
     onClose();
   }
@@ -302,19 +318,34 @@ function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, on
   const handleContinue = () => {
     if (!storeUrl || !baseVariantId) return;
     const parts = [`${varId(baseVariantId)}:${baseQty}`];
+    const addonIds = [];
     for (const addon of addons) {
       const v = addon.variants.edges[0]?.node;
       if (v && selected.has(v.id)) {
         parts.push(`${varId(v.id)}:1`);
+        addonIds.push(varId(v.id));
       }
     }
-    const fbq = window.fbq;
-    if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', {
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    const device = isMobile ? 'mobile' : 'desktop';
+    try {
+      window.fbq && window.fbq('track', 'InitiateCheckout', {
         content_name: 'VIP Coupon Upsell Checkout',
         num_items: parts.length,
+        device,
       });
-    }
+    } catch {}
+    try {
+      window.gtag && window.gtag('event', 'coupon_checkout_click', {
+        flow: 'upsell_continue',
+        base_product_id: baseProduct.id,
+        base_product_title: baseProduct.title,
+        base_variant_id: varId(baseVariantId),
+        addons_count: addonIds.length,
+        addon_variant_ids: addonIds.join(','),
+        device,
+      });
+    } catch {}
     window.open(`https://${storeUrl}/cart/${parts.join(',')}`, "_blank");
     onClose();
   };
@@ -377,8 +408,33 @@ function UpsellModal({ baseProduct, baseVariantId, baseQty, addons, storeUrl, on
 
 
 function ProductCard({ product, onClick, onRedeem, t }) {
+  const fireCardTap = (action) => {
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    const device = isMobile ? 'mobile' : 'desktop';
+    try {
+      window.gtag && window.gtag('event', 'coupon_card_tap', {
+        action,
+        product_id: product.id,
+        product_title: product.title,
+        device,
+      });
+    } catch {}
+    try {
+      window.fbq && window.fbq('trackCustom', 'CouponCardTap', {
+        action,
+        product_id: product.id,
+        product_title: product.title,
+        device,
+      });
+    } catch {}
+  };
   return (
-    <div className="spv-card" tabIndex={0} onClick={onClick} onKeyDown={(e) => { if (e.key === "Enter") onClick(); }}>
+    <div
+      className="spv-card"
+      tabIndex={0}
+      onClick={() => { fireCardTap('open_card'); onClick(); }}
+      onKeyDown={(e) => { if (e.key === "Enter") { fireCardTap('open_card'); onClick(); } }}
+    >
       <div className="spv-card-img">
         {product.featuredImage
           ? <img src={product.featuredImage.url} alt={product.title} />
@@ -387,7 +443,7 @@ function ProductCard({ product, onClick, onRedeem, t }) {
       <div className="spv-card-body">
         <div className="spv-card-title">{product.title}</div>
         <div className="spv-card-price">{fmtRange(product.priceRange, product.variants)}</div>
-        <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); onRedeem(); }}>
+        <button className="spv-card-btn" onClick={(e) => { e.stopPropagation(); fireCardTap('redeem_button'); onRedeem(); }}>
           <BagIcon /> {t.redeemCoupon}
         </button>
       </div>
