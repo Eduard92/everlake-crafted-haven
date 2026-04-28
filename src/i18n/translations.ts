@@ -77,6 +77,7 @@ const translations = {
   "countdown.hours": { en: "Hours", es: "Horas" },
   "countdown.minutes": { en: "Minutes", es: "Minutos" },
   "countdown.seconds": { en: "Seconds", es: "Segundos" },
+  "countdown.launches": { en: "Launches", es: "Comienza" },
 
   // VIP Gate
   "gate.badge": { en: "Founders Only", es: "Solo Fundadores" },
