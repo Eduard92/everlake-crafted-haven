@@ -17,7 +17,7 @@ const VipUpgradeDialog = ({ open, onOpenChange }: VipUpgradeDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="border-none p-0 max-w-2xl overflow-hidden"
+        className="border-none p-0 w-[calc(100%-2rem)] max-w-2xl max-h-[90vh] overflow-y-auto"
         style={{ backgroundColor: "hsl(200,10%,10%)" }}
       >
         <button
