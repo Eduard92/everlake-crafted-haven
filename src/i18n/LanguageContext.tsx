@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, Context } from "react";
 import translations, { Lang, TranslationKey } from "./translations";
 
 interface LanguageContextType {
@@ -10,7 +10,7 @@ interface LanguageContextType {
 // Use a globalThis-cached context so Vite HMR doesn't create duplicate
 // Context instances (which would make consumers see `undefined`).
 const globalKey = "__everlake_language_context__";
-const LanguageContext: React.Context<LanguageContextType | undefined> =
+const LanguageContext: Context<LanguageContextType | undefined> =
   (globalThis as any)[globalKey] ??
   ((globalThis as any)[globalKey] = createContext<LanguageContextType | undefined>(undefined));
 
