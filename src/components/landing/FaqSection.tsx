@@ -32,21 +32,6 @@ const FaqSection = () => {
           </h2>
         </motion.div>
 
-        {/* Illustration on mobile — above accordion */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="lg:hidden flex justify-center mb-10"
-        >
-          <img
-            src={faqIllustration}
-            alt="Everlake FAQ illustration"
-            className="w-48 h-auto"
-          />
-        </motion.div>
-
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
           {/* FAQ Accordion */}
           <div className="flex-1 space-y-0 w-full">
