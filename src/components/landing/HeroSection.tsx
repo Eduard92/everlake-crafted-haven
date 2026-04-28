@@ -108,10 +108,11 @@ const HeroSection = () => {
         )}
       </AnimatePresence>
       <div
-        className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] px-8 md:px-16"
+        className="relative z-10 flex flex-col justify-end h-[calc(100%-80px)] px-8 md:px-16 md:pb-28"
         style={{
           WebkitTransform: 'translateZ(0)',
           transform: 'translateZ(0)',
+          // Mobile: at least 5rem (80px) + iOS safe-area inset; desktop md:pb-28 overrides via class.
           paddingBottom: 'max(5rem, calc(env(safe-area-inset-bottom, 0px) + 2rem))',
         }}
       >
