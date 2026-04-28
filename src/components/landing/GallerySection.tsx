@@ -16,6 +16,7 @@ import bathroom from "@/assets/gallery-bathroom.webp";
 import loftBed from "@/assets/gallery-loft-bed.webp";
 import cabinDeck from "@/assets/gallery-cabin-deck.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SectionCta from "./SectionCta";
 
 const galleryImages = [
   { src: cabinExterior, alt: "A-frame cabin nestled in the forest" },
@@ -74,6 +75,7 @@ const GallerySection = () => {
           ))}
         </div>
       </div>
+      <SectionCta />
     </section>
   );
 };
