@@ -3,8 +3,8 @@ import { useLanguage } from "@/i18n/LanguageContext";
 
 const TARGET_DATE = new Date("2026-04-28T11:00:00Z").getTime();
 
-function formatTargetIn(tz: string) {
-  return new Intl.DateTimeFormat("en-US", {
+function formatTargetIn(tz: string, locale: string) {
+  return new Intl.DateTimeFormat(locale, {
     timeZone: tz,
     weekday: "short",
     month: "short",
@@ -16,7 +16,7 @@ function formatTargetIn(tz: string) {
 }
 
 const CountdownTimer = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
 
   function getTimeLeft() {
@@ -53,7 +53,7 @@ const CountdownTimer = () => {
   return (
     <div className="flex flex-col items-center mt-8">
       <p className="font-body text-xs md:text-sm tracking-[0.15em] uppercase text-everlake-gold/80 mb-4 text-center">
-        Launches {formatTargetIn("America/New_York")}
+        {t("countdown.launches")} {formatTargetIn("America/New_York", lang === "es" ? "es-ES" : "en-US")}
       </p>
       <div className="flex items-center justify-center gap-4 md:gap-6">
         {units.map(({ value, label }) => (
