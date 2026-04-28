@@ -8,13 +8,13 @@ const translations = {
   "nav.faq": { en: "FAQ", es: "Preguntas" },
 
   // Hero
-  "hero.badge": { en: "VIP Early Access · Covington, Georgia", es: "Acceso VIP · Covington, Georgia" },
+  "hero.badge": { en: "VIP Early Access", es: "Acceso VIP" },
   "hero.title1": { en: "The Getaway", es: "La Escapada" },
   "hero.title2": { en: "That Stays", es: "Que Se Queda" },
   "hero.title3": { en: "With You", es: "Contigo" },
   "hero.subtitle1": {
-    en: "Before Everlake opens its gates to the world, you, our Founders, have first access to the lake.",
-    es: "Antes de que Everlake abra sus puertas, ustedes, nuestros Fundadores, tienen acceso prioritario.",
+    en: "",
+    es: "",
   },
   "hero.subtitle2": {
     en: "Your Exclusive Discounted Packages Are Now Available.",
