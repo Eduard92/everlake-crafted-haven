@@ -26,8 +26,8 @@ const translations = {
   // Intro
   "intro.badge": { en: "A Limited Invitation", es: "Una Invitación Limitada" },
   "intro.title": {
-    en: "A sanctuary where <italic>personalized rest</italic> is embedded in every element of our design.",
-    es: "Un santuario donde el <italic>descanso personalizado</italic> está integrado en cada elemento de nuestro diseño.",
+    en: "You believed in Everlake before anyone else did. Your <italic>Founders Reward</italic> is now waiting.",
+    es: "Creíste en Everlake antes que nadie. Tu <italic>Recompensa de Fundador</italic> te espera.",
   },
   "intro.subtitle": {
     en: "In a world that never stops, we're building a place where you can. Surrounded by nature, wrapped in comfort, finally still.",
